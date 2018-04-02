@@ -35,7 +35,7 @@ namespace ClassicalSharp.Model {
 			LeftLegBack = BuildBox(MakeBoxBounds(-6, 0, 5, -2, 12, 9)
 			                       .TexOrigin(0, 16)
 			                       .RotOrigin(0, 12, 7));
-			RightLegBack = BuildBox(MakeBoxBounds(2, 0, 3, 6, 12, 7)
+			RightLegBack = BuildBox(MakeBoxBounds(2, 0, 5, 6, 12, 9)
 			                        .TexOrigin(0, 16)
 			                        .RotOrigin(0, 12, 7));
 		}
