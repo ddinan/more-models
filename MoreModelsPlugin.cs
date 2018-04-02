@@ -2,6 +2,7 @@ using System;
 using ClassicalSharp;
 using ClassicalSharp.GraphicsAPI;
 
+namespace ClassicalSharp.Model {
 namespace MoreModelsPlugin {
 
 	public sealed class Core : Plugin {
@@ -19,7 +20,7 @@ namespace MoreModelsPlugin {
 			game.ModelCache.vertices = new VertexP3fT2fC4b[24 * 20];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b,
 			                                                   game.ModelCache.vertices.Length);
-			game.Server.AppName += " + MoreModels";
+			game.Server.AppName += " + More Models";
 		}
 		
 		public void Ready(Game game) { }
@@ -30,4 +31,5 @@ namespace MoreModelsPlugin {
 		
 		public void OnNewMapLoaded(Game game) { }
 	}
+  }
 }
