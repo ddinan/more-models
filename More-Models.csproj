@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CowModel.cs" />
+    <Compile Include="FlyingModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

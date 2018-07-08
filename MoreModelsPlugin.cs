@@ -14,6 +14,7 @@ namespace MoreModelsPlugin {
 		public void Init(Game game) {
 			game.ModelCache.RegisterTextures("cow.png");
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
+			game.ModelCache.Register("fly", "corpse.png", new CowModel(game));
 			
 			// Recreate the modelcache VB to be bigger
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
