@@ -16,6 +16,7 @@ namespace MoreModelsPlugin {
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
 			game.ModelCache.Register("fly", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
+			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
 			
 			// Recreate the modelcache VB to be bigger
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
