@@ -61,8 +61,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CowModel.cs" />
-    <Compile Include="FlyingModel.cs" />
+    <Compile Include="Models\CowModel.cs" />
+    <Compile Include="Models\FlyingModel.cs" />
+    <Compile Include="Models\HeadlessModel.cs" />
+    <Compile Include="Models\HoldingModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
