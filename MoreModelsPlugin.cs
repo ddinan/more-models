@@ -1,4 +1,3 @@
-//using System;
 using ClassicalSharp.GraphicsAPI;
 
 namespace ClassicalSharp.Model
@@ -23,7 +22,7 @@ namespace ClassicalSharp.Model
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
 			game.ModelCache.vertices = new VertexP3fT2fC4b[24 * 20];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + cmodeltest p0.0";
+			game.Server.AppName += " + Models";
 		}
 		
 		public void Ready(Game game) { }

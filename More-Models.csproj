@@ -55,9 +55,6 @@
     <Reference Include="ClassicalSharp">
       <HintPath>..\..\..\..\Classicube\ClassicalSharp\ClassicalSharp.exe</HintPath>
     </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\..\..\..\Classicube\ClassicalSharp\OpenTK.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

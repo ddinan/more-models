@@ -29,35 +29,6 @@ namespace ClassicalSharp.Model
             p.ModelScale = Vector3.One;
         }
 
-        /*public override void CreateParts()
-        {
-            vertices = new ModelVertex[boxVertices * numParts];
-
-            torso = BuildBox(MakeBoxBounds(-4, 12, -2, 4, 24, 2).TexOrigin(16, 16));
-
-            head     = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4) .TexOrigin(0, 0)  .RotOrigin(0, 24, 0));
-            leftLeg  = BuildBox(MakeBoxBounds(0, 0, -2, -4, 12, 2)  .TexOrigin(0, 16) .RotOrigin(-2, 12, 0));
-            rightLeg = BuildBox(MakeBoxBounds(0, 0, -2, 4, 12, 2)   .TexOrigin(0, 16) .RotOrigin(2, 12, 0));
-            leftArm  = BuildBox(MakeBoxBounds(-4, 12, -2, -8, 24, 2).TexOrigin(40, 16).RotOrigin(-4, 22, 0));
-            rightArm = BuildBox(MakeBoxBounds(4, 12, -2, 8, 24, 2)  .TexOrigin(40, 16).RotOrigin(4, 22, 0));
-
-            hat = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4).TexOrigin(32, 0).RotOrigin(0, 24, 0).Expand(0.5f));
-        }*/
-
-        //public override float NameYOffset { get { return 2.075f; } }
-
-        //public override float GetEyeY(Entity entity) { return 26f / 16f; }
-
-        /*public override Vector3 CollisionSize
-        {
-            get { return new Vector3(8f / 16f + 0.6f / 16f, 28.1f / 16f, 8f / 16f + 0.6f / 16f); }
-        }
-
-        public override AABB PickingBounds
-        {
-            get { return new AABB(-4f / 16f, 0f, -4f / 16f, 4f / 16f, 32f / 16f, 4f / 16f); }
-        }*/
-
         public override void DrawModel(Entity p)
         {
             ModelSet model = p.SkinType == SkinType.Type64x64Slim ? SetSlim : (p.SkinType == SkinType.Type64x64 ? Set64 : Set);
@@ -97,8 +68,7 @@ namespace ClassicalSharp.Model
 
             UpdateVB();
             index = 0;
-            //block = p.ModelBlock;
-            //RecalcProperties(p);
+
             if (BlockInfo.Draw[p.ModelBlock] != DrawType.Gas)
             {
                 if (BlockInfo.FullBright[p.ModelBlock])
@@ -115,10 +85,9 @@ namespace ClassicalSharp.Model
         }
         private void DrawBlockTransform(Entity p, float dispX, float dispY, float dispZ, float scale)
         {
-            //Used for?
             int lastTexIndex = -1;
             bool sprite = BlockInfo.Draw[p.ModelBlock] == DrawType.Sprite;
-            //DrawParts(sprite, p.ModelBlock, lastTexIndex);
+
             if (sprite)
             {
                 SpriteXQuad(false, false, p.ModelBlock, ref lastTexIndex, game.ModelCache, dispX, dispY, dispZ, scale);
@@ -192,7 +161,6 @@ namespace ClassicalSharp.Model
 
         void SpriteXQuad(bool firstPart, bool mirror, BlockID block, ref int lastTexIndex, ModelCache cache, float dispX, float dispY, float dispZ, float scale)
         {
-            // Get the texture location
             int texLoc = BlockInfo.GetTextureLoc(block, Side.Right);
 
             TextureRec rec = Atlas1D.GetTexRec(texLoc, 1, out texIndex);

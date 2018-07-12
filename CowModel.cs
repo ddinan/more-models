@@ -11,7 +11,7 @@ namespace ClassicalSharp.Model {
 		public CowModel(Game game) : base(game) { SurivalScore = 10; }
 	
 		public override void CreateParts() {
-			vertices = new ModelVertex[boxVertices * numParts];
+			vertices = new ModelVertex[boxVertices * boxesBuilt];
 
 			head          = BuildBox(MakeBoxBounds(-4, 16, -14, 4, 24, -8)  .TexOrigin(0, 0) .RotOrigin(0, 20, -6));
 			rightHorn     = BuildBox(MakeBoxBounds(-5, 22, -13, -4, 25, -12).TexOrigin(22, 0).RotOrigin(0, 20, -6));
@@ -57,6 +57,6 @@ namespace ClassicalSharp.Model {
 		
 		private ModelPart head, rightHorn, leftHorn, torso, udder, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
 
-        private const int numParts = 9;
+        private const int boxesBuilt = 9;
 	}
 }
