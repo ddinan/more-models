@@ -52,7 +52,7 @@ namespace ClassicalSharp.Model {
             {
                 DrawRotate(-flyRot, 0f, 0f, model.TorsoLayer, false);
                 DrawRotate(-flyRot, -legRot / 8f, p.anim.leftArmZ / 4f + p.anim.swing / 32f, model.LeftLegLayer, false);
-                DrawRotate(-flyRot, -legRot / 8f, p.anim.leftArmZ / 4f + p.anim.swing / 32f, model.RightLegLayer, false);
+                DrawRotate(-flyRot, legRot / 8f, p.anim.rightArmZ / 4f + p.anim.swing / 32f, model.RightLegLayer, false);
                 DrawRotate(-flyRot, armRot, p.anim.leftArmZ, model.LeftArmLayer, false);
                 DrawRotate(flyRot, armRot, p.anim.rightArmZ, model.RightArmLayer, false);
             }
