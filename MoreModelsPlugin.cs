@@ -11,7 +11,9 @@ namespace ClassicalSharp.Model
 		public void Init(Game game)
         {
 			game.ModelCache.RegisterTextures("cow.png");
+            game.ModelCache.RegisterTextures("car.png");
 
+            game.ModelCache.Register("car", "car.png", new CarModel(game));
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
