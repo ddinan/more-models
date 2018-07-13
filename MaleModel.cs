@@ -235,7 +235,7 @@ namespace ClassicalSharp.Model
                 // Translate part
                 vertex.X += dispX; vertex.Y += dispY; vertex.Z += dispZ;
 
-                vertex.Colour = cols[i >> 2];
+                vertex.Col = cols[i >> 2];
 
                 vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
                 vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;

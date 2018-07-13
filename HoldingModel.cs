@@ -75,7 +75,7 @@ namespace ClassicalSharp.Model
                 {
                     for (int i = 0; i < cols.Length; i++)
                     {
-                        cols[i] = FastColour.WhitePacked;
+                        cols[i] = PackedCol.White;
                     }
                 }
                 DrawBlockTransform(p, 0f, ((float)Math.PI / 3f + handBob + handIdle) * 10f / 16f + 8f / 16f, -9f / 16f, 0.5f);
@@ -114,7 +114,7 @@ namespace ClassicalSharp.Model
                 drawer.x2 = (max.X - 0.5f) * scale + dispX; drawer.y2 = max.Y * scale + dispY; drawer.z2 = (max.Z - 0.5f) * scale + dispZ;
 
                 drawer.Tinted = BlockInfo.Tinted[p.ModelBlock];
-                drawer.TintColour = BlockInfo.FogColour[p.ModelBlock];
+                drawer.TintCol = BlockInfo.FogCol[p.ModelBlock];
 
                 drawer.Bottom(1, cols[1], GetTex(Side.Bottom, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
                 drawer.Front(1, cols[3], GetTex(Side.Front, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
@@ -175,10 +175,10 @@ namespace ClassicalSharp.Model
                 lastTexIndex = texIndex;
                 index = 0;
             }
-            int col = cols[0];
+            PackedCol col = cols[0];
             if (BlockInfo.Tinted[block])
             {
-                col = Utils.Tint(col, BlockInfo.FogColour[block]);
+                col *= BlockInfo.FogCol[block];
             }
 
             float x1 = 0, x2 = 0, z1 = 0, z2 = 0;
@@ -214,10 +214,10 @@ namespace ClassicalSharp.Model
                 lastTexIndex = texIndex;
                 index = 0;
             }
-            int col = cols[0];
+            PackedCol col = cols[0];
             if (BlockInfo.Tinted[block])
             {
-                col = Utils.Tint(col, BlockInfo.FogColour[block]);
+                col *= BlockInfo.FogCol[block];
             }
 
             float p1 = 0, p2 = 0;

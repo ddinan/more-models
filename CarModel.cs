@@ -57,7 +57,7 @@ namespace ClassicalSharp.Model
             {
                 ModelVertex v = vertices[part.Offset + i];
                 vertex.X = (v.X - part.RotX) * scale + part.RotX; vertex.Y = (v.Y - part.RotY) * scale + part.RotY; vertex.Z = (v.Z - part.RotZ) * scale + part.RotZ;
-                vertex.Colour = cols[i >> 2];
+                vertex.Col = cols[i >> 2];
 
                 vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
                 vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;
