@@ -65,6 +65,7 @@
     <Compile Include="Models\FlyingModel.cs" />
     <Compile Include="Models\HeadlessModel.cs" />
     <Compile Include="Models\HoldingModel.cs" />
+    <Compile Include="Models\EndermanModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
