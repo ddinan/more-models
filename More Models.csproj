@@ -7,7 +7,7 @@
     <ProjectGuid>{23D626FF-AAC1-4DDC-ACB7-2114480C964D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>More-Models</RootNamespace>
+    <RootNamespace>MoreModels</RootNamespace>
     <AssemblyName>More Models</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -60,11 +60,13 @@
   <ItemGroup>
     <Compile Include="CarModel.cs" />
     <Compile Include="CowModel.cs" />
+    <Compile Include="CrocModel.cs" />
     <Compile Include="FlyingModel.cs" />
     <Compile Include="HeadlessModel.cs" />
     <Compile Include="HoldingModel.cs" />
     <Compile Include="MaleModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
+    <Compile Include="PrinterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

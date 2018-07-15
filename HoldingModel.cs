@@ -1,21 +1,29 @@
 using System;
+using ClassicalSharp;
 using ClassicalSharp.Entities;
 using ClassicalSharp.GraphicsAPI;
+using ClassicalSharp.Model;
 using ClassicalSharp.Textures;
 using OpenTK;
 using BlockID = System.UInt16;
 
-namespace ClassicalSharp.Model
+namespace MoreModels
 {
     class HoldingModel : HumanoidModel
     {
         public HoldingModel(Game game) : base(game) { MaxScale = (BlockInfo.Count + 2f); }
+
+        public void resetMaxScale()
+        {
+            MaxScale = BlockInfo.Count + 2f;
+        }
 
         public override void RecalcProperties(Entity p)
         {
             float scale = (float)Math.Floor(p.ModelScale.X);
             if (scale >= 2f)
             {
+                
                 BlockID block = (BlockID)((int)scale - 2);
                 if (block < BlockInfo.Count)
                 {
@@ -103,7 +111,6 @@ namespace ClassicalSharp.Model
             else
             {
                 CuboidDrawer drawer = new CuboidDrawer();
-                ModelCache cache = game.ModelCache;
 
                 drawer.minBB = BlockInfo.MinBB[p.ModelBlock]; drawer.minBB.Y = 1 - drawer.minBB.Y;
                 drawer.maxBB = BlockInfo.MaxBB[p.ModelBlock]; drawer.maxBB.Y = 1 - drawer.maxBB.Y;
@@ -116,12 +123,12 @@ namespace ClassicalSharp.Model
                 drawer.Tinted = BlockInfo.Tinted[p.ModelBlock];
                 drawer.TintCol = BlockInfo.FogCol[p.ModelBlock];
 
-                drawer.Bottom(1, cols[1], GetTex(Side.Bottom, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
-                drawer.Front(1, cols[3], GetTex(Side.Front, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
-                drawer.Right(1, cols[5], GetTex(Side.Right, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
-                drawer.Back(1, cols[2], GetTex(Side.Back, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
-                drawer.Left(1, cols[4], GetTex(Side.Left, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
-                drawer.Top(1, cols[0], GetTex(Side.Top, p.ModelBlock, ref lastTexIndex), cache.vertices, ref index);
+                drawer.Bottom(1, cols[1], GetTex(Side.Bottom, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
+                drawer.Front(1, cols[3], GetTex(Side.Front, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
+                drawer.Right(1, cols[5], GetTex(Side.Right, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
+                drawer.Back(1, cols[2], GetTex(Side.Back, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
+                drawer.Left(1, cols[4], GetTex(Side.Left, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
+                drawer.Top(1, cols[0], GetTex(Side.Top, p.ModelBlock, ref lastTexIndex), game.ModelCache.vertices, ref index);
             }
 
             if (index == 0) return;
