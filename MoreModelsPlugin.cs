@@ -15,6 +15,7 @@ namespace MoreModels
             game.ModelCache.RegisterTextures("car.png");
             game.ModelCache.RegisterTextures("cow.png");
             game.ModelCache.RegisterTextures("croc.png");
+            game.ModelCache.RegisterTextures("male.png");
             game.ModelCache.RegisterTextures("printer.png");
 
             game.ModelCache.Register("car", "car.png", new CarModel(game));
@@ -23,7 +24,7 @@ namespace MoreModels
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
-            game.ModelCache.Register("male", "char.png", new MaleModel(game));
+            game.ModelCache.Register("male", "male.png", new MaleModel(game));
             game.ModelCache.Register("printer", "printer.png", new PrinterModel(game));
 			
 			// Recreate the modelcache VB to be bigger
