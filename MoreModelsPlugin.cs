@@ -31,7 +31,7 @@ namespace MoreModels
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
 			game.ModelCache.vertices = new VertexP3fT2fC4b[24 * 20];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + Models 0.2";
+			game.Server.AppName += " + Models 0.2.1";
 		}
 		
 		public void Ready(Game game) { }

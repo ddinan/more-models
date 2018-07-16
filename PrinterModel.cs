@@ -14,11 +14,11 @@ namespace MoreModels
 
         public override float GetEyeY(Entity e) { return 4f / 16f; }
 
-        public override Vector3 CollisionSize { get { return new Vector3(1f, 0.5f, 1f); } }
+        public override Vector3 CollisionSize { get { return new Vector3(.9375f, 0.75f, .9375f); } }
 
         public override float NameYOffset { get { return 0.75f; } }
 
-        public override AABB PickingBounds { get { return new AABB(-0.5f, 0f, -0.5f, 0.5f, 0.5f, 1.5f); } }
+        public override AABB PickingBounds { get { return new AABB(-0.5f, 0f, -0.5f, 0.5f, 0.5f, 0.5f); } }
 
         public override void CreateParts()
         {
@@ -129,8 +129,6 @@ namespace MoreModels
                 finVertices[index++] = vertex;
             }
         }
-
-        protected int xTexIndex;
 
         protected const int boxesBuilt = 12;
 
