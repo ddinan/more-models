@@ -20,19 +20,19 @@ namespace MoreModels
         {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
-            snout = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, -17, 3, 3, -12).TexOrigin(0, 23).RotOrigin(0, 2, -12));
-            head = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, -12, 4, 4, -6).TexOrigin(30, 0).RotOrigin(0, 2, -6));
+            snout     = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, -19, 3, 3, -12).TexOrigin(30, 0).RotOrigin(0, 2, -13));
+            head      = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, -12, 4, 4, -7).TexOrigin(0, 23).RotOrigin(0, 2, -7));
+            frontTail = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, 9, 4, 4, 14).TexOrigin(24, 23).RotOrigin(0, 2, 9));
+            midTail   = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, 13, 3, 3, 18).TexOrigin(30, 10).RotOrigin(0, 2, 13));
+            backTail  = BuildRotatedBox(MakeRotatedBoxBounds(-2, 0, 17, 2, 2, 22).TexOrigin(48, 0).RotOrigin(0, 1, 17));            
+
             body = BuildRotatedBox(MakeRotatedBoxBounds(-5, 0, -8, 5, 5, 10) .TexOrigin(0, 0));
 
-            frontTail = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, 9, 4, 4, 14).TexOrigin(30, 10).RotOrigin(0, 2, 9));
-            midTail = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, 13, 3, 3, 18).TexOrigin(18, 23).RotOrigin(0, 2, 13));
-            backTail = BuildRotatedBox(MakeRotatedBoxBounds(-2, 0, 17, 2, 2, 22).TexOrigin(36, 19).RotOrigin(0, 1, 17));
-            //tail = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, 5, 4, 2, 22).TexOrigin(0, 0).RotOrigin(0, 7, 5)); // Bad tex origin
+            leftLegFront = BuildBox(MakeBoxBounds(-8, 0, -7, -5, 3, -4).MirrorX().TexOrigin(48, 7).RotOrigin(-6, 2, -5));
+            leftLegBack  = BuildBox(MakeBoxBounds(-8, 0, 6, -5, 3, 9)  .MirrorX().TexOrigin(48, 7).RotOrigin(-6, 2, 7));
 
-            leftLegFront  = BuildBox(MakeBoxBounds(-8, 0, -7, -5, 3, -4).MirrorX().TexOrigin(48, 19).RotOrigin(-6, 2, -5));
-            rightLegFront = BuildBox(MakeBoxBounds(5, 0, -7, 8, 3, -4).TexOrigin(48, 19).RotOrigin(6, 2, -5));
-            leftLegBack   = BuildBox(MakeBoxBounds(-8, 0, 6, -5, 3, 9)  .MirrorX().TexOrigin(48, 19).RotOrigin(-6, 2, 7));
-            rightLegBack  = BuildBox(MakeBoxBounds(5, 0, 6, 8, 3, 9)    .TexOrigin(48, 19).RotOrigin(6, 2, 7));            
+            rightLegFront = BuildBox(MakeBoxBounds(5, 0, -7, 8, 3, -4).TexOrigin(48, 7).RotOrigin(6, 2, -5));
+            rightLegBack  = BuildBox(MakeBoxBounds(5, 0, 6, 8, 3, 9)  .TexOrigin(48, 7).RotOrigin(6, 2, 7));
         }
 
         public override float NameYOffset { get { return 0.5f; } }
