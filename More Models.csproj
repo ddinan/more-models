@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassicalSharp">
-      <HintPath>..\..\..\..\Classicube\ClassicalSharp\ClassicalSharp.exe</HintPath>
+      <HintPath>..\..\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -68,14 +68,7 @@
     <Compile Include="Models\MaleModel.cs" />
     <Compile Include="Models\PrinterModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
-    <Compile Include="PrinterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CS\ClassicalSharp\ClassicalSharp.csproj">
-      <Project>{beb1c785-5cad-48ff-a886-876bf0a318d4}</Project>
-      <Name>ClassicalSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
