@@ -7,8 +7,8 @@
     <ProjectGuid>{23D626FF-AAC1-4DDC-ACB7-2114480C964D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>More-Models</RootNamespace>
-    <AssemblyName>More-Models</AssemblyName>
+    <RootNamespace>MoreModels</RootNamespace>
+    <AssemblyName>More Models</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -53,30 +53,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassicalSharp">
-      <HintPath>..\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
-    </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\release.v09998.d3d9\OpenTK.dll</HintPath>
+      <HintPath>..\..\..\..\Classicube\ClassicalSharp\ClassicalSharp.exe</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CowModel.cs" />
+    <Compile Include="Models\CrocModel.cs" />
+    <Compile Include="Models\EndermanModel.cs" />
     <Compile Include="Models\FlyingModel.cs" />
     <Compile Include="Models\HeadlessModel.cs" />
     <Compile Include="Models\HoldingModel.cs" />
-    <Compile Include="Models\EndermanModel.cs" />
+    <Compile Include="Models\MaleModel.cs" />
+    <Compile Include="Models\PrinterModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
+    <Compile Include="PrinterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CS\ClassicalSharp\ClassicalSharp.csproj">
       <Project>{beb1c785-5cad-48ff-a886-876bf0a318d4}</Project>
       <Name>ClassicalSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CS\OpenTK\OpenTK.csproj">
-      <Project>{35fee071-2de6-48a1-9343-b5c1f202a12b}</Project>
-      <Name>OpenTK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
