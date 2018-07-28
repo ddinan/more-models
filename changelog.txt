@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------------
+
+                                      Version 1.0                                     
+
+--------------------------------------------------------------------------------------
+ 
+- Initial release
+
+- Added models: car, croc, enderman, flying, headless, holding, male and printer
+
+- Include instructions.txt and changelog.txt
+
+- Include More Models.sln
