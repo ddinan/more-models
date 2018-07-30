@@ -15,11 +15,13 @@ namespace MoreModels
             game.ModelCache.RegisterTextures("car.png");
             game.ModelCache.RegisterTextures("cow.png");
             game.ModelCache.RegisterTextures("croc.png");
+            game.ModelCache.RegisterTextures("enderman.png");
             game.ModelCache.RegisterTextures("printer.png");
 
             game.ModelCache.Register("car", "car.png", new CarModel(game));
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
             game.ModelCache.Register("croc", "croc.png", new CrocModel(game));
+            game.ModelCache.Register("enderman", "enderman.png", new EndermanModel(game));
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
@@ -30,7 +32,7 @@ namespace MoreModels
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
 			game.ModelCache.vertices = new VertexP3fT2fC4b[24 * 20];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + Models 0.2";
+			game.Server.AppName += " + More Models v1.0";
 		}
 		
 		public void Ready(Game game) { }

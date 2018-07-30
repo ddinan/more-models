@@ -23,7 +23,7 @@ namespace ClassicalSharp.Model {
 			Torso = BuildBox(MakeBoxBounds(-4, 32, -2, 4, 44, 2)
 			               .TexOrigin(32, 16)
 			               .RotOrigin(0, 0, 0));
-			LeftArm = BuildRotatedBox(MakeRotatedBoxBounds(-4, 16, -1, -6, 44, 1)
+			LeftArm = BuildBox(MakeBoxBounds(-4, 16, -1, -6, 44, 1)
 			               .TexOrigin(56, 0)
 						   .RotOrigin(-6, 44, 0));
 			RightArm = BuildBox(MakeBoxBounds(4, 16, -1, 6, 44, 1)
@@ -32,16 +32,16 @@ namespace ClassicalSharp.Model {
 			LeftLeg = BuildBox(MakeBoxBounds(-1, 0, -1, -3, 32, 1)
 			               .TexOrigin(56, 0)
 			               .RotOrigin(0, 33, 0));
-			RightLeg = BuildRotatedBox(MakeRotatedBoxBounds(1, 0, -1, 3, 32, 1)
+			RightLeg = BuildBox(MakeBoxBounds(1, 0, -1, 3, 32, 1)
 			               .TexOrigin(56, 0)
 						   .RotOrigin(0, 33, 0));
 		}
 		
 		/// <inheritdoc/>
-		public override float NameYOffset { get { return 1.5f; } }
+		public override float NameYOffset { get { return 3.25f; } }
 
 		/// <inheritdoc/>
-		public override float GetEyeY(Entity entity) { return 12/16f; }
+		public override float GetEyeY(Entity entity) { return 47f/16f; }
 
 		/// <inheritdoc/>
 		public override Vector3 CollisionSize {
