@@ -1,5 +1,4 @@
-// Copyright 2014-2017 ClassicalSharp | Licensed under BSD-3
-//using System;
+using System;
 using ClassicalSharp.Entities;
 using ClassicalSharp.Physics;
 using OpenTK;
