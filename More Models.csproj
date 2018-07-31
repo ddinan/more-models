@@ -59,14 +59,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\CaveSpiderModel.cs" />
     <Compile Include="Models\CowModel.cs" />
     <Compile Include="Models\CrocModel.cs" />
     <Compile Include="Models\EndermanModel.cs" />
     <Compile Include="Models\FlyingModel.cs" />
     <Compile Include="Models\HeadlessModel.cs" />
     <Compile Include="Models\HoldingModel.cs" />
+    <Compile Include="Models\HuskModel.cs" />
     <Compile Include="Models\MaleModel.cs" />
     <Compile Include="Models\PrinterModel.cs" />
+    <Compile Include="Models\StrayModel.cs" />
+    <Compile Include="Models\WitherSkeleton.cs" />
+    <Compile Include="Models\ZombiePigmanModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
