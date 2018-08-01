@@ -52,9 +52,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClassicalSharp">
-      <HintPath>..\..\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
-    </Reference>
+    <Reference Include="ClassicalSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

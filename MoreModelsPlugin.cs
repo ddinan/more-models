@@ -18,6 +18,7 @@ namespace MoreModels
             game.ModelCache.RegisterTextures("croc.png");
             game.ModelCache.RegisterTextures("enderman.png");
             game.ModelCache.RegisterTextures("husk.png");
+            game.ModelCache.RegisterTextures("male.png");
             game.ModelCache.RegisterTextures("printer.png");
             game.ModelCache.RegisterTextures("stray.png");
             game.ModelCache.RegisterTextures("wither_skeleton.png");
@@ -32,7 +33,7 @@ namespace MoreModels
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 			game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
 			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
-            game.ModelCache.Register("male", "char.png", new MaleModel(game));
+            game.ModelCache.Register("male", "male.png", new MaleModel(game));
             game.ModelCache.Register("printer", "printer.png", new PrinterModel(game));
             game.ModelCache.Register("stray", "stray.png", new StrayModel(game));
             game.ModelCache.Register("witherskeleton", "wither_skeleton.png", new WitherSkeletonModel(game));
@@ -52,12 +53,8 @@ namespace MoreModels
 		public void OnNewMap(Game game)
         {
             //Increase holding model size limit if inf id is supported
-            IModel model = (HoldingModel)game.ModelCache.Get("holding");
-            if(model is HoldingModel)
-            {
-                HoldingModel holding = (HoldingModel)model;
-                holding.resetMaxScale();
-            }
+            HoldingModel model = (HoldingModel)game.ModelCache.Get("holding");
+            model.resetMaxScale();
         }
 		
 		public void OnNewMapLoaded(Game game) { }

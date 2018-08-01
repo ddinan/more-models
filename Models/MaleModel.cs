@@ -1,113 +1,57 @@
-using System;
+﻿using System;
+using ClassicalSharp;
 using ClassicalSharp.Entities;
+using ClassicalSharp.Model;
 using ClassicalSharp.Physics;
 using ClassicalSharp.GraphicsAPI;
 using OpenTK;
 
-namespace ClassicalSharp.Model
+namespace MoreModels
 {
     class MaleModel : IModel
     {
-        public MaleModel(Game game) : base(game) { UsesHumanSkin = true; }
+        public MaleModel(Game game) : base(game) { }
 
         public override void CreateParts()
         {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
-            BoxDesc head, torso, leftUpperArm, rightUpperArm, leftLowerArm, rightLowerArm, leftUpperLeg, rightUpperLeg, leftLowerLeg, rightLowerLeg;
+            BoxDesc headDesc, torsoDesc, leftUpperArmDesc, rightUpperArmDesc, leftLowerArmDesc, rightLowerArmDesc, leftUpperLegDesc, rightUpperLegDesc, leftLowerLegDesc, rightLowerLegDesc;
 
-            head          = MakeBoxBounds(-4, 24, -4, 4, 32, 4) .TexOrigin(0, 0)  .RotOrigin(0, 24, 0);
-            torso         = MakeBoxBounds(-4, 12, -2, 4, 24, 2) .TexOrigin(16, 16).RotOrigin(0, 12, 0);
-            
-            rightUpperArm = MakeBoxBounds(4, 18, -2, 8, 24, 2)  .TexOrigin(40, 16).RotOrigin(6, 22, 0);            
-            rightLowerArm = MakeBoxBounds(4, 12, -2, 8, 18, 2)  .TexOrigin(40, 22).RotOrigin(4, 18, 0);            
-            rightUpperLeg = MakeBoxBounds(0, 6, -2, 4, 12, 2)   .TexOrigin(0, 16) .RotOrigin(2, 12, 0);            
-            rightLowerLeg = MakeBoxBounds(0, 0, -2, 4, 6, 2)    .TexOrigin(0, 22) .RotOrigin(2, 6, 0);
+            headDesc          = MakeBoxBounds(-4, 24, -4, 4, 32, 4) .RotOrigin(0, 24, 0);
+            torsoDesc         = MakeBoxBounds(-4, 12, -2, 4, 24, 2) .RotOrigin(0, 12, 0);
+            rightUpperArmDesc = MakeBoxBounds(4, 18, -2, 8, 24, 2)  .RotOrigin(6, 22, 0);            
+            rightLowerArmDesc = MakeBoxBounds(4, 12, -2, 8, 18, 2)  .RotOrigin(4, 18, 0);            
+            rightUpperLegDesc = MakeBoxBounds(0, 6, -2, 4, 12, 2)   .RotOrigin(2, 12, 0);
+            rightLowerLegDesc = MakeBoxBounds(0, 0, -2, 4, 6, 2)    .RotOrigin(2, 6, 0);
+            leftUpperArmDesc  = MakeBoxBounds(-8, 18, -2, -4, 24, 2).RotOrigin(-6, 22, 0);
+            leftLowerArmDesc  = MakeBoxBounds(-8, 12, -2, -4, 18, 2).RotOrigin(-4, 18, 0);
+            leftUpperLegDesc  = MakeBoxBounds(-4, 6, -2, 0, 12, 2)  .RotOrigin(-2, 12, 0);
+            leftLowerLegDesc  = MakeBoxBounds(-4, 0, -2, 0, 6, 2)   .RotOrigin(-2, 6, 0);
 
-            leftUpperArm = MakeBoxBounds(-4, 18, -2, -8, 24, 2).MirrorX().TexOrigin(40, 16).RotOrigin(-6, 22, 0);
-            leftLowerArm = MakeBoxBounds(-4, 12, -2, -8, 18, 2).MirrorX().TexOrigin(40, 22).RotOrigin(-4, 18, 0);
-            leftUpperLeg = MakeBoxBounds(0, 6, -2, -4, 12, 2)  .MirrorX().TexOrigin(0, 16) .RotOrigin(-2, 12, 0);
-            leftLowerLeg = MakeBoxBounds(0, 0, -2, -4, 6, 2)   .MirrorX().TexOrigin(0, 22) .RotOrigin(-2, 6, 0);
+            head          = BuildBox(headDesc         .TexOrigin(0, 0));            
+            torso         = BuildBox(torsoDesc        .TexOrigin(0, 32));
+            rightUpperArm = BuildBox(rightUpperArmDesc.TexOrigin(32, 0));
+            rightLowerArm = BuildBox(rightLowerArmDesc.TexOrigin(32, 10));
+            rightUpperLeg = BuildBox(rightUpperLegDesc.TexOrigin(32, 20));
+            rightLowerLeg = BuildBox(rightLowerLegDesc.TexOrigin(32, 30));
+            leftUpperArm  = BuildBox(leftUpperArmDesc .TexOrigin(48, 0));
+            leftLowerArm  = BuildBox(leftLowerArmDesc .TexOrigin(48, 10));    
+            leftUpperLeg  = BuildBox(leftUpperLegDesc .TexOrigin(48, 20));            
+            leftLowerLeg  = BuildBox(leftLowerLegDesc .TexOrigin(48, 30));
 
-            norm = new ModelDesc();
+            hat              = BuildBox(headDesc         .TexOrigin(0, 16) .Expand(0.5f));
+            jacket           = BuildBox(torsoDesc        .TexOrigin(0, 48) .Expand(0.5f));
+            rightUpperSleeve = BuildBox(rightUpperArmDesc.TexOrigin(64, 0) .Expand(0.5f));
+            rightLowerSleeve = BuildBox(rightLowerArmDesc.TexOrigin(64, 10).Expand(0.5f));
+            rightUpperPant   = BuildBox(rightUpperLegDesc.TexOrigin(64, 20).Expand(0.5f));
+            rightLowerPant   = BuildBox(rightLowerLegDesc.TexOrigin(64, 30).Expand(0.5f));
+            leftUpperSleeve  = BuildBox(leftUpperArmDesc .TexOrigin(80, 0) .Expand(0.5f));
+            leftLowerSleeve  = BuildBox(leftLowerArmDesc .TexOrigin(80, 10).Expand(0.5f));
+            leftUpperPant    = BuildBox(leftUpperLegDesc .TexOrigin(80, 20).Expand(0.5f));
+            leftLowerPant    = BuildBox(leftLowerLegDesc .TexOrigin(80, 30).Expand(0.5f));
 
-            norm.head          = BuildBox(head);
-            norm.torso         = BuildBox(torso);
-            norm.rightUpperArm = BuildBox(rightUpperArm);
-            norm.rightLowerArm = BuildBox(rightLowerArm);
-            norm.rightUpperLeg = BuildBox(rightUpperLeg);
-            norm.rightLowerLeg = BuildBox(rightLowerLeg);
-
-            norm.leftUpperArm  = BuildBox(leftUpperArm.MirrorX());            
-            norm.leftLowerArm  = BuildBox(leftLowerArm.MirrorX());            
-            norm.leftUpperLeg  = BuildBox(leftUpperLeg.MirrorX());            
-            norm.leftLowerLeg  = BuildBox(leftLowerLeg.MirrorX());            
-
-            norm.hat = BuildBox(head.TexOrigin(32, 0).Expand(0.5f));
-
-            leftUpperArm = leftUpperArm.MirrorX();
-            leftLowerArm = leftLowerArm.MirrorX();
-            leftUpperLeg = leftUpperLeg.MirrorX();
-            leftLowerLeg = leftLowerLeg.MirrorX();
-
-            hd = new ModelDesc();
-
-            hd.head          = norm.head;
-            hd.hat           = norm.hat;
-            hd.torso         = norm.torso;
-            hd.rightUpperArm = norm.rightUpperArm;
-            hd.rightLowerArm = norm.rightLowerArm;
-            hd.rightUpperLeg = norm.rightUpperLeg;
-            hd.rightLowerLeg = norm.rightLowerLeg;
-
-            hd.leftUpperArm = BuildBox(leftUpperArm.TexOrigin(32, 48));
-            hd.leftLowerArm = BuildBox(leftLowerArm.TexOrigin(32, 54));    
-            hd.leftUpperLeg = BuildBox(leftUpperLeg.TexOrigin(16, 48));            
-            hd.leftLowerLeg = BuildBox(leftLowerLeg.TexOrigin(16, 54));
-
-            hd.jacket           = BuildBox(torso        .TexOrigin(16, 32).Expand(0.5f));
-            hd.leftUpperSleeve  = BuildBox(leftUpperArm .TexOrigin(48, 48).Expand(0.5f));
-            hd.rightUpperSleeve = BuildBox(rightUpperArm.TexOrigin(40, 32).Expand(0.5f));
-            hd.leftLowerSleeve  = BuildBox(leftLowerArm .TexOrigin(48, 54).Expand(0.5f));
-            hd.rightLowerSleeve = BuildBox(rightLowerArm.TexOrigin(40, 38).Expand(0.5f));
-            hd.leftUpperPant    = BuildBox(leftUpperLeg .TexOrigin(0, 48) .Expand(0.5f));
-            hd.rightUpperPant   = BuildBox(rightUpperLeg.TexOrigin(0, 32) .Expand(0.5f));
-            hd.leftLowerPant    = BuildBox(leftLowerLeg .TexOrigin(0, 54) .Expand(0.5f));
-            hd.rightLowerPant   = BuildBox(rightLowerLeg.TexOrigin(0, 38) .Expand(0.5f));
-
-            slim = new ModelDesc();
-
-            slim.head           = hd.head;
-            slim.hat            = hd.hat;
-            slim.torso          = hd.torso;
-            slim.jacket         = hd.jacket;
-            slim.leftUpperLeg   = hd.leftUpperLeg;
-            slim.rightUpperLeg  = hd.rightUpperLeg;
-            slim.leftLowerLeg   = hd.leftLowerLeg;
-            slim.rightLowerLeg  = hd.rightLowerLeg;
-            slim.leftUpperPant  = hd.leftUpperPant;
-            slim.rightUpperPant = hd.rightUpperPant;
-            slim.leftLowerPant  = hd.leftLowerPant;
-            slim.rightLowerPant = hd.rightLowerPant;
-
-            leftUpperArm.BodyW -= 1;
-            leftUpperArm.X1 += 0.0625f;
-            rightUpperArm.BodyW -= 1;
-            rightUpperArm.X1 += 0.0625f;
-            leftLowerArm.BodyW -= 1;
-            leftLowerArm.X1 += 0.0625f;
-            rightLowerArm.BodyW -= 1;
-            rightLowerArm.X1 += 0.0625f;
-
-            slim.leftUpperArm = BuildBox(leftUpperArm.TexOrigin(32, 48));
-            slim.rightUpperArm = BuildBox(rightUpperArm.TexOrigin(40, 16));
-            slim.leftLowerArm = BuildBox(leftLowerArm.TexOrigin(32, 54));
-            slim.rightLowerArm = BuildBox(rightLowerArm.TexOrigin(40, 22));
-
-            slim.leftUpperSleeve = BuildBox(leftUpperArm.TexOrigin(48, 48).Expand(0.5f));
-            slim.rightUpperSleeve = BuildBox(rightUpperArm.TexOrigin(40, 32).Expand(0.5f));
-            slim.leftLowerSleeve = BuildBox(leftLowerArm.TexOrigin(48, 54).Expand(0.5f));
-            slim.rightLowerSleeve = BuildBox(rightLowerArm.TexOrigin(40, 38).Expand(0.5f));
+            cape = BuildBox(MakeBoxBounds(-6, 1, 2, 6, 24, 3).TexOrigin(24, 40).RotOrigin(0, 23, 3));
         }
 
         public override float NameYOffset { get { return 2.075f; } }
@@ -148,40 +92,42 @@ namespace ClassicalSharp.Model
             float lowerRightLegY = 0.375f - 0.375f * (float)Math.Cos(p.anim.rightLegX);
             float lowerRightLegZ = 0.375f * (float)Math.Sin(-p.anim.rightLegX);
 
+            uScale = 1f / 128f;
+            vScale = 1f / 64f;
+
             game.Graphics.BindTexture(GetTexture(p));
             game.Graphics.AlphaTest = false;
 
-            ModelDesc model = p.SkinType == SkinType.Type64x64Slim ? slim : (p.SkinType == SkinType.Type64x64 ? hd : norm);
+            DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, leftUpperLeg, false);
+            DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperLeg, false);
 
-            DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, model.leftUpperLeg, false);
-            DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, model.rightUpperLeg, false);
-
-            DrawTransform(0f, breathDisp, 0f,-p.HeadXRadians, 0f, 0f, .9f, model.head, true);
-
-            DrawTransform(0f, breathDisp, 0f, p.anim.leftArmX, 0f, p.anim.leftArmZ, 1f, model.leftUpperArm, false);
-            DrawTransform(0f, breathDisp, 0f, p.anim.rightArmX, 0f, p.anim.rightArmZ, 1f, model.rightUpperArm, false);
-            DrawTransform(0f, 0f, 0f, 0f, 0f, 0f, breath, model.torso, false);
-            DrawTransform(lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, lowerLeftArmRot, 0f, 0f, 1f, model.leftLowerArm, false);
-            DrawTransform(lowerRightArmX, lowerRightArmY, lowerRightArmZ, lowerRightArmRot, 0f, 0f, 1f, model.rightLowerArm, false);
-            DrawTransform(0f, lowerLeftLegY, lowerLeftLegZ, lowerLeftLegRot, 0f, 0f, 1f, model.leftLowerLeg, false);
-            DrawTransform(0f, lowerRightLegY, lowerRightLegZ, lowerRightLegRot, 0f, 0f, 1f, model.rightLowerLeg, false);
+            DrawTransform(0f, breathDisp, 0f,-p.HeadXRadians, 0f, 0f, .9f, head, true);
+            DrawTransform(0f, breathDisp, 0f, p.anim.leftArmX, 0f, p.anim.leftArmZ, 1f, leftUpperArm, false);
+            DrawTransform(0f, breathDisp, 0f, p.anim.rightArmX, 0f, p.anim.rightArmZ, 1f, rightUpperArm, false);
+            DrawTransform(0f, 0f, 0f, 0f, 0f, 0f, breath, torso, false);
+            DrawTransform(lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, lowerLeftArmRot, 0f, 0f, 1f, leftLowerArm, false);
+            DrawTransform(lowerRightArmX, lowerRightArmY, lowerRightArmZ, lowerRightArmRot, 0f, 0f, 1f, rightLowerArm, false);
+            DrawTransform(0f, lowerLeftLegY, lowerLeftLegZ, lowerLeftLegRot, 0f, 0f, 1f, leftLowerLeg, false);
+            DrawTransform(0f, lowerRightLegY, lowerRightLegZ, lowerRightLegRot, 0f, 0f, 1f, rightLowerLeg, false);
 
             UpdateVB();
             index = 0;
 
             game.Graphics.AlphaTest = true;
 
-            if (p.SkinType != SkinType.Type64x32)
-            {
-                DrawTransform(0f, breathDisp, 0f, p.anim.leftArmX, 0f, p.anim.leftArmZ, 1f, model.leftUpperSleeve, false);
-                DrawTransform(0f, breathDisp, 0f, p.anim.rightArmX, 0f, p.anim.rightArmZ, 1f, model.rightUpperSleeve, false);
-                DrawTransform(0f, 0f, 0f, 0f, 0f, 0f, breath, model.jacket, false);
-                DrawTransform(lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, lowerLeftArmRot, 0f, 0f, 1f, model.leftLowerSleeve, false);
-                DrawTransform(lowerRightArmX, lowerRightArmY, lowerRightArmZ, lowerRightArmRot, 0f, 0f, 1f, model.rightLowerSleeve, false);
-                DrawTransform(0f, lowerLeftLegY, lowerLeftLegZ, lowerLeftLegRot, 0f, 0f, 1f, model.leftLowerPant, false);
-                DrawTransform(0f, lowerRightLegY, lowerRightLegZ, lowerRightLegRot, 0f, 0f, 1f, model.rightLowerPant, false);
-            }
-            DrawTransform(0f, breathDisp, 0f, -p.HeadXRadians, 0f, 0f, .9f, model.hat, true);
+            DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, leftUpperPant, false);
+            DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperPant, false);
+            DrawRotate((float)Math.PI * p.anim.swing / -3f, 0f, 0f, cape, false);
+
+            DrawTransform(0f, breathDisp, 0f, -p.HeadXRadians, 0f, 0f, .9f, hat, true);
+            DrawTransform(0f, breathDisp, 0f, p.anim.leftArmX, 0f, p.anim.leftArmZ, 1f, leftUpperSleeve, false);
+            DrawTransform(0f, breathDisp, 0f, p.anim.rightArmX, 0f, p.anim.rightArmZ, 1f, rightUpperSleeve, false);
+            DrawTransform(0f, 0f, 0f, 0f, 0f, 0f, breath, jacket, false);
+            DrawTransform(lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, lowerLeftArmRot, 0f, 0f, 1f, leftLowerSleeve, false);
+            DrawTransform(lowerRightArmX, lowerRightArmY, lowerRightArmZ, lowerRightArmRot, 0f, 0f, 1f, rightLowerSleeve, false);
+
+            DrawTransform(0f, lowerLeftLegY, lowerLeftLegZ, lowerLeftLegRot, 0f, 0f, 1f, leftLowerPant, false);
+            DrawTransform(0f, lowerRightLegY, lowerRightLegZ, lowerRightLegRot, 0f, 0f, 1f, rightLowerPant, false);
 
             UpdateVB();
         }
@@ -243,14 +189,9 @@ namespace ClassicalSharp.Model
             }
         }
 
-        private ModelDesc norm, hd, slim;
+        private ModelPart head, hat, torso, leftUpperArm, rightUpperArm, leftLowerArm, rightLowerArm, leftUpperLeg, rightUpperLeg, leftLowerLeg, rightLowerLeg;
+        private ModelPart jacket, leftUpperSleeve, rightUpperSleeve, leftLowerSleeve, rightLowerSleeve, leftUpperPant, rightUpperPant, leftLowerPant, rightLowerPant, cape;
 
-        private class ModelDesc
-        {
-            public ModelPart head, hat, torso, leftUpperArm, rightUpperArm, leftLowerArm, rightLowerArm, leftUpperLeg, rightUpperLeg, leftLowerLeg, rightLowerLeg;
-            public ModelPart jacket, leftUpperSleeve, rightUpperSleeve, leftLowerSleeve, rightLowerSleeve, leftUpperPant, rightUpperPant, leftLowerPant, rightLowerPant;
-        }
-
-        private const int boxesBuilt = 32;
+        private const int boxesBuilt = 21;
     }
 }

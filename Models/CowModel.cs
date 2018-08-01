@@ -1,4 +1,3 @@
-using System;
 using ClassicalSharp.Entities;
 using ClassicalSharp.Physics;
 using OpenTK;

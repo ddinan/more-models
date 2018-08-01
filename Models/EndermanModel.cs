@@ -1,6 +1,4 @@
 // Due to not supporting multiple image files per single model, you will need to add the eyes manually if you're using a Minecraft enderman skin.
-
-using System;
 using ClassicalSharp.Entities;
 using ClassicalSharp.Physics;
 using OpenTK;
@@ -10,8 +8,7 @@ namespace ClassicalSharp.Model {
 	public class EndermanModel : IModel {
 		
 		public EndermanModel(Game window) : base(window) { SurivalScore = 20; }
-
-		/// <inheritdoc/>		
+	
 		public override void CreateParts() {
 			vertices = new ModelVertex[boxVertices * 7];
 			Head = BuildBox(MakeBoxBounds(-4, 44, -4, 4, 52, 4)
@@ -37,23 +34,18 @@ namespace ClassicalSharp.Model {
 						   .RotOrigin(0, 33, 0));
 		}
 		
-		/// <inheritdoc/>
 		public override float NameYOffset { get { return 3.25f; } }
 
-		/// <inheritdoc/>
 		public override float GetEyeY(Entity entity) { return 47f/16f; }
 
-		/// <inheritdoc/>
 		public override Vector3 CollisionSize {
 			get { return new Vector3(14/16f, 14/16f, 14/16f); }
 		}
 
-		/// <inheritdoc/>
 		public override AABB PickingBounds {
 			get { return new AABB(-5/16f, 0, -14/16f, 5/16f, 16/16f, 9/16f); }
 		}
 
-		/// <inheritdoc/>
 		public override void DrawModel(Entity p) {
 			game.Graphics.BindTexture(GetTexture(p));
 			DrawRotate(-p.HeadXRadians, 0, 0, Head, true);
