@@ -3,29 +3,33 @@ using ClassicalSharp;
 using ClassicalSharp.Entities;
 using ClassicalSharp.GraphicsAPI;
 using ClassicalSharp.Model;
+using ClassicalSharp.Physics;
+using OpenTK;
 
-namespace MoreModels
-{
-    class FlyingModel : HumanoidModel
-    {
-        public FlyingModel(Game game) : base(game)
-        {
+namespace MoreModels {
+    class FlyingModel : HumanoidModel {
+        public FlyingModel(Game game) : base(game) {
             Bobbing = false;
             Gravity = 0.04f;
         }
 
-        protected override void MakeDescriptions()
-        {
-            head = MakeBoxBounds(-4, 24, -4, 4, 32, 4).RotOrigin(0, 24, 0);
-            torso = MakeBoxBounds(-4, 12, -2, 4, 24, 2).RotOrigin(0, 24, 0);
-            lLeg = MakeBoxBounds(-4, 0, -2, 0, 12, 2).RotOrigin(-2, 12, 0);
-            rLeg = MakeBoxBounds(0, 0, -2, 4, 12, 2).RotOrigin(2, 12, 0);
-            lArm = MakeBoxBounds(-8, 12, -2, -4, 24, 2).RotOrigin(-5, 22, 0);
-            rArm = MakeBoxBounds(4, 12, -2, 8, 24, 2).RotOrigin(5, 22, 0);
+        public override void CreateParts() {
+            HumanoidModel humanoid = (HumanoidModel)game.ModelCache.Models[0].Instance;
+            vertices = humanoid.vertices;
+            Set = humanoid.Set;
+            Set64 = humanoid.Set64;
+            SetSlim = humanoid.SetSlim;
         }
 
-        public override void DrawModel(Entity p)
-        {
+        public override float NameYOffset { get { return 32.5f / 16f; } }
+
+        public override float GetEyeY(Entity entity) { return 26f / 16f; }
+
+        public override Vector3 CollisionSize { get { return new Vector3(8.6f / 16f, 28.1f / 16f, 8.6f / 16f); } }
+
+        public override AABB PickingBounds { get { return new AABB(-8f / 16f, 0f, -4f / 16f, 8f / 16f, 32f / 16f, 4f / 16f); } }
+
+        public override void DrawModel(Entity p) {
             ModelSet model = p.SkinType == SkinType.Type64x64Slim ? SetSlim : (p.SkinType == SkinType.Type64x64 ? Set64 : Set);
 
             float flyRot = p.anim.swing * (float)Math.PI / -2.0f;
@@ -35,13 +39,14 @@ namespace MoreModels
             if (p.HeadXRadians > (float)Math.PI / 2f && flyRot != 0f) headRot = ((float)Math.PI * 2f - p.HeadXRadians) * (1f - p.anim.swing);
             else headRot = -p.HeadXRadians;
 
+            model.Torso.RotY = 24f / 16f;
+
             Rotate = RotateOrder.XZY;
 
-            game.Graphics.BindTexture(GetTexture(p));
+            ApplyTexture(p);
             game.Graphics.AlphaTest = false;
 
             DrawRotate(headRot, 0f, 0f, model.Head, true);
-            
             DrawRotate(flyRot, 0f, 0f, model.Torso, false);
             DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArm, false);
             DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArm, false);
@@ -50,25 +55,26 @@ namespace MoreModels
             DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLeg);
 
             UpdateVB();
-
-            game.Graphics.AlphaTest = true;
             index = 0;
+            game.Graphics.AlphaTest = true;
 
-            if (p.SkinType != SkinType.Type64x32)
-            {
+            if (p.SkinType != SkinType.Type64x32) {
+                model.TorsoLayer.RotY = 24f / 16f;
                 DrawRotate(flyRot, 0f, 0f, model.TorsoLayer, false);
                 DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLegLayer);
                 DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLegLayer);
-                DrawRotate(flyRot, -armRot, p.anim.leftArmZ, model.LeftArmLayer, false);
-                DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ, model.RightArmLayer, false);
+                DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArmLayer, false);
+                DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArmLayer, false);
+                model.TorsoLayer.RotY = 0f;
             }
             DrawRotate(headRot, 0f, 0f, model.Hat, true);
 
             UpdateVB();
+
+            model.Torso.RotY = 0f;
         }
 
-        private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part)
-        {
+        private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part) {
             float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
             float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);
             float cosZ = (float)Math.Cos(-rotZ), sinZ = (float)Math.Sin(-rotZ);
@@ -76,29 +82,25 @@ namespace MoreModels
             VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
             VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
 
-            for (int i = 0; i < part.Count; i++)
-            {
+            for (int i = 0; i < part.Count; i++) {
                 ModelVertex v = vertices[part.Offset + i];
 
                 // Prepare the vertex coordinates for rotation
                 v.X -= part.RotX; v.Y -= part.RotY; v.Z -= part.RotZ;
-                float t = 0;
+                float t = 0f;
 
                 // Rotate locally.
-                if (Rotate == RotateOrder.ZYX)
-                {
+                if (Rotate == RotateOrder.ZYX) {
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
                 }
-                else if (Rotate == RotateOrder.XZY)
-                {
+                else if (Rotate == RotateOrder.XZY) {
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                 }
-                else if (Rotate == RotateOrder.YZX)
-                {
+                else if (Rotate == RotateOrder.YZX) {
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX

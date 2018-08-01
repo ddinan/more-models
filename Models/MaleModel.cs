@@ -6,14 +6,11 @@ using ClassicalSharp.Physics;
 using ClassicalSharp.GraphicsAPI;
 using OpenTK;
 
-namespace MoreModels
-{
-    class MaleModel : IModel
-    {
+namespace MoreModels {
+    class MaleModel : IModel {
         public MaleModel(Game game) : base(game) { }
 
-        public override void CreateParts()
-        {
+        public override void CreateParts() {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
             BoxDesc headDesc, torsoDesc, leftUpperArmDesc, rightUpperArmDesc, leftLowerArmDesc, rightLowerArmDesc, leftUpperLegDesc, rightUpperLegDesc, leftLowerLegDesc, rightLowerLegDesc;
@@ -56,20 +53,13 @@ namespace MoreModels
 
         public override float NameYOffset { get { return 2.075f; } }
 
-        public override float GetEyeY(Entity entity) { return 26f / 16f; }
+        public override float GetEyeY(Entity entity) { return 1.625f; }
 
-        public override Vector3 CollisionSize
-        {
-            get { return new Vector3(8f / 16f + 0.6f / 16f, 28.1f / 16f, 8f / 16f + 0.6f / 16f); }
-        }
+        public override Vector3 CollisionSize { get { return new Vector3(8.6f / 16f, 28.1f / 16f, 8.6f / 16f); } }
 
-        public override AABB PickingBounds
-        {
-            get { return new AABB(-4f / 16f, 0f, -4f / 16f, 4f / 16f, 32f / 16f, 4f / 16f); }
-        }
+        public override AABB PickingBounds { get { return new AABB(-0.25f, 0f, -0.25f, 0.25f, 2f, 0.25f); } }
 
-        public override void DrawModel(Entity p)
-        {
+        public override void DrawModel(Entity p) {
             Rotate = RotateOrder.XZY;
 
             float lowerRightLegRot = ((float)Math.Cos(p.anim.walkTime + (float)Math.PI / 2f) + 1f) / 2f * -p.anim.swing * (float)Math.PI / 2f + p.anim.rightLegX;
@@ -92,10 +82,9 @@ namespace MoreModels
             float lowerRightLegY = 0.375f - 0.375f * (float)Math.Cos(p.anim.rightLegX);
             float lowerRightLegZ = 0.375f * (float)Math.Sin(-p.anim.rightLegX);
 
+            ApplyTexture(p);
             uScale = 1f / 128f;
             vScale = 1f / 64f;
-
-            game.Graphics.BindTexture(GetTexture(p));
             game.Graphics.AlphaTest = false;
 
             DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, leftUpperLeg, false);
@@ -112,28 +101,34 @@ namespace MoreModels
 
             UpdateVB();
             index = 0;
-
             game.Graphics.AlphaTest = true;
 
             DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, leftUpperPant, false);
             DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperPant, false);
             DrawRotate((float)Math.PI * p.anim.swing / -3f, 0f, 0f, cape, false);
 
-            DrawTransform(0f, breathDisp, 0f, -p.HeadXRadians, 0f, 0f, .9f, hat, true);
+            DrawTransform(0f, breathDisp, 0f, -p.HeadXRadians, 0f, 0f, 0.9f, hat, true);
             DrawTransform(0f, breathDisp, 0f, p.anim.leftArmX, 0f, p.anim.leftArmZ, 1f, leftUpperSleeve, false);
             DrawTransform(0f, breathDisp, 0f, p.anim.rightArmX, 0f, p.anim.rightArmZ, 1f, rightUpperSleeve, false);
             DrawTransform(0f, 0f, 0f, 0f, 0f, 0f, breath, jacket, false);
             DrawTransform(lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, lowerLeftArmRot, 0f, 0f, 1f, leftLowerSleeve, false);
             DrawTransform(lowerRightArmX, lowerRightArmY, lowerRightArmZ, lowerRightArmRot, 0f, 0f, 1f, rightLowerSleeve, false);
-
             DrawTransform(0f, lowerLeftLegY, lowerLeftLegZ, lowerLeftLegRot, 0f, 0f, 1f, leftLowerPant, false);
             DrawTransform(0f, lowerRightLegY, lowerRightLegZ, lowerRightLegRot, 0f, 0f, 1f, rightLowerPant, false);
 
             UpdateVB();
         }
 
-        protected void DrawTransform(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, float scale, ModelPart part, bool head)
+        public override void DrawArm(Entity p)
         {
+            uScale = 1f / 128f;
+            vScale = 1f / 64f;
+            DrawArmPart(rightLowerArm);
+            DrawArmPart(rightLowerSleeve);
+            UpdateVB();
+        }
+
+        protected void DrawTransform(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, float scale, ModelPart part, bool head) {
             float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
             float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);
             float cosZ = (float)Math.Cos(-rotZ), sinZ = (float)Math.Sin(-rotZ);
@@ -141,37 +136,32 @@ namespace MoreModels
             VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
             VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
                 
-            for (int i = 0; i < part.Count; i++)
-            {
+            for (int i = 0; i < part.Count; i++) {
                 ModelVertex v = vertices[part.Offset + i];
 
                 // Prepare the vertex coordinates for rotation
                 v.X -= part.RotX; v.Y -= part.RotY; v.Z -= part.RotZ;
-                float t = 0;
+                float t = 0f;
 
                 // Rotate locally.
-                if (Rotate == RotateOrder.ZYX)
-                {
+                if (Rotate == RotateOrder.ZYX) {
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
                 }
-                else if (Rotate == RotateOrder.XZY)
-                {
+                else if (Rotate == RotateOrder.XZY) {
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                 }
-                else if (Rotate == RotateOrder.YZX)
-                {
+                else if (Rotate == RotateOrder.YZX) {
                     t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
                     t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
                     t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
                 }
 
                 // Rotate globally
-                if (head)
-                {
+                if (head) {
                     t = cosHead * v.X - sinHead * v.Z; v.Z = sinHead * v.X + cosHead * v.Z; v.X = t; // Inlined RotY
                 }
                 //Scale box at pivot

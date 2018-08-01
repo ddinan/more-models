@@ -1,13 +1,13 @@
+using ClassicalSharp;
 using ClassicalSharp.Entities;
+using ClassicalSharp.Model;
 using ClassicalSharp.Physics;
 using OpenTK;
 
-namespace ClassicalSharp.Model {
-
+namespace MoreModels {
 	public class CowModel : IModel {
-		
 		public CowModel(Game game) : base(game) { SurivalScore = 10; }
-	
+
 		public override void CreateParts() {
 			vertices = new ModelVertex[boxVertices * boxesBuilt];
 
@@ -19,24 +19,20 @@ namespace ClassicalSharp.Model {
 			leftLegBack   = BuildBox(MakeBoxBounds(-6, 0, 5, -2, 12, 9)     .TexOrigin(0, 16).RotOrigin(0, 12, 7));
 			rightLegBack  = BuildBox(MakeBoxBounds(2, 0, 5, 6, 12, 9)       .TexOrigin(0, 16).RotOrigin(0, 12, 7));
 
-            torso = BuildRotatedBox(MakeRotatedBoxBounds(-6, 12, -8, 6, 22, 10) .TexOrigin(18, 4));
-            udder = BuildRotatedBox(MakeRotatedBoxBounds(-2, 11, 4, 2, 12, 10)  .TexOrigin(52, 0));
+            torso = BuildRotatedBox(MakeRotatedBoxBounds(-6, 12, -8, 6, 22, 10).TexOrigin(18, 4));
+            udder = BuildRotatedBox(MakeRotatedBoxBounds(-2, 11, 4, 2, 12, 10) .TexOrigin(52, 0));
         }
-		
+
 		public override float NameYOffset { get { return 1.5f; } }
 
-		public override float GetEyeY(Entity entity) { return 12f/16f; }
+		public override float GetEyeY(Entity entity) { return 0.75f; }
 
-		public override Vector3 CollisionSize {
-			get { return new Vector3(14f / 16f, 14f / 16f, 14f / 16f); }
-		}
+		public override Vector3 CollisionSize { get { return new Vector3(0.875f, 0.875f, 0.875f); } }
 
-		public override AABB PickingBounds {
-			get { return new AABB(-5f / 16f, 0f, -14f / 16f, 5f / 16f, 16f / 16f, 9f / 16f); }
-		}
+		public override AABB PickingBounds { get { return new AABB(-5f / 16f, 0f, -0.875f, 5f / 16f, 1f, 9f / 16f); }	}
 
 		public override void DrawModel(Entity p) {
-			game.Graphics.BindTexture(GetTexture(p));
+			ApplyTexture(p);
 
             DrawPart(torso);
             DrawPart(udder);
@@ -52,7 +48,7 @@ namespace ClassicalSharp.Model {
 
 			UpdateVB();
 		}
-		
+
 		private ModelPart head, rightHorn, leftHorn, torso, udder, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
 
         private const int boxesBuilt = 9;

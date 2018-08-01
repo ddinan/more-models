@@ -17,6 +17,7 @@ namespace MoreModels
             game.ModelCache.RegisterTextures("cow.png");
             game.ModelCache.RegisterTextures("croc.png");
             game.ModelCache.RegisterTextures("enderman.png");
+            game.ModelCache.RegisterTextures("enderman_eyes.png");
             game.ModelCache.RegisterTextures("husk.png");
             game.ModelCache.RegisterTextures("male.png");
             game.ModelCache.RegisterTextures("printer.png");
