@@ -25,7 +25,7 @@ namespace MoreModels {
 
 		public override float NameYOffset { get { return 1.5f; } }
 
-		public override float GetEyeY(Entity entity) { return 0.75f; }
+		public override float GetEyeY(Entity entity) { return 12f/16f; }
 
 		public override Vector3 CollisionSize { get { return new Vector3(0.875f, 0.875f, 0.875f); } }
 
