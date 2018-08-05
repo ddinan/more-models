@@ -52,7 +52,9 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClassicalSharp" />
+    <Reference Include="ClassicalSharp">
+      <HintPath>..\..\..\Downloads\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +63,8 @@
     <Compile Include="Models\CowModel.cs" />
     <Compile Include="Models\CrocModel.cs" />
     <Compile Include="Models\EndermanModel.cs" />
+    <Compile Include="Models\MagmaCubeModel.cs" />
+    <Compile Include="Models\SlimeModel.cs" />
     <Compile Include="Models\FlyingModel.cs" />
     <Compile Include="Models\HeadlessModel.cs" />
     <Compile Include="Models\HoldingModel.cs" />
