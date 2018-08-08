@@ -24,18 +24,20 @@ namespace MoreModels
             game.ModelCache.RegisterTextures("printer.png");
             game.ModelCache.RegisterTextures("slime.png");
             game.ModelCache.RegisterTextures("stray.png");
+            game.ModelCache.RegisterTextures("villager.png");
             game.ModelCache.RegisterTextures("wither_skeleton.png");
             game.ModelCache.RegisterTextures("zombie_pigman.png");
 
             game.ModelCache.Register("car", "car.png", new CarModel(game));
             game.ModelCache.Register("cavespider", "cave_spider.png", new CaveSpiderModel(game));
-			      game.ModelCache.Register("cow", "cow.png", new CowModel(game));
+            game.ModelCache.Register("chibisit", "char.png", new ChibiSittingModel(game));
+			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
             game.ModelCache.Register("croc", "croc.png", new CrocModel(game));
             game.ModelCache.Register("enderman", "enderman.png", new EndermanModel(game));
-			      game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
-			      game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
-			      game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
-			      game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
+			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
+	        game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
+			game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
+			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
             game.ModelCache.Register("male", "male.png", new MaleModel(game));
             game.ModelCache.Register("magmacube", "magmacube.png", new MagmaCubeModel(game));
             game.ModelCache.Register("printer", "printer.png", new PrinterModel(game));
