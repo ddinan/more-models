@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using ClassicalSharp;
 using ClassicalSharp.GraphicsAPI;
 using ClassicalSharp.Commands;
-using System;
-using System.Collections.Generic;
 
 namespace MoreModels {
 	public sealed class Core : Plugin {
@@ -13,6 +13,7 @@ namespace MoreModels {
 		public static Game game;
 		public void Init(Game g) {
 			game = g;
+			game.ModelCache.RegisterTextures("cape.png");
 			game.ModelCache.RegisterTextures("car.png");
 			game.ModelCache.RegisterTextures("cave_spider.png");
 			game.ModelCache.RegisterTextures("cow.png");
@@ -29,6 +30,7 @@ namespace MoreModels {
 			game.ModelCache.RegisterTextures("wither_skeleton.png");
 			game.ModelCache.RegisterTextures("zombie_pigman.png");
 
+			game.ModelCache.Register("cape", "char.png", new CapeModel(game));
 			game.ModelCache.Register("car", "car.png", new CarModel(game));
 			game.ModelCache.Register("cavespider", "cave_spider.png", new CaveSpiderModel(game));
 			game.ModelCache.Register("chibisit", "char.png", new ChibiSittingModel(game));
@@ -49,9 +51,9 @@ namespace MoreModels {
 
 			// Recreate the modelcache VB to be bigger
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
-			game.ModelCache.vertices = new VertexP3fT2fC4b[24 * 20];
+			game.ModelCache.vertices = new VertexP3fT2fC4b[32 * 32];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + More Models v1.1";
+			game.Server.AppName += " + More Models v1.2";
 
 			game.CommandList.Register(new ListModelsCommand());
 		}

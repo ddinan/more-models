@@ -58,6 +58,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CapeModel.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CaveSpiderModel.cs" />
     <Compile Include="Models\CowModel.cs" />

@@ -1,4 +1,3 @@
-// Due to not supporting multiple image files per single model, you will need to add the eyes manually if you're using a Minecraft enderman skin.
 using ClassicalSharp;
 using ClassicalSharp.Entities;
 using ClassicalSharp.Model;
