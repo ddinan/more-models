@@ -51,8 +51,9 @@ namespace MoreModels {
             DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArm, false);
             DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArm, false);
 
-            DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLeg);
-            DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLeg);
+            Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
+            DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLeg, false);
+            DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLeg, false);
 
             UpdateVB();
             index = 0;
@@ -60,13 +61,22 @@ namespace MoreModels {
 
             if (p.SkinType != SkinType.Type64x32) {
                 model.TorsoLayer.RotY = 24f / 16f;
+
+                ResetTransform(p);
+
                 DrawRotate(flyRot, 0f, 0f, model.TorsoLayer, false);
-                DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLegLayer);
-                DrawTranslateAndRotate(0f, (float)Math.Cos(flyRot) * -12f / 16f + 12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f, flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLegLayer);
                 DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArmLayer, false);
                 DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArmLayer, false);
+
+                Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
+                DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLegLayer, false);
+                DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLegLayer, false);
+
                 model.TorsoLayer.RotY = 0f;
             }
+
+            ResetTransform(p);
+
             DrawRotate(headRot, 0f, 0f, model.Hat, true);
 
             UpdateVB();
@@ -74,6 +84,27 @@ namespace MoreModels {
             model.Torso.RotY = 0f;
         }
 
+        private void Translate(Entity p, float dispX, float dispY, float dispZ) {
+            Vector3 pos = p.Position;
+            pos.Y += p.anim.bobbingModel;
+
+            Matrix4 matrix = TransformMatrix(p, pos), temp;
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Translate(out temp, dispX, dispY, dispZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
+
+            game.Graphics.LoadMatrix(ref matrix);
+        }
+
+        protected void ResetTransform(Entity p) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
+
+            Matrix4 matrix = TransformMatrix(p, pos);
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+
+            game.Graphics.LoadMatrix(ref matrix);
+        }
         private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part) {
             float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
             float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);

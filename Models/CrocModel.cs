@@ -55,55 +55,38 @@ namespace MoreModels {
             DrawRotate(walkRot * -2f, 0f, 0f, leftLegBack, false);
             DrawRotate(walkRot * 2f, 0f, 0f, rightLegBack, false);
 
-            DrawTranslateAndRotate((float)Math.Sin(walkRot / 2f) * 6f / 16f, 0f, (float)Math.Cos(walkRot / 2f) * -6f / 16f + 6f / 16f, 0f, -walkRot / 2f, 0f, snout);
-            DrawTranslateAndRotate((float)Math.Sin(walkRot) * 5f / 16f, 0f, (float)Math.Cos(walkRot / 2f) * 5f / 16f - 5f / 16f, 0f, walkRotPhase1, 0f, midTail);
-            DrawTranslateAndRotate((float)Math.Sin(walkRot) * 5f / 16f + (float)Math.Sin(walkRotPhase1) * 5f / 16f, 0f, (float)Math.Cos(walkRot) * 5f / 16f - 5f / 16f + (float)Math.Cos(walkRotPhase1) * 5f / 16f - 5f / 16f, 0f, walkRotPhase2, 0f, backTail);
+            Translate(p, (float)Math.Sin(walkRot / 2f) * 6f / 16f, 0f, ((float)Math.Cos(walkRot / 2f) - 1f) * -6f / 16f);
+            DrawRotate(0f, -walkRot / 2f, 0f, snout, false);
+
+            Translate(p, (float)Math.Sin(walkRot) * 5f / 16f, 0f, ((float)Math.Cos(walkRot / 2f) - 1f) * 5f / 16f);
+            DrawRotate(0f, walkRotPhase1, 0f, midTail, false);
+
+            Translate(p, (float)(Math.Sin(walkRot) + Math.Sin(walkRotPhase1)) * 5f / 16f, 0f, ((float)Math.Cos(walkRot) + (float)Math.Cos(walkRotPhase1) - 2f) * 5f / 16f);
+            DrawRotate(0f, walkRotPhase2, 0f, backTail, false);
 
             UpdateVB();
         }
 
-        private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part) {
-            float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
-            float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);
-            float cosZ = (float)Math.Cos(-rotZ), sinZ = (float)Math.Sin(-rotZ);
+        private void Translate(Entity p, float dispX, float dispY, float dispZ) {
+            Vector3 pos = p.Position;
+            pos.Y += p.anim.bobbingModel;
 
-            VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
-            VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
+            Matrix4 matrix = TransformMatrix(p, pos), temp;
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Translate(out temp, dispX, dispY, dispZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
 
-            for (int i = 0; i < part.Count; i++) {
-                ModelVertex v = vertices[part.Offset + i];
+            game.Graphics.LoadMatrix(ref matrix);
+        }
 
-                // Prepare the vertex coordinates for rotation
-                v.X -= part.RotX; v.Y -= part.RotY; v.Z -= part.RotZ;
-                float t = 0f;
+        protected void ResetTransform(Entity p) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
 
-                // Rotate locally.
-                if (Rotate == RotateOrder.ZYX) {
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
-                else if (Rotate == RotateOrder.XZY) {
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                }
-                else if (Rotate == RotateOrder.YZX) {
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
+            Matrix4 matrix = TransformMatrix(p, pos);
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
 
-                vertex.X = v.X + part.RotX; vertex.Y = v.Y + part.RotY; vertex.Z = v.Z + part.RotZ;
-                // Translate part
-                vertex.X += dispX; vertex.Y += dispY; vertex.Z += dispZ;
-
-                vertex.Col = cols[i >> 2];
-
-                vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
-                vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;
-                finVertices[index++] = vertex;
-            }
+            game.Graphics.LoadMatrix(ref matrix);
         }
 
         private ModelPart snout, head, body, leftLegFront, rightLegFront, leftLegBack, rightLegBack, frontTail, midTail, backTail;

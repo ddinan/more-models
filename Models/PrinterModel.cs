@@ -48,75 +48,46 @@ namespace MoreModels {
             DrawPart(topLeft);
             DrawPart(topRight);
 
-            DrawTranslate(0f, 0f, 0.75f / 16f, back);
-            DrawTranslate(0f, 0.5f / 16f, 0f, front);
-            DrawTranslate(0f, 0f, -0.5f / 16f, center);
-            DrawTranslate(0f, -0.5f / 16f, 0f, top);
-            DrawTranslate(0f, -0.5f / 16f, 0f, lineLeft);
-            DrawTranslate(0f, -0.5f / 16f, 0f, lineRight);            
+            Translate(p, 0f, 0f, 0.75f / 16f);
+            DrawPart(back);
 
-            DrawTranslateAndRotate(0f, 0.5f / 16f, 0.75f / 16f, (float)Math.PI / 8f, 0f, 0f, tray);
+            Translate(p, 0f, 0.5f / 16f, 0f);
+            DrawPart(front);
+
+            Translate(p, 0f, 0f, -0.5f / 16f);
+            DrawPart(center);
+
+            Translate(p, 0f, -0.5f / 16f, 0f);
+            DrawPart(top);
+            DrawPart(lineLeft);
+            DrawPart(lineRight);
+
+            Translate(p, 0f, 0.5f / 16f, 0.75f / 16f);
+            DrawRotate((float)Math.PI / 8f, 0f, 0f, tray, false);
 
             UpdateVB();
         }
 
-        private void DrawTranslate(float dispX, float dispY, float dispZ, ModelPart part) {
-            VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
-            VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
+        private void Translate(Entity p, float dispX, float dispY, float dispZ) {
+            Vector3 pos = p.Position;
+            pos.Y += p.anim.bobbingModel;
 
-            for (int i = 0; i < part.Count; i++) {
-                ModelVertex v = vertices[part.Offset + i];
-                vertex.X = v.X + dispX; vertex.Y = v.Y + dispY; vertex.Z = v.Z + dispZ;
-                vertex.Col = cols[i >> 2];
+            Matrix4 matrix = TransformMatrix(p, pos), temp;
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Translate(out temp, dispX, dispY, dispZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
 
-                vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
-                vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;
-                finVertices[index++] = vertex;
-            }
+            game.Graphics.LoadMatrix(ref matrix);
         }
 
-        private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part) {
-            float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
-            float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);
-            float cosZ = (float)Math.Cos(-rotZ), sinZ = (float)Math.Sin(-rotZ);
+        protected void ResetTransform(Entity p) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
 
-            VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
-            VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
+            Matrix4 matrix = TransformMatrix(p, pos);
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
 
-            for (int i = 0; i < part.Count; i++) {
-                ModelVertex v = vertices[part.Offset + i];
-
-                // Prepare the vertex coordinates for rotation
-                v.X -= part.RotX; v.Y -= part.RotY; v.Z -= part.RotZ;
-                float t = 0f;
-
-                // Rotate locally.
-                if (Rotate == RotateOrder.ZYX) {
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
-                else if (Rotate == RotateOrder.XZY) {
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                }
-                else if (Rotate == RotateOrder.YZX) {
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
-
-                vertex.X = v.X + part.RotX; vertex.Y = v.Y + part.RotY; vertex.Z = v.Z + part.RotZ;
-                // Translate part
-                vertex.X += dispX; vertex.Y += dispY; vertex.Z += dispZ;
-
-                vertex.Col = cols[i >> 2];
-
-                vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
-                vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;
-                finVertices[index++] = vertex;
-            }
+            game.Graphics.LoadMatrix(ref matrix);
         }
 
         protected const int boxesBuilt = 12;
