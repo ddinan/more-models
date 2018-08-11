@@ -37,6 +37,7 @@ namespace MoreModels {
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
 			game.ModelCache.Register("croc", "croc.png", new CrocModel(game));
 			game.ModelCache.Register("enderman", "enderman.png", new EndermanModel(game));
+			game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 			game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
@@ -46,6 +47,7 @@ namespace MoreModels {
 			game.ModelCache.Register("printer", "printer.png", new PrinterModel(game));
 			game.ModelCache.Register("slime", "slime.png", new SlimeModel(game));
 			game.ModelCache.Register("stray", "stray.png", new StrayModel(game));
+			game.ModelCache.Register("t", "char.png", new TModel(game));
 			game.ModelCache.Register("witherskeleton", "wither_skeleton.png", new WitherSkeletonModel(game));
 			game.ModelCache.Register("zombiepigman", "zombie_pigman.png", new ZombiePigmanModel(game));
 

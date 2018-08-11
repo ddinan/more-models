@@ -64,6 +64,7 @@
     <Compile Include="Models\CowModel.cs" />
     <Compile Include="Models\CrocModel.cs" />
     <Compile Include="Models\EndermanModel.cs" />
+    <Compile Include="Models\FemaleModel.cs" />
     <Compile Include="Models\MagmaCubeModel.cs" />
     <Compile Include="Models\SlimeModel.cs" />
     <Compile Include="Models\FlyingModel.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Models\PrinterModel.cs" />
     <Compile Include="Models\StrayModel.cs" />
     <Compile Include="Models\ChibiSittingModel.cs" />
+    <Compile Include="Models\TModel.cs" />
     <Compile Include="Models\WitherSkeleton.cs" />
     <Compile Include="Models\ZombiePigmanModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
