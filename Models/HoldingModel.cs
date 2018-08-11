@@ -96,7 +96,7 @@ namespace MoreModels {
             IModel blockModel = game.ModelCache.Models[9].Instance; // Get block model
             if (blockModel != null) {
                 Vector3 pos = p.Position;
-                pos.Y += p.anim.bobbingModel;
+                if (Bobbing) pos.Y += p.anim.bobbingModel;
 
                 Matrix4 matrix = TransformMatrix(p, pos), temp;
                 Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);

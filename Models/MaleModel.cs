@@ -90,24 +90,45 @@ namespace MoreModels {
             DrawRotate(p.anim.leftLegX, 0f, p.anim.leftLegZ, leftUpperLeg, false);
             DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperLeg, false);
 
-            Transform(p, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
+            UpdateVB();
+            index = 0;
+
+            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
             DrawRotate(-p.HeadXRadians, 0f, 0f, head, true);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, 0f, breathDisp, 0f, 1f, 1f, 1f);
             DrawRotate(p.anim.leftArmX, 0f, p.anim.leftArmZ, leftUpperArm, false);
             DrawRotate(p.anim.rightArmX, 0f, p.anim.rightArmZ, rightUpperArm, false);
 
-            Transform(p, 0f, 0f, 0f, breath, breath, breath);
-            DrawRotate(0f, 0f, 0f, torso, false);
+            UpdateVB();
+            index = 0;
+
+            TransformAt(p, 0f, 0.75f, 0f, 0f, 0f, 0f, breath, breath, breath);
+            DrawPart(torso);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, 1f, 1f, 1f);
             DrawRotate(lowerLeftArmRot, 0f, 0f, leftLowerArm, false);
 
+            UpdateVB();
+            index = 0;
+
             Transform(p, lowerRightArmX, lowerRightArmY, lowerRightArmZ, 1f, 1f, 1f);
             DrawRotate(lowerRightArmRot, 0f, 0f, rightLowerArm, false);
 
+            UpdateVB();
+            index = 0;
+
             Transform(p, 0f, lowerLeftLegY, lowerLeftLegZ, 1f, 1f, 1f);
             DrawRotate(lowerLeftLegRot, 0f, 0f, leftLowerLeg, false);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, 0f, lowerRightLegY, lowerRightLegZ, 1f, 1f, 1f);
             DrawRotate(lowerRightLegRot, 0f, 0f, rightLowerLeg, false);
@@ -122,24 +143,45 @@ namespace MoreModels {
             DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperPant, false);
             DrawRotate((float)Math.PI * p.anim.swing / -3f, 0f, 0f, cape, false);
 
-            Transform(p, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
+            UpdateVB();
+            index = 0;
+
+            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
             DrawRotate(-p.HeadXRadians, 0f, 0f, hat, true);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, 0f, breathDisp, 0f, 1f, 1f, 1f);
             DrawRotate(p.anim.leftArmX, 0f, p.anim.leftArmZ, leftUpperSleeve, false);
             DrawRotate(p.anim.rightArmX, 0f, p.anim.rightArmZ, rightUpperSleeve, false);
 
-            Transform(p, 0f, 0f, 0f, breath, breath, breath);
-            DrawRotate(0f, 0f, 0f, jacket, false);
+            UpdateVB();
+            index = 0;
+
+            TransformAt(p, 0f, 0.75f, 0f, 0f, 0f, 0f, breath, breath, breath);
+            DrawPart(jacket);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, lowerLeftArmX, lowerLeftArmY, lowerLeftArmZ, 1f, 1f, 1f);
             DrawRotate(lowerLeftArmRot, 0f, 0f, leftLowerSleeve, false);
 
+            UpdateVB();
+            index = 0;
+
             Transform(p, lowerRightArmX, lowerRightArmY, lowerRightArmZ, 1f, 1f, 1f);
             DrawRotate(lowerRightArmRot, 0f, 0f, rightLowerSleeve, false);
 
+            UpdateVB();
+            index = 0;
+
             Transform(p, 0f, lowerLeftLegY, lowerLeftLegZ, 1f, 1f, 1f);
             DrawRotate(lowerLeftLegRot, 0f, 0f, leftLowerPant, false);
+
+            UpdateVB();
+            index = 0;
 
             Transform(p, 0f, lowerRightLegY, lowerRightLegZ, 1f, 1f, 1f);
             DrawRotate(lowerRightLegRot, 0f, 0f, rightLowerPant, false);
@@ -161,9 +203,27 @@ namespace MoreModels {
 
             Matrix4 matrix = TransformMatrix(p, pos), temp;
             Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Scale(out temp, scaleX, scaleY, scaleZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
             Matrix4.Translate(out temp, dispX, dispY, dispZ);
             Matrix4.Mult(out matrix, ref temp, ref matrix);
+
+            game.Graphics.LoadMatrix(ref matrix);
+        }
+
+        protected void TransformAt(Entity p, float x, float y, float z, float dispX, float dispY, float dispZ, float scaleX, float scaleY, float scaleZ) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
+
+            Matrix4 matrix = TransformMatrix(p, pos), temp;
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Translate(out temp, x, y, z);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
             Matrix4.Scale(out temp, scaleX, scaleY, scaleZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
+            Matrix4.Translate(out temp, dispX, dispY, dispZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
+            Matrix4.Translate(out temp, -x, -y, -z);
             Matrix4.Mult(out matrix, ref temp, ref matrix);
 
             game.Graphics.LoadMatrix(ref matrix);

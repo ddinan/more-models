@@ -48,19 +48,34 @@ namespace MoreModels {
             DrawPart(topLeft);
             DrawPart(topRight);
 
+            UpdateVB();
+            index = 0;
+
             Translate(p, 0f, 0f, 0.75f / 16f);
             DrawPart(back);
+
+            UpdateVB();
+            index = 0;
 
             Translate(p, 0f, 0.5f / 16f, 0f);
             DrawPart(front);
 
+            UpdateVB();
+            index = 0;
+
             Translate(p, 0f, 0f, -0.5f / 16f);
             DrawPart(center);
+
+            UpdateVB();
+            index = 0;
 
             Translate(p, 0f, -0.5f / 16f, 0f);
             DrawPart(top);
             DrawPart(lineLeft);
             DrawPart(lineRight);
+
+            UpdateVB();
+            index = 0;
 
             Translate(p, 0f, 0.5f / 16f, 0.75f / 16f);
             DrawRotate((float)Math.PI / 8f, 0f, 0f, tray, false);
@@ -70,7 +85,7 @@ namespace MoreModels {
 
         private void Translate(Entity p, float dispX, float dispY, float dispZ) {
             Vector3 pos = p.Position;
-            pos.Y += p.anim.bobbingModel;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
 
             Matrix4 matrix = TransformMatrix(p, pos), temp;
             Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);

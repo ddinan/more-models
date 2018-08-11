@@ -51,6 +51,9 @@ namespace MoreModels {
             DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArm, false);
             DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArm, false);
 
+            UpdateVB();
+            index = 0;
+
             Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
             DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLeg, false);
             DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLeg, false);
@@ -68,9 +71,15 @@ namespace MoreModels {
                 DrawRotate(flyRot, -armRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftArmLayer, false);
                 DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArmLayer, false);
 
+                UpdateVB();
+                index = 0;
+
                 Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
                 DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLegLayer, false);
                 DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLegLayer, false);
+
+                UpdateVB();
+                index = 0;
 
                 model.TorsoLayer.RotY = 0f;
             }
@@ -86,7 +95,7 @@ namespace MoreModels {
 
         private void Translate(Entity p, float dispX, float dispY, float dispZ) {
             Vector3 pos = p.Position;
-            pos.Y += p.anim.bobbingModel;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
 
             Matrix4 matrix = TransformMatrix(p, pos), temp;
             Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
@@ -104,49 +113,6 @@ namespace MoreModels {
             Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
 
             game.Graphics.LoadMatrix(ref matrix);
-        }
-        private void DrawTranslateAndRotate(float dispX, float dispY, float dispZ, float rotX, float rotY, float rotZ, ModelPart part) {
-            float cosX = (float)Math.Cos(-rotX), sinX = (float)Math.Sin(-rotX);
-            float cosY = (float)Math.Cos(-rotY), sinY = (float)Math.Sin(-rotY);
-            float cosZ = (float)Math.Cos(-rotZ), sinZ = (float)Math.Sin(-rotZ);
-
-            VertexP3fT2fC4b vertex = default(VertexP3fT2fC4b);
-            VertexP3fT2fC4b[] finVertices = game.ModelCache.vertices;
-
-            for (int i = 0; i < part.Count; i++) {
-                ModelVertex v = vertices[part.Offset + i];
-
-                // Prepare the vertex coordinates for rotation
-                v.X -= part.RotX; v.Y -= part.RotY; v.Z -= part.RotZ;
-                float t = 0f;
-
-                // Rotate locally.
-                if (Rotate == RotateOrder.ZYX) {
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
-                else if (Rotate == RotateOrder.XZY) {
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                }
-                else if (Rotate == RotateOrder.YZX) {
-                    t = cosY * v.X - sinY * v.Z; v.Z = sinY * v.X + cosY * v.Z; v.X = t; // Inlined RotY
-                    t = cosZ * v.X + sinZ * v.Y; v.Y = -sinZ * v.X + cosZ * v.Y; v.X = t; // Inlined RotZ
-                    t = cosX * v.Y + sinX * v.Z; v.Z = -sinX * v.Y + cosX * v.Z; v.Y = t; // Inlined RotX
-                }
-
-                vertex.X = v.X + part.RotX; vertex.Y = v.Y + part.RotY; vertex.Z = v.Z + part.RotZ;
-                // Translate part
-                vertex.X += dispX; vertex.Y += dispY; vertex.Z += dispZ;
-
-                vertex.Col = cols[i >> 2];
-
-                vertex.U = (v.U & UVMask) * uScale - (v.U >> UVMaxShift) * 0.01f * uScale;
-                vertex.V = (v.V & UVMask) * vScale - (v.V >> UVMaxShift) * 0.01f * vScale;
-                finVertices[index++] = vertex;
-            }
         }
     }
 }
