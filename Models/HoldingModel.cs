@@ -68,7 +68,6 @@ namespace MoreModels {
             DrawRotate((float)Math.PI / 3f + handBob + handIdle, (handBob + handIdle) * 2f / 3f, (float)Math.PI / -8f, model.RightArm, false);
 
             UpdateVB();
-            index = 0;
             game.Graphics.AlphaTest = true;
 
             if (p.SkinType != SkinType.Type64x32) {
@@ -83,7 +82,6 @@ namespace MoreModels {
             DrawRotate(-p.HeadXRadians, 0f, 0f, model.Hat, true);
 
             UpdateVB();
-            index = 0;
 
             BlockID prevBlock = p.ModelBlock;
             p.ModelBlock &= 0x7fff;

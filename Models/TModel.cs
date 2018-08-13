@@ -6,16 +6,21 @@ using ClassicalSharp.Physics;
 using OpenTK;
 
 namespace MoreModels {
-	public class TModel : IModel {
-		public TModel(Game window) : base(window) { UsesHumanSkin = true; }
+	public class TModel : HumanoidModel {
+		public TModel(Game window) : base(window) { CalcHumanAnims = false; }
 
-		public override float NameYOffset { get { return 2.03125f; } }
-		public override Vector3 CollisionSize { get { return new Vector3(0.5375f, 1.75625f, 0.5375f); } }
-		public override AABB PickingBounds { get { return new AABB(-0.5f, 0f, -0.25f, 0.5f, 2f, 0.25f); } }
-		public override float GetEyeY(Entity entity) { return 1.625f; }
+		//public override float NameYOffset { get { return 2.03125f; } }
+		//public override Vector3 CollisionSize { get { return new Vector3(0.5375f, 1.75625f, 0.5375f); } }
+		//public override AABB PickingBounds { get { return new AABB(-0.5f, 0f, -0.25f, 0.5f, 2f, 0.25f); } }
+		//public override float GetEyeY(Entity entity) { return 1.625f; }
 
 		public override void CreateParts() {
-			vertices = new ModelVertex[boxVertices * 7];
+            HumanoidModel humanoid = (HumanoidModel)game.ModelCache.Models[0].Instance;
+            vertices = humanoid.vertices;
+            Set = humanoid.Set;
+            Set64 = humanoid.Set64;
+            SetSlim = humanoid.SetSlim;
+            /*vertices = new ModelVertex[boxVertices * 7];
 			Head = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4)
 							.TexOrigin(0, 0)
 							.RotOrigin(0, 24, 0));
@@ -37,37 +42,23 @@ namespace MoreModels {
 			Hat = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4)
 			                .TexOrigin(32, 0)
 			                .RotOrigin(0, 24, 0)
-			                .Expand(0.5f));
-		}
+			                .Expand(0.5f));*/
+        }
 
 		public override void DrawModel(Entity p) {
-			ApplyTexture(p);
-			
 			// No animation for arms/legs
-			
-			p.anim.leftArmX = 0; p.anim.rightArmX = 0;
-			p.anim.leftArmZ = -90; p.anim.rightArmZ = 90;
+			p.anim.leftArmX = 0f; p.anim.rightArmX = 0f;
+			p.anim.leftArmZ = -(float)Math.PI / 2f; p.anim.rightArmZ = (float)Math.PI / 2f;
 
-			p.anim.leftLegX = 0; p.anim.rightLegX = 0;
-			p.anim.leftLegZ = 0; p.anim.rightLegZ = 0;
+			p.anim.leftLegX = 0f; p.anim.rightLegX = 0f;
+			p.anim.leftLegZ = 0f; p.anim.rightLegZ = 0f;
 
-			game.Graphics.AlphaTest = false;
-			DrawRotate(0 - p.HeadXRadians, 0, 0, Head, true);
-			UpdateVB();
-			
-			game.Graphics.AlphaTest = true;
-			DrawRotate(0 - p.HeadXRadians, 0, 0, Hat, true);
-			UpdateVB();
-			
-			game.Graphics.AlphaTest = false;
-			DrawPart(Torso);
-			DrawRotate(p.anim.leftLegX, 0, 0, LeftLeg, false);
-			DrawRotate(p.anim.rightLegX, 0, 0, RightLeg, false);
-			DrawRotate(0, 0, -90f * Utils.Deg2Rad, LeftArm, false);
-			DrawRotate(0, 0, 90f * Utils.Deg2Rad, RightArm, false);
-			
-			UpdateVB();
+            base.DrawModel(p);
 		}
-		ModelPart Head, Hat, Torso, LeftArm, RightArm, LeftLeg, RightLeg;
-	}
+
+        public override void DrawArm(Entity p) {
+            base.DrawArm(p);
+        }
+        //ModelPart Head, Hat, Torso, LeftArm, RightArm, LeftLeg, RightLeg;
+    }
 }

@@ -15,57 +15,66 @@ namespace MoreModels {
 		public override float GetEyeY(Entity entity) { return 1.625f; }
 
 		public override void CreateParts() {
-			vertices = new ModelVertex[boxVertices * 9];
-			Head = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4)
-							.TexOrigin(0, 0)
-							.RotOrigin(0, 24, 0));
-			Torso = BuildBox(MakeBoxBounds(-4, 12, -2, 4, 24, 2)
-							.TexOrigin(16, 16)
-							.RotOrigin(0, 0, 0));
-			LeftLeg = BuildBox(MakeBoxBounds(0, 0, -2, -4, 12, 2)
-							.TexOrigin(0, 16)
-							.RotOrigin(0, 12, 0));
-			RightLeg = BuildBox(MakeBoxBounds(0, 0, -2, 4, 12, 2)
-							.TexOrigin(0, 16)
-							.RotOrigin(0, 12, 0));
-			LeftArm = BuildBox(MakeBoxBounds(-4, 12, -2, -8, 24, 2)
-							.TexOrigin(40, 16)
-							.RotOrigin(-6, 22, 0));
-			RightArm = BuildBox(MakeBoxBounds(4, 12, -2, 8, 24, 2)
-							.TexOrigin(40, 16)
-							.RotOrigin(6, 22, 0));
-			LeftBreast = BuildBox(MakeBoxBounds(-4, 18, -2, -1, 21, -3)
-			                .TexOrigin(20, 22));
-			RightBreast = BuildBox(MakeBoxBounds(1, 18, -2, 4, 21, -3)
-			                .TexOrigin(20, 22));
-			Hat = BuildBox(MakeBoxBounds(-4, 24, -4, 4, 32, 4)
-			                .TexOrigin(32, 0)
-			                .RotOrigin(0, 24, 0)
-			                .Expand(0.5f));
+			vertices = new ModelVertex[boxVertices * 4];
+
+            LeftBreast = BuildBox(MakeBoxBounds(-4, 18, -3, -1, 21, -2)
+                            .TexOrigin(24, 21)
+                            .Expand(0.5f));
+            RightBreast = BuildBox(MakeBoxBounds(1, 18, -3, 4, 21, -2)
+                            .TexOrigin(19, 21)
+                            .Expand(0.5f));
+            LeftGlute = BuildBox(MakeBoxBounds(-4, 11, 2, 0, 14, 3)
+                            .TexOrigin(26, 28)
+                            .Expand(0.5f));
+            RightGlute = BuildBox(MakeBoxBounds(0, 11, 2, 4, 14, 3)
+                            .TexOrigin(30, 27)
+                            .Expand(0.5f));
 		}
 
 		public override void DrawModel(Entity p) {
-			ApplyTexture(p);
+            float breastBob = ((float)Math.Sin(p.anim.walkTime * 2f)) * p.anim.swing * 1f / 32f + 0.5f / 16f;
+
+            game.ModelCache.Models[0].Instance.DrawModel(p);
 
 			game.Graphics.AlphaTest = false;
-			DrawRotate(0 - p.HeadXRadians, 0, 0, Head, true);
+
+            Translate(p, 0f, breastBob, 0f);
+            DrawPart(LeftBreast);
+			DrawPart(RightBreast);			
 			UpdateVB();
-			
-			game.Graphics.AlphaTest = true;
-			DrawRotate(0 - p.HeadXRadians, 0, 0, Hat, true);
-			UpdateVB();
-			
-			game.Graphics.AlphaTest = false;
-			DrawPart(Torso);
-			DrawRotate(p.anim.leftLegX, 0, 0, LeftLeg, false);
-			DrawRotate(p.anim.rightLegX, 0, 0, RightLeg, false);
-			DrawRotate(p.anim.leftArmX, 0, p.anim.leftArmZ, LeftArm, false);
-			DrawRotate(p.anim.rightArmX, 0, p.anim.rightArmZ, RightArm, false);
-			DrawPart(LeftBreast);
-			DrawPart(RightBreast);
-			
-			UpdateVB();
-		}
-		ModelPart Head, Hat, Torso, LeftArm, RightArm, LeftLeg, RightLeg, LeftBreast, RightBreast;
+
+            Translate(p, 0f, 0f, -0.5f / 16f);
+            DrawPart(LeftGlute);
+            DrawPart(RightGlute);
+            UpdateVB();
+        }
+
+        public override void DrawArm(Entity p) {
+            game.ModelCache.Models[0].Instance.DrawArm(p);
+        }
+
+        private void Translate(Entity p, float dispX, float dispY, float dispZ) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
+
+            Matrix4 matrix = TransformMatrix(p, pos), temp;
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+            Matrix4.Translate(out temp, dispX, dispY, dispZ);
+            Matrix4.Mult(out matrix, ref temp, ref matrix);
+
+            game.Graphics.LoadMatrix(ref matrix);
+        }
+
+        protected void ResetTransform(Entity p) {
+            Vector3 pos = p.Position;
+            if (Bobbing) pos.Y += p.anim.bobbingModel;
+
+            Matrix4 matrix = TransformMatrix(p, pos);
+            Matrix4.Mult(out matrix, ref matrix, ref game.Graphics.View);
+
+            game.Graphics.LoadMatrix(ref matrix);
+        }
+
+        ModelPart LeftBreast, RightBreast, LeftGlute, RightGlute;
 	}
 }

@@ -56,19 +56,16 @@ namespace MoreModels {
             DrawRotate(walkRot * 2f, 0f, 0f, rightLegBack, false);
 
             UpdateVB();
-            index = 0;
 
             Translate(p, (float)Math.Sin(walkRot / 2f) * 6f / 16f, 0f, ((float)Math.Cos(walkRot / 2f) - 1f) * -6f / 16f);
             DrawRotate(0f, -walkRot / 2f, 0f, snout, false);
 
             UpdateVB();
-            index = 0;
 
             Translate(p, (float)Math.Sin(walkRot) * 5f / 16f, 0f, ((float)Math.Cos(walkRot / 2f) - 1f) * 5f / 16f);
             DrawRotate(0f, walkRotPhase1, 0f, midTail, false);
 
             UpdateVB();
-            index = 0;
 
             Translate(p, (float)(Math.Sin(walkRot) + Math.Sin(walkRotPhase1)) * 5f / 16f, 0f, ((float)Math.Cos(walkRot) + (float)Math.Cos(walkRotPhase1) - 2f) * 5f / 16f);
             DrawRotate(0f, walkRotPhase2, 0f, backTail, false);

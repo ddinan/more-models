@@ -49,37 +49,27 @@ namespace MoreModels {
             DrawPart(topRight);
 
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, 0f, 0.75f / 16f);
             DrawPart(back);
-
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, 0.5f / 16f, 0f);
             DrawPart(front);
-
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, 0f, -0.5f / 16f);
             DrawPart(center);
-
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, -0.5f / 16f, 0f);
             DrawPart(top);
             DrawPart(lineLeft);
             DrawPart(lineRight);
-
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, 0.5f / 16f, 0.75f / 16f);
             DrawRotate((float)Math.PI / 8f, 0f, 0f, tray, false);
-
             UpdateVB();
         }
 

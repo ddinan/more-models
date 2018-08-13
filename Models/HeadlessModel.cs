@@ -42,7 +42,6 @@ namespace MoreModels {
             DrawRotate(p.anim.rightArmX, 0f, p.anim.rightArmZ, model.RightArm, false);
 
             UpdateVB();
-            index = 0;
             game.Graphics.AlphaTest = true;
 
             if (skinType != SkinType.Type64x32) {

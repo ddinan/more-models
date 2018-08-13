@@ -52,14 +52,12 @@ namespace MoreModels {
             DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArm, false);
 
             UpdateVB();
-            index = 0;
 
             Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
             DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLeg, false);
             DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLeg, false);
 
             UpdateVB();
-            index = 0;
             game.Graphics.AlphaTest = true;
 
             if (p.SkinType != SkinType.Type64x32) {
@@ -72,14 +70,12 @@ namespace MoreModels {
                 DrawRotate(-flyRot, armRot - (float)Math.PI * 3f / 64f, p.anim.rightArmZ * (1f - p.anim.swing), model.RightArmLayer, false);
 
                 UpdateVB();
-                index = 0;
 
                 Translate(p, 0f, ((float)Math.Cos(flyRot) - 1f) * -12f / 16f, (float)Math.Sin(flyRot) * -12f / 16f);
                 DrawRotate(flyRot, -legRot, p.anim.leftArmZ * (1f - p.anim.swing), model.LeftLegLayer, false);
                 DrawRotate(flyRot, legRot, p.anim.rightArmZ * (1f - p.anim.swing), model.RightLegLayer, false);
 
                 UpdateVB();
-                index = 0;
 
                 model.TorsoLayer.RotY = 0f;
             }

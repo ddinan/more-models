@@ -8,18 +8,24 @@ using OpenTK;
 
 namespace MoreModels {
 
-	public class ChibiSittingModel : IModel {
+	public class ChibiSittingModel : ChibiModel {
 		
 		public ChibiSittingModel(Game game) : base(game) {
-			CalcHumanAnims = true;
-			UsesHumanSkin = true;
-			MaxScale = 3.0f;
-			ShadowScale = 0.5f;
+            //CalcHumanAnims = true;
+            //UsesHumanSkin = true;
+            //MaxScale = 3.0f;
+            //ShadowScale = 0.5f;
+            CalcHumanAnims = false;
 			armX = 3; armY = 6;
-		}
+            ChibiModel chibi = (ChibiModel)game.ModelCache.Get("chibi");
+            vertices = chibi.vertices;
+            Set = chibi.Set;
+            Set64 = chibi.Set64;
+            SetSlim = chibi.SetSlim;
+        }
 		
 		const int sitOffset = 5;
-		public override void CreateParts() { }
+		//public override void CreateParts() { }
 		public override float NameYOffset { get { return 20.2f/16; } }	
 		public override float GetEyeY(Entity entity) { return (14 - sitOffset)/16f; }
 		
@@ -39,11 +45,11 @@ namespace MoreModels {
 		public override void DrawModel(Entity p) {
 			p.anim.leftLegX =  1.5f; p.anim.rightLegX = 1.5f;
 			p.anim.leftLegZ = -0.1f; p.anim.rightLegZ = 0.1f;			
-			game.ModelCache.Get("chibi").DrawModel(p);
+			base.DrawModel(p);
 		}
 		
 		public override void DrawArm(Entity p) {
-			game.ModelCache.Get("chibi").DrawArm(p);
+			base.DrawArm(p);
 		}
 	}
 }
