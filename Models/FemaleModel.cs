@@ -6,47 +6,57 @@ using ClassicalSharp.Physics;
 using OpenTK;
 
 namespace MoreModels {
-	public class FemaleModel : IModel {
-		public FemaleModel(Game window) : base(window) { UsesHumanSkin = true; }
-
-		public override float NameYOffset { get { return 2.03125f; } }
-		public override Vector3 CollisionSize { get { return new Vector3(0.5375f, 1.75625f, 0.5375f); } }
-		public override AABB PickingBounds { get { return new AABB(-0.5f, 0f, -0.25f, 0.5f, 2f, 0.25f); } }
-		public override float GetEyeY(Entity entity) { return 1.625f; }
+	public class FemaleModel : HumanoidModel {
+		public FemaleModel(Game game) : base(game) { }
 
 		public override void CreateParts() {
-			vertices = new ModelVertex[boxVertices * 4];
+			vertices = new ModelVertex[boxVertices * 5];
 
             LeftBreast = BuildBox(MakeBoxBounds(-4, 18, -3, -1, 21, -2)
                             .TexOrigin(24, 21)
-                            .Expand(0.5f));
+                            .RotOrigin(-2, 20, -2)
+                            .Expand(0.25f));
             RightBreast = BuildBox(MakeBoxBounds(1, 18, -3, 4, 21, -2)
                             .TexOrigin(19, 21)
-                            .Expand(0.5f));
+                            .RotOrigin(2, 20, -2)
+                            .Expand(0.25f));
+            Middle = BuildBox(MakeBoxBounds(-2, 18, -3, 2, 21, -1)
+                            .TexOrigin(20, 20)
+                            .RotOrigin(0, 20, -1));
+                            //.Expand(-0.25f));
             LeftGlute = BuildBox(MakeBoxBounds(-4, 11, 2, 0, 14, 3)
-                            .TexOrigin(26, 28)
-                            .Expand(0.5f));
+                            .TexOrigin(26, 28));
+            //.Expand(0.5f));
             RightGlute = BuildBox(MakeBoxBounds(0, 11, 2, 4, 14, 3)
-                            .TexOrigin(30, 27)
-                            .Expand(0.5f));
+                            .TexOrigin(30, 27));
+                            //.Expand(0.5f));
 		}
 
 		public override void DrawModel(Entity p) {
-            float breastBob = ((float)Math.Sin(p.anim.walkTime * 2f)) * p.anim.swing * 1f / 32f + 0.5f / 16f;
+            float breastBob = ((float)Math.Sin(p.anim.walkTime * 2f)) * p.anim.swing * 1f / 32f + 1f / 16f;
 
             game.ModelCache.Models[0].Instance.DrawModel(p);
 
 			game.Graphics.AlphaTest = false;
 
-            Translate(p, 0f, breastBob, 0f);
-            DrawPart(LeftBreast);
-			DrawPart(RightBreast);			
+            Translate(p, 0f, breastBob - 0.25f / 16f, 0.5f / 16f);
+            DrawRotate((float)Math.PI / 16f, 0f, 0f, Middle, false);
+            UpdateVB();
+
+            Translate(p, 0.5f / 16f, breastBob, 0.5f / 16f);
+            DrawRotate((float)Math.PI / 16f, 0f, 0f, LeftBreast, false);
+            UpdateVB();
+
+            Translate(p, -0.5f / 16f, breastBob, 0.5f / 16f);
+            DrawRotate((float)Math.PI / 16f, 0f, 0f, RightBreast, false);
 			UpdateVB();
 
             Translate(p, 0f, 0f, -0.5f / 16f);
             DrawPart(LeftGlute);
             DrawPart(RightGlute);
             UpdateVB();
+
+            game.Graphics.AlphaTest = true;
         }
 
         public override void DrawArm(Entity p) {
@@ -75,6 +85,6 @@ namespace MoreModels {
             game.Graphics.LoadMatrix(ref matrix);
         }
 
-        ModelPart LeftBreast, RightBreast, LeftGlute, RightGlute;
+        ModelPart LeftBreast, RightBreast, LeftGlute, RightGlute, Middle;
 	}
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassicalSharp;
+﻿using ClassicalSharp;
 using ClassicalSharp.Model;
 using ClassicalSharp.Entities;
 using ClassicalSharp.Physics;
@@ -11,10 +9,6 @@ namespace MoreModels {
 	public class ChibiSittingModel : ChibiModel {
 		
 		public ChibiSittingModel(Game game) : base(game) {
-            //CalcHumanAnims = true;
-            //UsesHumanSkin = true;
-            //MaxScale = 3.0f;
-            //ShadowScale = 0.5f;
             CalcHumanAnims = false;
 			armX = 3; armY = 6;
             ChibiModel chibi = (ChibiModel)game.ModelCache.Get("chibi");
@@ -25,17 +19,14 @@ namespace MoreModels {
         }
 		
 		const int sitOffset = 5;
-		//public override void CreateParts() { }
-		public override float NameYOffset { get { return 20.2f/16; } }	
-		public override float GetEyeY(Entity entity) { return (14 - sitOffset)/16f; }
+
+		public override float NameYOffset { get { return 20.2f / 16f; } }
+
+		public override float GetEyeY(Entity entity) { return (14 - sitOffset) / 16f; }
 		
-		public override Vector3 CollisionSize {
-			get { return new Vector3(4.6f/16f, (20.1f - sitOffset)/16f, 4.6f/16f); }
-		}
+		public override Vector3 CollisionSize { get { return new Vector3(4.6f / 16f, (20.1f - sitOffset) / 16f, 4.6f / 16f); } }
 		
-		public override AABB PickingBounds {
-			get { return new AABB(-4/16f, 0, -4/16f, 4/16f, (16 - sitOffset)/16f, 4/16f); }
-		}
+		public override AABB PickingBounds { get { return new AABB(-0.25f, 0, -0.25f, 0.25f, (16 - sitOffset) / 16f, 0.25f); } }
 		
 		protected override Matrix4 TransformMatrix(Entity p, Vector3 pos) {
 			pos.Y -= (sitOffset / 16f) * p.ModelScale.Y;

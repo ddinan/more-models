@@ -1,7 +1,6 @@
 using System;
 using ClassicalSharp;
 using ClassicalSharp.Entities;
-using ClassicalSharp.GraphicsAPI;
 using ClassicalSharp.Model;
 using ClassicalSharp.Physics;
 using OpenTK;
