@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassicalSharp">
-      <HintPath>..\..\..\Downloads\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
+      <HintPath>..\..\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -65,6 +65,7 @@
     <Compile Include="Models\CrocModel.cs" />
     <Compile Include="Models\EndermanModel.cs" />
     <Compile Include="Models\FemaleModel.cs" />
+    <Compile Include="Models\HorseModel.cs" />
     <Compile Include="Models\MagmaCubeModel.cs" />
     <Compile Include="Models\SlimeModel.cs" />
     <Compile Include="Models\FlyingModel.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Models\StrayModel.cs" />
     <Compile Include="Models\ChibiSittingModel.cs" />
     <Compile Include="Models\TModel.cs" />
+    <Compile Include="Models\TVModel.cs" />
     <Compile Include="Models\WitherSkeleton.cs" />
     <Compile Include="Models\ZombiePigmanModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
