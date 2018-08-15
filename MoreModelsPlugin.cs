@@ -14,7 +14,11 @@ namespace MoreModels {
 		public void Init(Game g) {
 			game = g;
 			game.ModelCache.RegisterTextures("cape.png");
-			game.ModelCache.RegisterTextures("car.png");
+			game.ModelCache.RegisterTextures("car_blue.png");
+			game.ModelCache.RegisterTextures("car_red.png");
+			game.ModelCache.RegisterTextures("car_yellow.png");
+			game.ModelCache.RegisterTextures("car_green.png");
+			game.ModelCache.RegisterTextures("car_silver.png");
 			game.ModelCache.RegisterTextures("cave_spider.png");
 			game.ModelCache.RegisterTextures("cow.png");
 			game.ModelCache.RegisterTextures("croc.png");
@@ -31,7 +35,11 @@ namespace MoreModels {
 			game.ModelCache.RegisterTextures("zombie_pigman.png");
 
 			game.ModelCache.Register("cape", "char.png", new CapeModel(game));
-			game.ModelCache.Register("car", "car.png", new CarModel(game));
+			game.ModelCache.Register("car", "car_blue.png", new CarModel(game));
+			game.ModelCache.Register("car_red", "car_red.png", new CarModel(game));
+			game.ModelCache.Register("car_yellow", "car_yellow.png", new CarModel(game));
+			game.ModelCache.Register("car_green", "car_green.png", new CarModel(game));
+			game.ModelCache.Register("car_silver", "car_silver.png", new CarModel(game));
 			game.ModelCache.Register("cavespider", "cave_spider.png", new CaveSpiderModel(game));
 			game.ModelCache.Register("chibisit", "char.png", new ChibiSittingModel(game));
 			game.ModelCache.Register("cow", "cow.png", new CowModel(game));
