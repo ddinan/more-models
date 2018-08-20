@@ -58,7 +58,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Furniture\ChairModel.cs" />
     <Compile Include="Models\Furniture\PrinterModel.cs" />
+    <Compile Include="Models\Furniture\TableModel.cs" />
     <Compile Include="Models\Furniture\TVModel.cs" />
     <Compile Include="Models\Human\CapeModel.cs" />
     <Compile Include="Models\Human\ChibiSittingModel.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Models\Mob\CowModel.cs" />
     <Compile Include="Models\Mob\CrocModel.cs" />
     <Compile Include="Models\Mob\EndermanModel.cs" />
+    <Compile Include="Models\Mob\HorseModel.cs" />
     <Compile Include="Models\Mob\HuskModel.cs" />
     <Compile Include="Models\Mob\MagmaCubeModel.cs" />
     <Compile Include="Models\Mob\SlimeModel.cs" />
