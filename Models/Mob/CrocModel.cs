@@ -16,13 +16,13 @@ namespace MoreModels {
         public override void CreateParts() {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
-            snout     = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, -19, 3, 3, -12).TexOrigin(30, 0) .RotOrigin(0, 2, -13));
-            head      = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, -12, 4, 4, -7) .TexOrigin(0, 23) .RotOrigin(0, 2, -7));
-            frontTail = BuildRotatedBox(MakeRotatedBoxBounds(-4, 0, 9, 4, 4, 14)   .TexOrigin(24, 23).RotOrigin(0, 2, 9));
-            midTail   = BuildRotatedBox(MakeRotatedBoxBounds(-3, 0, 13, 3, 3, 18)  .TexOrigin(30, 10).RotOrigin(0, 2, 13));
-            backTail  = BuildRotatedBox(MakeRotatedBoxBounds(-2, 0, 17, 2, 2, 22)  .TexOrigin(48, 0) .RotOrigin(0, 1, 17));            
+            snout     = BuildRotatedBox(MakeBoxBounds(-3, 0, -19, 3, 3, -12).TexOrigin(30, 0) .RotOrigin(0, 2, -13));
+            head      = BuildRotatedBox(MakeBoxBounds(-4, 0, -12, 4, 4, -7) .TexOrigin(0, 23) .RotOrigin(0, 2, -7));
+            frontTail = BuildRotatedBox(MakeBoxBounds(-4, 0, 9, 4, 4, 14)   .TexOrigin(24, 23).RotOrigin(0, 2, 9));
+            midTail   = BuildRotatedBox(MakeBoxBounds(-3, 0, 13, 3, 3, 18)  .TexOrigin(30, 10).RotOrigin(0, 2, 13));
+            backTail  = BuildRotatedBox(MakeBoxBounds(-2, 0, 17, 2, 2, 22)  .TexOrigin(48, 0) .RotOrigin(0, 1, 17));            
 
-            body = BuildRotatedBox(MakeRotatedBoxBounds(-5, 0, -8, 5, 5, 10) .TexOrigin(0, 0));
+            body = BuildRotatedBox(MakeBoxBounds(-5, 0, -8, 5, 5, 10) .TexOrigin(0, 0));
 
             leftLegFront = BuildBox(MakeBoxBounds(-8, 0, -7, -5, 3, -4).MirrorX().TexOrigin(48, 7).RotOrigin(-6, 2, -5));
             leftLegBack  = BuildBox(MakeBoxBounds(-8, 0, 6, -5, 3, 9)  .MirrorX().TexOrigin(48, 7).RotOrigin(-6, 2, 7));

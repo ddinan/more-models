@@ -17,9 +17,9 @@ namespace MoreModels {
         {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
-            top = BuildRotatedBox(MakeRotatedBoxBounds(-20, 20, -16, 20, 36, 20).TexOrigin(120, 0));
-            body = BuildRotatedBox(MakeRotatedBoxBounds(-22, 4, -40, 22, 20, 40).TexOrigin(0, 0));
-            spoiler = BuildRotatedBox(MakeRotatedBoxBounds(-19, 27, 33, 19, 30, 42).TexOrigin(120, 52));
+            top = BuildRotatedBox(MakeBoxBounds(-20, 20, -16, 20, 36, 20).TexOrigin(120, 0));
+            body = BuildRotatedBox(MakeBoxBounds(-22, 4, -40, 22, 20, 40).TexOrigin(0, 0));
+            spoiler = BuildRotatedBox(MakeBoxBounds(-19, 27, 33, 19, 30, 42).TexOrigin(120, 52));
 
             tireFrontLeft = BuildBox(MakeBoxBounds(-24, 0, -28, -20, 10, -18).MirrorX().TexOrigin(156, 64).RotOrigin(-22, 5, -23));
             tireBackLeft = BuildBox(MakeBoxBounds(-24, 0, 18, -20, 10, 28).MirrorX().TexOrigin(156, 64).RotOrigin(-22, 5, 23));

@@ -19,8 +19,8 @@ namespace MoreModels {
 			leftLegBack   = BuildBox(MakeBoxBounds(-6, 0, 5, -2, 12, 9)     .TexOrigin(0, 16).RotOrigin(0, 12, 7));
 			rightLegBack  = BuildBox(MakeBoxBounds(2, 0, 5, 6, 12, 9)       .TexOrigin(0, 16).RotOrigin(0, 12, 7));
 
-            torso = BuildRotatedBox(MakeRotatedBoxBounds(-6, 12, -8, 6, 22, 10).TexOrigin(18, 4));
-            udder = BuildRotatedBox(MakeRotatedBoxBounds(-2, 11, 4, 2, 12, 10) .TexOrigin(52, 0));
+            torso = BuildRotatedBox(MakeBoxBounds(-6, 12, -8, 6, 22, 10).TexOrigin(18, 4));
+            udder = BuildRotatedBox(MakeBoxBounds(-2, 11, 4, 2, 12, 10) .TexOrigin(52, 0));
         }
 
 		public override float NameYOffset { get { return 1.5f; } }

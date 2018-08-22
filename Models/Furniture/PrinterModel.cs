@@ -13,15 +13,15 @@ namespace MoreModels {
         public override void CreateParts() {
             vertices = new ModelVertex[boxVertices * boxesBuilt];
 
-            bottom    = BuildRotatedBox(MakeRotatedBoxBounds(-8, 0, -8, 8, 1, 8) .TexOrigin(0, 0));
-            left      = BuildRotatedBox(MakeRotatedBoxBounds(-7, 1, -7, -6, 6, 7).TexOrigin(34, 14));
-            right     = BuildRotatedBox(MakeRotatedBoxBounds(6, 1, -7, 7, 6, 7)  .TexOrigin(34, 14));
-            center    = BuildRotatedBox(MakeRotatedBoxBounds(-6, 2, -6, 6, 7, 5) .TexOrigin(0, 17));
-            top       = BuildRotatedBox(MakeRotatedBoxBounds(-2, 7, -3, 2, 8, 3) .TexOrigin(46, 14));
-            topLeft   = BuildRotatedBox(MakeRotatedBoxBounds(-5, 7, 0, -2, 8, 3) .TexOrigin(56, 14));
-            topRight  = BuildRotatedBox(MakeRotatedBoxBounds(2, 7, 0, 5, 8, 3)   .TexOrigin(56, 14));
-            lineLeft  = BuildRotatedBox(MakeRotatedBoxBounds(-4, 7, -7, -3, 8, 0).TexOrigin(60, 0));
-            lineRight = BuildRotatedBox(MakeRotatedBoxBounds(3, 7, -7, 4, 8, 0)  .TexOrigin(60, 0));
+            bottom    = BuildRotatedBox(MakeBoxBounds(-8, 0, -8, 8, 1, 8) .TexOrigin(0, 0));
+            left      = BuildRotatedBox(MakeBoxBounds(-7, 1, -7, -6, 6, 7).TexOrigin(34, 14));
+            right     = BuildRotatedBox(MakeBoxBounds(6, 1, -7, 7, 6, 7)  .TexOrigin(34, 14));
+            center    = BuildRotatedBox(MakeBoxBounds(-6, 2, -6, 6, 7, 5) .TexOrigin(0, 17));
+            top       = BuildRotatedBox(MakeBoxBounds(-2, 7, -3, 2, 8, 3) .TexOrigin(46, 14));
+            topLeft   = BuildRotatedBox(MakeBoxBounds(-5, 7, 0, -2, 8, 3) .TexOrigin(56, 14));
+            topRight  = BuildRotatedBox(MakeBoxBounds(2, 7, 0, 5, 8, 3)   .TexOrigin(56, 14));
+            lineLeft  = BuildRotatedBox(MakeBoxBounds(-4, 7, -7, -3, 8, 0).TexOrigin(60, 0));
+            lineRight = BuildRotatedBox(MakeBoxBounds(3, 7, -7, 4, 8, 0)  .TexOrigin(60, 0));
 
             back  = BuildBox(MakeBoxBounds(-6, 1, 5, 6, 5, 6)  .TexOrigin(34, 9));
             front = BuildBox(MakeBoxBounds(-4, 2, -7, 4, 6, -6).TexOrigin(46, 21));
