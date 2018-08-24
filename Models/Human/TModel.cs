@@ -5,7 +5,7 @@ using ClassicalSharp.Model;
 
 namespace MoreModels {
 	public class TModel : HumanoidModel {
-		public TModel(Game game) : base(game) { CalcHumanAnims = false; }
+		public TModel(Game game) : base(game) { CalcHumanAnims = false; Bobbing = false; }
 
 		public override void CreateParts() {
             HumanoidModel humanoid = (HumanoidModel)game.ModelCache.Models[0].Instance;

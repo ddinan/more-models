@@ -14,13 +14,17 @@ namespace MoreModels {
 		public void Init(Game g) {
 			game = g;
 			game.ModelCache.RegisterTextures("cape.png");
+			game.ModelCache.RegisterTextures("cape_2011.png");
+			game.ModelCache.RegisterTextures("cape_2012.png");
+			game.ModelCache.RegisterTextures("cape_2013.png");
+			game.ModelCache.RegisterTextures("cape_2015.png");
+			game.ModelCache.RegisterTextures("cape_2016.png");
 			game.ModelCache.RegisterTextures("car.png");
 			game.ModelCache.RegisterTextures("cave_spider.png");
 			game.ModelCache.RegisterTextures("cow.png");
 			game.ModelCache.RegisterTextures("croc.png");
 			game.ModelCache.RegisterTextures("enderman.png");
 			game.ModelCache.RegisterTextures("enderman_eyes.png");
-			game.ModelCache.RegisterTextures("horse.png");
 			game.ModelCache.RegisterTextures("husk.png");
 			game.ModelCache.RegisterTextures("magmacube.png");
 			game.ModelCache.RegisterTextures("male.png");
@@ -33,7 +37,12 @@ namespace MoreModels {
 			game.ModelCache.RegisterTextures("wood.png");
 			game.ModelCache.RegisterTextures("zombie_pigman.png");
 
-			game.ModelCache.Register("cape", "char.png", new CapeModel(game));
+			game.ModelCache.Register("cape", "cape.png", new CapeModel(game));
+			game.ModelCache.Register("cape_2011", "cape_2011.png", new CapeModel(game));
+			game.ModelCache.Register("cape_2012", "cape_2012.png", new CapeModel(game));
+			game.ModelCache.Register("cape_2013", "cape_2013.png", new CapeModel(game));
+			game.ModelCache.Register("cape_2015", "cape_2015.png", new CapeModel(game));
+			game.ModelCache.Register("cape_2016", "cape_2016.png", new CapeModel(game));
 			game.ModelCache.Register("car", "car.png", new CarModel(game));
 			game.ModelCache.Register("cavespider", "cave_spider.png", new CaveSpiderModel(game));
 			game.ModelCache.Register("chair", "wood.png", new ChairModel(game));
@@ -44,6 +53,7 @@ namespace MoreModels {
 			game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
+			game.ModelCache.Register("horse", "horse.png", new HorseModel(game));
 			game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
 			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
 			game.ModelCache.Register("male", "male.png", new MaleModel(game));
