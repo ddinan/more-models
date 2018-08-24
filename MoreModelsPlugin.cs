@@ -44,7 +44,6 @@ namespace MoreModels {
 			game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 			game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 			game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
-			game.ModelCache.Register("horse", "horse.png", new HorseModel(game));
 			game.ModelCache.Register("husk", "husk.png", new HuskModel(game));
 			game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
 			game.ModelCache.Register("male", "male.png", new MaleModel(game));

@@ -74,7 +74,6 @@
     <Compile Include="Models\Mob\CowModel.cs" />
     <Compile Include="Models\Mob\CrocModel.cs" />
     <Compile Include="Models\Mob\EndermanModel.cs" />
-    <Compile Include="Models\Mob\HorseModel.cs" />
     <Compile Include="Models\Mob\HuskModel.cs" />
     <Compile Include="Models\Mob\MagmaCubeModel.cs" />
     <Compile Include="Models\Mob\SlimeModel.cs" />
