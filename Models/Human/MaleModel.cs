@@ -18,13 +18,13 @@ namespace MoreModels {
             headDesc          = MakeBoxBounds(-4, 24, -4, 4, 32, 4) .RotOrigin(0, 24, 0);
             torsoDesc         = MakeBoxBounds(-4, 12, -2, 4, 24, 2) .RotOrigin(0, 12, 0);
             rightUpperArmDesc = MakeBoxBounds(4, 18, -2, 7, 24, 2)  .RotOrigin(6, 22, 0);            
-            rightLowerArmDesc = MakeBoxBounds(4, 12, -1, 7, 18, 2)  .RotOrigin(4, 18, 0);            
+            rightLowerArmDesc = MakeBoxBounds(4, 12, -2, 7, 18, 2)  .RotOrigin(4, 18, 0);            
             rightUpperLegDesc = MakeBoxBounds(0, 6, -2, 4, 12, 2)   .RotOrigin(2, 12, 0);
-            rightLowerLegDesc = MakeBoxBounds(1, 0, -2, 4, 6, 2)    .RotOrigin(2, 6, 0);
+            rightLowerLegDesc = MakeBoxBounds(0, 0, -2, 4, 6, 2)    .RotOrigin(2, 6, 0);
             leftUpperArmDesc  = MakeBoxBounds(-7, 18, -2, -4, 24, 2).RotOrigin(-6, 22, 0);
-            leftLowerArmDesc  = MakeBoxBounds(-7, 12, -1, -4, 18, 2).RotOrigin(-4, 18, 0);
+            leftLowerArmDesc  = MakeBoxBounds(-7, 12, -2, -4, 18, 2).RotOrigin(-4, 18, 0);
             leftUpperLegDesc  = MakeBoxBounds(-4, 6, -2, 0, 12, 2)  .RotOrigin(-2, 12, 0);
-            leftLowerLegDesc  = MakeBoxBounds(-4, 0, -2, -1, 6, 2)   .RotOrigin(-2, 6, 0);
+            leftLowerLegDesc  = MakeBoxBounds(-4, 0, -2, 0, 6, 2)   .RotOrigin(-2, 6, 0);
 
             head          = BuildBox(headDesc         .TexOrigin(0, 0));            
             torso         = BuildBox(torsoDesc        .TexOrigin(0, 32));
@@ -73,10 +73,10 @@ namespace MoreModels {
 
             float lowerLeftArmX = 0.25f * (float)Math.Sin(p.anim.leftArmZ);
             float lowerLeftArmY = 0.25f - 0.25f * (float)Math.Cos(p.anim.leftArmX) + breathDisp;
-            float lowerLeftArmZ = 0.25f * (float)Math.Sin(-p.anim.leftArmX) - 0.5f / 16f;
+            float lowerLeftArmZ = 0.25f * (float)Math.Sin(-p.anim.leftArmX);
             float lowerRightArmX = 0.25f * (float)Math.Sin(p.anim.rightArmZ);
             float lowerRightArmY = 0.25f - 0.25f * (float)Math.Cos(p.anim.rightArmX) + breathDisp;
-            float lowerRightArmZ = 0.25f * (float)Math.Sin(-p.anim.rightArmX) - 0.5f / 16f;
+            float lowerRightArmZ = 0.25f * (float)Math.Sin(-p.anim.rightArmX);
             float lowerLeftLegY = 0.375f - 0.375f * (float)Math.Cos(p.anim.leftLegX);
             float lowerLeftLegZ = 0.375f * (float)Math.Sin(-p.anim.leftLegX);
             float lowerRightLegY = 0.375f - 0.375f * (float)Math.Cos(p.anim.rightLegX);
@@ -91,7 +91,7 @@ namespace MoreModels {
             DrawRotate(p.anim.rightLegX, 0f, p.anim.rightLegZ, rightUpperLeg, false);
             UpdateVB();
 
-            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
+            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.85f, 0.85f, 0.85f);
             DrawRotate(-p.HeadXRadians, 0f, 0f, head, true);
             UpdateVB();
 
@@ -112,11 +112,11 @@ namespace MoreModels {
             DrawRotate(lowerRightArmRot, 0f, 0f, rightLowerArm, false);
             UpdateVB();
 
-            Transform(p, 0.5f / 16f, lowerLeftLegY, lowerLeftLegZ, 1f, 1f, 1f);
+            Transform(p, 0f, lowerLeftLegY, lowerLeftLegZ, 1f, 1f, 1f);
             DrawRotate(lowerLeftLegRot, 0f, 0f, leftLowerLeg, false);
             UpdateVB();
 
-            Transform(p, -0.5f / 16f, lowerRightLegY, lowerRightLegZ, 1f, 1f, 1f);
+            Transform(p, 0f, lowerRightLegY, lowerRightLegZ, 1f, 1f, 1f);
             DrawRotate(lowerRightLegRot, 0f, 0f, rightLowerLeg, false);
             UpdateVB();
 
@@ -128,7 +128,7 @@ namespace MoreModels {
             DrawRotate((float)Math.PI * p.anim.swing / -3f, 0f, 0f, cape, false);
             UpdateVB();
 
-            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.9f, 0.9f, 0.9f);
+            TransformAt(p, 0f, 1.5f, 0f, 0f, breathDisp, 0f, 0.85f, 0.85f, 0.85f);
             DrawRotate(-p.HeadXRadians, 0f, 0f, hat, true);
             UpdateVB();
 
