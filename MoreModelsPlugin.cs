@@ -9,6 +9,8 @@ namespace MoreModels {
 
 		public string ClientVersion { get { return "0.99.*"; } }
 
+        public int APIVersion { get { return 2; } }
+
 		public void Dispose() { }
 		public static Game game;
 		public void Init(Game g) {
