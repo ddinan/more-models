@@ -72,7 +72,7 @@ namespace MoreModels {
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
 			game.ModelCache.vertices = new VertexP3fT2fC4b[32 * 32];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + More Models v1.2";
+			game.Server.AppName += " + More Models v1.2.1";
 
 			game.CommandList.Register(new ListModelsCommand());
 		}
