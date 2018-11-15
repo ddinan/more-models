@@ -18,7 +18,7 @@ namespace MoreModels {
 		public override void DrawModel(Entity p) {
             game.ModelCache.Models[0].Instance.DrawModel(p);
 
-			game.Graphics.BindTexture(game.ModelCache.Textures[game.ModelCache.GetTextureIndex("cape.png")].TexID);
+			game.Graphics.BindTexture(game.ModelCache.Textures[texIndex].TexID);
 			uScale = 1.0f / 64f; vScale = 1.0f / 32f;
 			DrawRotate(p.anim.swing * ((float)Math.PI / -3f) + p.anim.leftArmZ * (1f - p.anim.swing), 0, 0, Cape, false);
 			UpdateVB();
