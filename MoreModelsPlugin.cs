@@ -21,6 +21,7 @@ namespace MoreModels {
 			game.ModelCache.RegisterTextures("cape_2013.png");
 			game.ModelCache.RegisterTextures("cape_2015.png");
 			game.ModelCache.RegisterTextures("cape_2016.png");
+			game.ModelCache.RegisterTextures("cape_venk.png");
 			game.ModelCache.RegisterTextures("car.png");
 			game.ModelCache.RegisterTextures("cave_spider.png");
 			game.ModelCache.RegisterTextures("cow.png");

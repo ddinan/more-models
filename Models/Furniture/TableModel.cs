@@ -12,10 +12,10 @@ namespace MoreModels {
 			vertices = new ModelVertex[boxVertices * boxesBuilt];
 			
 			Base = BuildBox(MakeBoxBounds(-8, 16, -8, 8, 18, 8).TexOrigin(0, 0));
-			LeftLegFront = BuildBox(MakeBoxBounds(-6, 15, -6, -8, 0, -8).TexOrigin(0, 0));
-			RightLegFront = BuildBox(MakeBoxBounds(8, 15, -6, 6, 0, -8).TexOrigin(0, 0));
-			LeftLegBack = BuildBox(MakeBoxBounds(-6, 15, 8, -8, 0, 6).TexOrigin(0, 0));
-			RightLegBack = BuildBox(MakeBoxBounds(8, 15, 6, 6, 0, 8).TexOrigin(0, 0));
+			LeftLegFront = BuildBox(MakeBoxBounds(-6, 16, -6, -8, 0, -8).TexOrigin(0, 0));
+			RightLegFront = BuildBox(MakeBoxBounds(8, 16, -6, 6, 0, -8).TexOrigin(0, 0));
+			LeftLegBack = BuildBox(MakeBoxBounds(-6, 16, 8, -8, 0, 6).TexOrigin(0, 0));
+			RightLegBack = BuildBox(MakeBoxBounds(8, 16, 6, 6, 0, 8).TexOrigin(0, 0));
         }
 
 		public override float NameYOffset { get { return 1.5f; } }
