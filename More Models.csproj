@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClassicalSharp">
-      <HintPath>..\..\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
+      <HintPath>..\..\Downloads\Stuff\release.v09998.d3d9\ClassicalSharp.exe</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -80,6 +80,7 @@
     <Compile Include="Models\Mob\StrayModel.cs" />
     <Compile Include="Models\Mob\WitherSkeleton.cs" />
     <Compile Include="Models\Mob\ZombiePigmanModel.cs" />
+    <Compile Include="Models\Mob\ZombieVillager.cs" />
     <Compile Include="Models\Other\CarModel.cs" />
     <Compile Include="MoreModelsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

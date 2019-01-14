@@ -38,6 +38,7 @@ namespace MoreModels {
 			game.ModelCache.RegisterTextures("wither_skeleton.png");
 			game.ModelCache.RegisterTextures("wood.png");
 			game.ModelCache.RegisterTextures("zombie_pigman.png");
+			game.ModelCache.RegisterTextures("zombie_villager.png");
 
 			game.ModelCache.Register("cape", "cape.png", new CapeModel(game));
 			game.ModelCache.Register("cape_2011", "cape_2011.png", new CapeModel(game));
@@ -45,6 +46,7 @@ namespace MoreModels {
 			game.ModelCache.Register("cape_2013", "cape_2013.png", new CapeModel(game));
 			game.ModelCache.Register("cape_2015", "cape_2015.png", new CapeModel(game));
 			game.ModelCache.Register("cape_2016", "cape_2016.png", new CapeModel(game));
+			game.ModelCache.Register("cape_venk", "cape_venk.png", new CapeModel(game));
 			game.ModelCache.Register("car", "car.png", new CarModel(game));
 			game.ModelCache.Register("cavespider", "cave_spider.png", new CaveSpiderModel(game));
 			game.ModelCache.Register("chair", "wood.png", new ChairModel(game));
@@ -67,12 +69,13 @@ namespace MoreModels {
 			game.ModelCache.Register("tv", "tv.png", new TVModel(game));
 			game.ModelCache.Register("witherskeleton", "wither_skeleton.png", new WitherSkeletonModel(game));
 			game.ModelCache.Register("zombiepigman", "zombie_pigman.png", new ZombiePigmanModel(game));
+			game.ModelCache.Register("zombievillager", "zombie_villager.png", new ZombieVillagerModel(game));
 
 			// Recreate the modelcache VB to be bigger
 			game.Graphics.DeleteVb(ref game.ModelCache.vb);
-			game.ModelCache.vertices = new VertexP3fT2fC4b[32 * 32];
+			game.ModelCache.vertices = new VertexP3fT2fC4b[64 * 64];
 			game.ModelCache.vb = game.Graphics.CreateDynamicVb(VertexFormat.P3fT2fC4b, game.ModelCache.vertices.Length);
-			game.Server.AppName += " + More Models v1.2.1";
+			game.Server.AppName += " + More Models v1.2.2";
 
 			game.CommandList.Register(new ListModelsCommand());
 		}
