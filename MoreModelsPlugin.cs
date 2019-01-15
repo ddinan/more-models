@@ -68,6 +68,7 @@ namespace MoreModels {
 			game.ModelCache.Register("t", "char.png", new TModel(game));
 			game.ModelCache.Register("table", "wood.png", new TableModel(game));
 			game.ModelCache.Register("tv", "tv.png", new TVModel(game));
+			game.ModelCache.Register("villager", "villager.png", new VillagerModel(game));
 			game.ModelCache.Register("witherskeleton", "wither_skeleton.png", new WitherSkeletonModel(game));
 			game.ModelCache.Register("zombiepigman", "zombie_pigman.png", new ZombiePigmanModel(game));
 			game.ModelCache.Register("zombievillager", "zombie_villager.png", new ZombieVillagerModel(game));
@@ -86,7 +87,7 @@ namespace MoreModels {
 		public void Reset(Game game) { }
 
 		public void OnNewMap(Game game) {
-			//Increase holding model size limit if inf id is supported
+			// Increase holding model size limit if inf id is supported
 			HoldingModel model = (HoldingModel)game.ModelCache.Get("holding");
 			model.resetMaxScale();
 		}

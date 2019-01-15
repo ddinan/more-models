@@ -78,6 +78,7 @@
     <Compile Include="Models\Mob\MagmaCubeModel.cs" />
     <Compile Include="Models\Mob\SlimeModel.cs" />
     <Compile Include="Models\Mob\StrayModel.cs" />
+    <Compile Include="Models\Mob\VillagerModel.cs" />
     <Compile Include="Models\Mob\WitherSkeleton.cs" />
     <Compile Include="Models\Mob\ZombiePigmanModel.cs" />
     <Compile Include="Models\Mob\ZombieVillager.cs" />
