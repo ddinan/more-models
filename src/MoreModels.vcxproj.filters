@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Furniture">
+      <UniqueIdentifier>{b70074e6-b6c5-4974-a0dd-bb93985316d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Humans">
+      <UniqueIdentifier>{c04c8e68-a480-48e1-8223-6552a07d2692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mobs">
+      <UniqueIdentifier>{6897e1b0-bc72-4035-bfc1-a48cd5e49b9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MoreModels.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChairModel.c">
+      <Filter>Source Files\Furniture</Filter>
+    </ClCompile>
+    <ClCompile Include="TableModel.c">
+      <Filter>Source Files\Furniture</Filter>
+    </ClCompile>
+    <ClCompile Include="TVModel.c">
+      <Filter>Source Files\Furniture</Filter>
+    </ClCompile>
+    <ClCompile Include="TModel.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="MagmaCubeModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="StrayModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="HuskModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimeModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="ChibiSitModel.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="CarModel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CapeModel.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="CowModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="WitherSkeletonModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="VillagerModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombiePigmanModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieVillagerModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="CaveSpiderModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="EndermanModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
