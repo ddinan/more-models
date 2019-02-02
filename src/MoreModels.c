@@ -143,3 +143,10 @@ struct ModelTex
 	wood_tex           = { "wood.png" },
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
+
+#ifdef _WIN32
+// by default, the 'DllMain' Visual Studio produces includes a bunch of CRT code
+// therefore, in the project options I tell Visual Studio to use this DllMainRedirect instead
+// with this change, the dll size in release mode is reduced from 89 to 24 kb
+__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { return 0; }
+#endif
