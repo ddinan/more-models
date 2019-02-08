@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, link, end, leftLeg, rightLeg;
+static struct ModelPart head, link, end, leftLeg, rightLeg;
 
-void CaveSpiderModel_MakeParts(void) {
+static void CaveSpiderModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(32, 4),
 		BoxDesc_Box(-4,4,-11, 4,12,-3),
@@ -34,7 +34,7 @@ void CaveSpiderModel_MakeParts(void) {
 #define quarterPi (MATH_PI / 4.0f)
 #define eighthPi  (MATH_PI / 8.0f)
 
-void CaveSpiderModel_Draw(struct Entity* e) {
+static void CaveSpiderModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
@@ -60,10 +60,10 @@ void CaveSpiderModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float CaveSpiderModel_GetNameY(struct Entity* e) { return 1.0125f; }
-float CaveSpiderModel_GetEyeY(struct Entity* e)  { return 0.5000f; }
-void CaveSpiderModel_GetSize(struct Entity* e)   { _SetSize(15,12,15); }
-void CaveSpiderModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-11, 5,12,15); }
+static float CaveSpiderModel_GetNameY(struct Entity* e) { return 1.0125f; }
+static float CaveSpiderModel_GetEyeY(struct Entity* e)  { return 0.5000f; }
+static void CaveSpiderModel_GetSize(struct Entity* e)   { _SetSize(15,12,15); }
+static void CaveSpiderModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-11, 5,12,15); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];
 static struct Model model = { 

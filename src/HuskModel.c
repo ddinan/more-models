@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
+static struct ModelPart head, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
 
-void HuskModel_MakeParts(void) {
+static void HuskModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,32,4),
@@ -45,7 +45,7 @@ void HuskModel_MakeParts(void) {
 	});
 }
 
-void HuskModel_Draw(struct Entity* e) {
+static void HuskModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -59,10 +59,10 @@ void HuskModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float HuskModel_GetNameY(struct Entity* e) { return 2.075f; }
-float HuskModel_GetEyeY(struct Entity* e)  { return 1.875f; }
-void HuskModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
-void HuskModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float HuskModel_GetNameY(struct Entity* e) { return 2.075f; }
+static float HuskModel_GetEyeY(struct Entity* e)  { return 1.875f; }
+static void HuskModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
+static void HuskModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];
 static struct Model model = { 

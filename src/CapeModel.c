@@ -1,8 +1,8 @@
 #include "Common.h"
 // Cape textures are flipped so you will need to flip both of your cape textures.
-struct ModelPart cape;
+static struct ModelPart cape;
 
-void CapeModel_MakeParts(void) {
+static void CapeModel_MakeParts(void) {
 	BoxDesc_BuildBox(&cape, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-5,8,3, 5,24,2),
@@ -10,7 +10,7 @@ void CapeModel_MakeParts(void) {
 	});
 }
 
-void CapeModel_Draw(struct Entity* e) {
+static void CapeModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 	Models.uScale = 1/64.0f;
 	Models.vScale = 1/32.0f;
@@ -22,13 +22,13 @@ void CapeModel_Draw(struct Entity* e) {
 	Models.Human->Draw(e);
 }
 
-void CapeModel_DrawArm(struct Entity* e) {
+static void CapeModel_DrawArm(struct Entity* e) {
 	Model_SetupState(Models.Human, e);
 	Models.Human->DrawArm(e);
 }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES];
-void Cape_MakeModel(struct Model* model) {
+static void Cape_MakeModel(struct Model* model) {
 	// copy everything from human model
 	*model = *Models.Human;
 

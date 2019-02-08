@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, nose, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
+static struct ModelPart head, nose, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
 
-void ZombieVillagerModel_MakeParts(void) {
+static void ZombieVillagerModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,34,4),
@@ -51,7 +51,7 @@ void ZombieVillagerModel_MakeParts(void) {
 	});
 }
 
-void ZombieVillagerModel_Draw(struct Entity* e) {
+static void ZombieVillagerModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -66,10 +66,10 @@ void ZombieVillagerModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float ZombieVillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
-float ZombieVillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
-void ZombieVillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
-void ZombieVillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float ZombieVillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
+static float ZombieVillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
+static void ZombieVillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
+static void ZombieVillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 8];
 static struct Model model = { 

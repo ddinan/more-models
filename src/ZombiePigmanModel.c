@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
+static struct ModelPart head, hat, torso, leftLeg, rightLeg, leftArm, rightArm;
 
-void ZombiePigmanModel_MakeParts(void) {
+static void ZombiePigmanModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,32,4),
@@ -45,7 +45,7 @@ void ZombiePigmanModel_MakeParts(void) {
 	});
 }
 
-void ZombiePigmanModel_Draw(struct Entity* e) {
+static void ZombiePigmanModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -59,10 +59,10 @@ void ZombiePigmanModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float ZombiePigmanModel_GetNameY(struct Entity* e) { return 2.075f; }
-float ZombiePigmanModel_GetEyeY(struct Entity* e)  { return 1.875f; }
-void ZombiePigmanModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
-void ZombiePigmanModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float ZombiePigmanModel_GetNameY(struct Entity* e) { return 2.075f; }
+static float ZombiePigmanModel_GetEyeY(struct Entity* e)  { return 1.875f; }
+static void ZombiePigmanModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
+static void ZombiePigmanModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];
 static struct Model model = { 

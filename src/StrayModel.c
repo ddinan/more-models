@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, torso, leftLeg, rightLeg, leftArm, rightArm;
+static struct ModelPart head, torso, leftLeg, rightLeg, leftArm, rightArm;
 
-void StrayModel_MakeParts(void) {
+static void StrayModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,32,4),
@@ -38,7 +38,7 @@ void StrayModel_MakeParts(void) {
 	});
 }
 
-void StrayModel_Draw(struct Entity* e) {
+static void StrayModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -51,10 +51,10 @@ void StrayModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float StrayModel_GetNameY(struct Entity* e) { return 2.075f; }
-float StrayModel_GetEyeY(struct Entity* e)  { return 1.625f; }
-void StrayModel_GetSize(struct Entity* e)   { _SetSize(8,30,8); }
-void StrayModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float StrayModel_GetNameY(struct Entity* e) { return 2.075f; }
+static float StrayModel_GetEyeY(struct Entity* e)  { return 1.625f; }
+static void StrayModel_GetSize(struct Entity* e)   { _SetSize(8,30,8); }
+static void StrayModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 6];
 static struct Model model = { 

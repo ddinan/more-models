@@ -1,7 +1,7 @@
 #include "Common.h"
 
 /* === MODELS LIST COMMAND === */
-void ListModelsCommand_Execute(const String* args, int argsCount) {
+static void ListModelsCommand_Execute(const String* args, int argsCount) {
 	char lineBuffer[64 + 4];
 	String line = String_FromArray(lineBuffer);
 	String_AppendConst(&line, "&eLoaded models: &7");
@@ -23,7 +23,7 @@ void ListModelsCommand_Execute(const String* args, int argsCount) {
 	if (line.length > 4) Chat_Add(&line);
 }
 
-struct ChatCommand ListModelsCommand = {
+static struct ChatCommand ListModelsCommand = {
 	"ListModels", ListModelsCommand_Execute, false,
 	{
 		"&a/client ListModels",
@@ -33,8 +33,8 @@ struct ChatCommand ListModelsCommand = {
 
 /* === PLUGIN FUNCTIONALITY === */
 
-VertexP3fT2fC4b large_vertices[32 * 32];
-void MoreModels_Init(void) {
+static VertexP3fT2fC4b large_vertices[32 * 32];
+static void MoreModels_Init(void) {
 	Model_RegisterTexture(&cape_tex);
 	Model_RegisterTexture(&cape2011_tex);
 	Model_RegisterTexture(&cape2012_tex);
@@ -100,13 +100,20 @@ void MoreModels_Init(void) {
 	Commands_Register(&ListModelsCommand);
 }
 
-void MoreModels_OnNewMap(void) {
+static void MoreModels_OnNewMap(void) {
 	// Increase holding model size limit if inf id is supported 
 	//HoldingModel model = (HoldingModel)game.ModelCache.Get("holding");
 	//model.resetMaxScale();
 }
 
 /* === API IMPLEMENTATION === */
+#ifdef CC_BUILD_WIN
+// special attribute to get symbols exported with Visual Studio
+#define PLUGIN_EXPORT __declspec(dllexport)
+#else
+// public symbols already exported when compiling shared lib with GCC
+#define PLUGIN_EXPORT
+#endif
 __declspec(dllexport) int Plugin_ApiVersion = GAME_API_VER;
 
 __declspec(dllexport) struct IGameComponent Plugin_Component = {
@@ -148,5 +155,5 @@ struct ModelTex
 // by default, the 'DllMain' Visual Studio produces includes a bunch of CRT code
 // therefore, in the project options I tell Visual Studio to use this DllMainRedirect instead
 // with this change, the dll size in release mode is reduced from 89 to 24 kb
-__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { return 0; }
+__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { return 1; }
 #endif

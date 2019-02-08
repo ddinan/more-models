@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, nose, torso, robe, leftLeg, rightLeg, arms;
+static struct ModelPart head, nose, torso, robe, leftLeg, rightLeg, arms;
 
-void VillagerModel_MakeParts(void) {
+static void VillagerModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,34,4),
@@ -44,7 +44,7 @@ void VillagerModel_MakeParts(void) {
 	});
 }
 
-void VillagerModel_Draw(struct Entity* e) {
+static void VillagerModel_Draw(struct Entity* e) {
 	// Remove arm animation
 	e->Anim.LeftArmX = 0; e->Anim.RightArmX = 0;
 	e->Anim.LeftArmZ = 0; e->Anim.RightArmZ = 0;
@@ -62,10 +62,10 @@ void VillagerModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float VillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
-float VillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
-void VillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
-void VillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float VillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
+static float VillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
+static void VillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
+static void VillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];
 static struct Model model = { 

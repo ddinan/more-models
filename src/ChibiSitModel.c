@@ -2,25 +2,25 @@
 static struct Model* chibi;
 #define SIT_OFFSET (5/16.0f)
 
-void ChibiSitModel_MakeParts(void) { }
+static void ChibiSitModel_MakeParts(void) { }
 
-void ChibiSitModel_Draw(struct Entity* e) {
+static void ChibiSitModel_Draw(struct Entity* e) {
 	e->Anim.LeftLegX =  1.5f; e->Anim.RightLegX = 1.5f;
 	e->Anim.LeftLegZ = -0.1f; e->Anim.RightLegZ = 0.1f;
 	Model_SetupState(chibi, e);
 	chibi->Draw(e);
 }
 
-void ChibiSitModel_GetTransform(struct Entity* e, Vector3 pos, struct Matrix* m) {
+static void ChibiSitModel_GetTransform(struct Entity* e, Vector3 pos, struct Matrix* m) {
 	pos.Y -= SIT_OFFSET * e->ModelScale.Y;
 	Entity_GetTransform(e, pos, e->ModelScale, m);
 }
 
-float ChibiSitModel_GetEyeY(struct Entity* e)  { return chibi->GetEyeY(e) - SIT_OFFSET; }
-void ChibiSitModel_GetSize(struct Entity* e) {
+static float ChibiSitModel_GetEyeY(struct Entity* e)  { return chibi->GetEyeY(e) - SIT_OFFSET; }
+static void ChibiSitModel_GetSize(struct Entity* e) {
 	chibi->GetCollisionSize(e); e->Size.Y -= SIT_OFFSET;
 }
-void ChibiSitModel_GetBounds(struct Entity* e) {
+static void ChibiSitModel_GetBounds(struct Entity* e) {
 	chibi->GetPickingBounds(e); e->ModelAABB.Max.Y -= SIT_OFFSET;
 }
 

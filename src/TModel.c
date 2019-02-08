@@ -1,6 +1,6 @@
 #include "Common.h"
 
-void TModel_Draw(struct Entity* e) {
+static void TModel_Draw(struct Entity* e) {
 	// No animation for arms/legs
 	e->Anim.LeftArmX = 0;            e->Anim.RightArmX = 0;
 	e->Anim.LeftArmZ = -MATH_PI / 2; e->Anim.RightArmZ = MATH_PI / 2;

@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, rightHorn, leftHorn, torso, udder, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
+static struct ModelPart head, rightHorn, leftHorn, torso, udder, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
 
-void CowModel_MakeParts(void) {
+static void CowModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,16,-14,4,24,-8),
@@ -55,7 +55,7 @@ void CowModel_MakeParts(void) {
 	});
 }
 
-void CowModel_Draw(struct Entity* e) {
+static void CowModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -73,10 +73,10 @@ void CowModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }
 
-float CowModel_GetNameY(struct Entity* e) { return 24/16.0f; }
-float CowModel_GetEyeY(struct Entity* e)  { return 12/16.0f; }
-void CowModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-void CowModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-14, 5,16,9); }
+static float CowModel_GetNameY(struct Entity* e) { return 24/16.0f; }
+static float CowModel_GetEyeY(struct Entity* e)  { return 12/16.0f; }
+static void CowModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
+static void CowModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-14, 5,16,9); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 9];
 static struct Model model = { 

@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart head, torso, leftLeg, rightLeg, leftArm, rightArm;
+static struct ModelPart head, torso, leftLeg, rightLeg, leftArm, rightArm;
 
-void WitherSkeletonModel_MakeParts(void) {
+static void WitherSkeletonModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-4,24,-4, 4,32,4),
@@ -38,7 +38,7 @@ void WitherSkeletonModel_MakeParts(void) {
 	});
 }
 
-void WitherSkeletonModel_Draw(struct Entity* e) {
+static void WitherSkeletonModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -51,10 +51,10 @@ void WitherSkeletonModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-float WitherSkeletonModel_GetNameY(struct Entity* e) { return 2.075f; }
-float WitherSkeletonModel_GetEyeY(struct Entity* e)  { return 1.625f; }
-void WitherSkeletonModel_GetSize(struct Entity* e)   { _SetSize(4,30,4); }
-void WitherSkeletonModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float WitherSkeletonModel_GetNameY(struct Entity* e) { return 2.075f; }
+static float WitherSkeletonModel_GetEyeY(struct Entity* e)  { return 1.625f; }
+static void WitherSkeletonModel_GetSize(struct Entity* e)   { _SetSize(4,30,4); }
+static void WitherSkeletonModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 6];
 static struct Model model = { 

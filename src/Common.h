@@ -1,7 +1,13 @@
 #pragma once
 // Since we are building an external plugin dll, we need to import from ClassiCube lib instead of exporting these
+#ifdef CC_BUILD_WIN
+// need to specifically declare as imported for Visual Studio
 #define CC_API __declspec(dllimport)
 #define CC_VAR __declspec(dllimport)
+#else
+#define CC_API
+#define CC_VAR
+#endif
 
 // The proper way would be to add 'additional include directories' and 'additional libs' in Visual Studio Project properties
 // Or, you can just be lazy and change these paths for your own system. 

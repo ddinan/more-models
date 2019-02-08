@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart headInner, headOuter;
+static struct ModelPart headInner, headOuter;
 
-void SlimeModel_MakeParts(void) {
+static void SlimeModel_MakeParts(void) {
 	BoxDesc_BuildBox(&headInner, &(struct BoxDesc) {
 		BoxDesc_Tex(0, 0),
 		BoxDesc_Box(-3,7,3, 3,1,3)
@@ -13,7 +13,7 @@ void SlimeModel_MakeParts(void) {
 	});
 }
 
-void SlimeModel_Draw(struct Entity* e) {
+static void SlimeModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 	Gfx_SetAlphaBlending(true);
 
@@ -24,10 +24,10 @@ void SlimeModel_Draw(struct Entity* e) {
 	Gfx_SetAlphaBlending(false);
 }	
 
-float SlimeModel_GetNameY(struct Entity* e) { return 8/16.0f; }
-float SlimeModel_GetEyeY(struct Entity* e)  { return 6/16.0f; }
-void SlimeModel_GetSize(struct Entity* e)   { _SetSize(14, 14, 14); }
-void SlimeModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float SlimeModel_GetNameY(struct Entity* e) { return 8/16.0f; }
+static float SlimeModel_GetEyeY(struct Entity* e)  { return 6/16.0f; }
+static void SlimeModel_GetSize(struct Entity* e)   { _SetSize(14, 14, 14); }
+static void SlimeModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 2];
 static struct Model model = { 

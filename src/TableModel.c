@@ -1,7 +1,7 @@
 #include "Common.h"
-struct ModelPart base, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
+static struct ModelPart base, leftLegFront, rightLegFront, leftLegBack, rightLegBack;
 
-void TableModel_MakeParts(void) {
+static void TableModel_MakeParts(void) {
 	// all the parts have a TexOrigin of 0,0
 	struct BoxDesc box_base   = { 0,0, BoxDesc_Box(-8,16,-8,  8,18, 8) };
 	struct BoxDesc box_lFront = { 0,0, BoxDesc_Box(-6,16,-6, -8, 0,-8) }; 
@@ -16,7 +16,7 @@ void TableModel_MakeParts(void) {
 	BoxDesc_BuildBox(&rightLegBack,  &box_rBack);
 }
 
-void TableModel_Draw(struct Entity* entity) {
+static void TableModel_Draw(struct Entity* entity) {
 	Model_ApplyTexture(entity);
 	Models.uScale = 1/16.0f; Models.vScale = 1/16.0f;
 
@@ -29,10 +29,10 @@ void TableModel_Draw(struct Entity* entity) {
 	Model_UpdateVB();
 }
 
-float TableModel_GetNameY(struct Entity* e) { return 1.50f; }
-float TableModel_GetEyeY(struct Entity* e)  { return 1.25f; }
-void TableModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-void TableModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float TableModel_GetNameY(struct Entity* e) { return 1.50f; }
+static float TableModel_GetEyeY(struct Entity* e)  { return 1.25f; }
+static void TableModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
+static void TableModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 5];
 static struct Model model = {
