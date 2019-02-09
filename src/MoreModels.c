@@ -1,6 +1,5 @@
 #include "Common.h"
 /*
-	TODO:	Fix listmodels command
 	Add the rest of the models
 	Fix slime/magmacube textures
 */
@@ -24,6 +23,7 @@ static void ListModelsCommand_Execute(const String* args, int argsCount) {
 			String_AppendConst(&line, "> &7");
 		}
 		String_AppendConst(&line, model->Name);
+		String_AppendConst(&line, ", ");
 	}
 
 	if (line.length > 4) Chat_Add(&line);
