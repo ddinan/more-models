@@ -3,11 +3,11 @@ static struct ModelPart base, leftLegFront, rightLegFront, leftLegBack, rightLeg
 
 static void TableModel_MakeParts(void) {
 	// all the parts have a TexOrigin of 0,0
-	struct BoxDesc box_base   = { 0,0, BoxDesc_Box(-8,16,-8,  8,18, 8) };
-	struct BoxDesc box_lFront = { 0,0, BoxDesc_Box(-6,16,-6, -8, 0,-8) }; 
-	struct BoxDesc box_rFront = { 0,0, BoxDesc_Box( 8,16,-6,  6, 0,-8) }; 
-	struct BoxDesc box_lBack  = { 0,0, BoxDesc_Box(-6,16, 8, -8, 0, 6) }; 
-	struct BoxDesc box_rBack  = { 0,0, BoxDesc_Box( 8,16, 6,  6, 0, 8) };
+	struct BoxDesc box_base   = { 0,0, BoxDesc_Box(-9,14,-9,  9,16, 9) };
+	struct BoxDesc box_lFront = { 0,0, BoxDesc_Box(-6, 0,-6, -8,14,-8) }; 
+	struct BoxDesc box_rFront = { 0,0, BoxDesc_Box( 6, 0,-6,  8,14,-8) }; 
+	struct BoxDesc box_lBack  = { 0,0, BoxDesc_Box(-6, 0, 6, -8,14, 8) }; 
+	struct BoxDesc box_rBack  = { 0,0, BoxDesc_Box( 6, 0, 6,  8,14, 8) };
 	
 	BoxDesc_BuildBox(&base,          &box_base);
 	BoxDesc_BuildBox(&leftLegFront,  &box_lFront);
@@ -30,9 +30,9 @@ static void TableModel_Draw(struct Entity* entity) {
 }
 
 static float TableModel_GetNameY(struct Entity* e) { return 1.50f; }
-static float TableModel_GetEyeY(struct Entity* e)  { return 1.25f; }
-static void TableModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-static void TableModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float TableModel_GetEyeY(struct Entity* e) { return 0.875f; }
+static void TableModel_GetSize(struct Entity* e)   { _SetSize(14,15,14); }
+static void TableModel_GetBounds(struct Entity* e) { _SetBounds(-8,0,8, -8,16,8); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 5];
 static struct Model model = {

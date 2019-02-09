@@ -1,5 +1,4 @@
 #include "Common.h"
-
 static void TModel_Draw(struct Entity* e) {
 	// No animation for arms/legs
 	e->Anim.LeftArmX = 0;            e->Anim.RightArmX = 0;
@@ -18,5 +17,6 @@ struct Model* TModel_GetInstance(void) {
 	
 	model.Name = "t";
 	model.Draw = TModel_Draw;
+	model.Bobbing = false;
 	return &model;
 }

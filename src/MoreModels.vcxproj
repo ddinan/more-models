@@ -22,7 +22,7 @@
     <ProjectGuid>{00F4F373-6893-4504-BFB7-B3D5C133605D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MoreModels</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>5.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -85,13 +85,15 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MOREMODELS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Andrew\Documents\GitHub\ClassicalSharp\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\Users\Andrew\Documents\GitHub\ClassicalSharp\src\x64\Release\ClassiCube.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,21 +130,25 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MinSpace</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;MOREMODELS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;MOREMODELS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EntryPointSymbol>DllMainRedirect</EntryPointSymbol>
+      <AdditionalDependencies>C:\Users\Andrew\Documents\GitHub\ClassicalSharp\src\x64\Release\ClassiCube.lib</AdditionalDependencies>
+      <NoEntryPoint>true</NoEntryPoint>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -153,17 +159,15 @@
     <ClCompile Include="ChibiSitModel.c" />
     <ClCompile Include="CowModel.c" />
     <ClCompile Include="EndermanModel.c" />
-    <ClCompile Include="HuskModel.c" />
     <ClCompile Include="MagmaCubeModel.c" />
     <ClCompile Include="MoreModels.c" />
+    <ClCompile Include="Skeletons.c" />
     <ClCompile Include="SlimeModel.c" />
-    <ClCompile Include="StrayModel.c" />
     <ClCompile Include="TableModel.c" />
     <ClCompile Include="TModel.c" />
     <ClCompile Include="TVModel.c" />
     <ClCompile Include="VillagerModel.c" />
-    <ClCompile Include="WitherSkeletonModel.c" />
-    <ClCompile Include="ZombiePigmanModel.c" />
+    <ClCompile Include="Zombies.c" />
     <ClCompile Include="ZombieVillagerModel.c" />
   </ItemGroup>
   <ItemGroup>

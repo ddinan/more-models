@@ -3,12 +3,12 @@ static struct ModelPart base, back, leftLegFront, rightLegFront, leftLegBack, ri
 
 static void ChairModel_MakeParts(void) {
 	// all the parts have a TexOrigin of 0,0
-	struct BoxDesc box_base   = { 0,0, BoxDesc_Box(-8,12,-8,  8,14, 8) };
-	struct BoxDesc box_back   = { 0,0, BoxDesc_Box( 8,14, 8, -8,30, 6) }; 
-	struct BoxDesc box_lFront = { 0,0, BoxDesc_Box(-6,12,-6, -8, 0,-8) }; 
-	struct BoxDesc box_rFront = { 0,0, BoxDesc_Box( 8,12,-6,  6, 0,-8) }; 
-	struct BoxDesc box_lBack  = { 0,0, BoxDesc_Box(-6,12, 8, -8, 0, 6) }; 
-	struct BoxDesc box_rBack  = { 0,0, BoxDesc_Box( 8,12, 6,  6, 0, 8) };
+	struct BoxDesc box_base   = { 0,0, BoxDesc_Box(-5.5f, 7,-5.5f,  5.5f, 9, 5.5f) };
+	struct BoxDesc box_back   = { 0,0, BoxDesc_Box( 5.5f, 9, 3.5f, -5.5f,22, 5.5f) }; 
+	struct BoxDesc box_lFront = { 0,0, BoxDesc_Box(-3.5f, 0,-3.5f, -5.5f, 7,-5.5f) }; 
+	struct BoxDesc box_rFront = { 0,0, BoxDesc_Box( 3.5f, 0,-3.5f,  5.5f, 7,-5.5f) }; 
+	struct BoxDesc box_lBack  = { 0,0, BoxDesc_Box(-3.5f, 0, 3.5f, -5.5f, 7, 5.5f) }; 
+	struct BoxDesc box_rBack  = { 0,0, BoxDesc_Box( 3.5f, 0, 3.5f,  5.5f, 7, 5.5f) };
 	
 	BoxDesc_BuildBox(&base,          &box_base);
 	BoxDesc_BuildBox(&back,          &box_back);
@@ -32,10 +32,10 @@ static void ChairModel_Draw(struct Entity* entity) {
 	Model_UpdateVB();
 }
 
-static float ChairModel_GetNameY(struct Entity* e) { return 2.00f; }
-static float ChairModel_GetEyeY(struct Entity* e)  { return 1.25f; }
-static void ChairModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-static void ChairModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float ChairModel_GetNameY(struct Entity* e) { return 1.5f; }
+static float ChairModel_GetEyeY(struct Entity* e) { return 0.875f; }
+static void ChairModel_GetSize(struct Entity* e)   { _SetSize(9,20,9); }
+static void ChairModel_GetBounds(struct Entity* e) { _SetBounds(-5.5f,0,-5.5f, 5.5f,22,5.5f); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 6];
 static struct Model model = {

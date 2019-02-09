@@ -10,7 +10,7 @@ static void VillagerModel_MakeParts(void) {
 
 	BoxDesc_BuildBox(&nose, &(struct BoxDesc) {
 		BoxDesc_Tex(24, 0),
-		BoxDesc_Box(1,27,-4, -1,23,-5),
+		BoxDesc_Box(1,27,-3.5, -1,23,-5.5),
 		BoxDesc_Rot(0, 24, 0),
 	});
 
@@ -55,15 +55,15 @@ static void VillagerModel_Draw(struct Entity* e) {
 
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &nose, true);
-	Model_DrawRotate(e->Anim.LeftLegX,  0, 0, &leftLeg,  false);
-	Model_DrawRotate(e->Anim.RightLegX, 0, 0, &rightLeg, false);
+	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &leftLeg,  false);
+	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &rightLeg, false);
 	Model_DrawRotate(45 * MATH_DEG2RAD, 0, e->Anim.LeftArmZ, &arms, false);
 
 	Model_UpdateVB();
 }	
 
-static float VillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
-static float VillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
+static float VillagerModel_GetNameY(struct Entity* e) { return 34 / 16.0f; }
+static float VillagerModel_GetEyeY(struct Entity* e) { return 26 / 16.0f; }
 static void VillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
 static void VillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 

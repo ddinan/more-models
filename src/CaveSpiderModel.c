@@ -1,4 +1,6 @@
 #include "Common.h"
+static struct Model* spider;
+/*
 static struct ModelPart head, link, end, leftLeg, rightLeg;
 
 static void CaveSpiderModel_MakeParts(void) {
@@ -60,20 +62,38 @@ static void CaveSpiderModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-static float CaveSpiderModel_GetNameY(struct Entity* e) { return 1.0125f; }
-static float CaveSpiderModel_GetEyeY(struct Entity* e)  { return 0.5000f; }
+static float CaveSpiderModel_GetNameY(struct Entity* e) { e; return 1.0125f; }
+static float CaveSpiderModel_GetEyeY(struct Entity* e) { e; return 0.5000f; }
 static void CaveSpiderModel_GetSize(struct Entity* e)   { _SetSize(15,12,15); }
 static void CaveSpiderModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-11, 5,12,15); }
 
-static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];
-static struct Model model = { 
-	"cavespider", vertices, &caveSpider_tex,
-	CaveSpiderModel_MakeParts, CaveSpiderModel_Draw,
-	CaveSpiderModel_GetNameY,  CaveSpiderModel_GetEyeY,
-	CaveSpiderModel_GetSize,   CaveSpiderModel_GetBounds
-};
+static struct ModelVertex vertices[MODEL_BOX_VERTICES * 7];*/
+static void CaveSpiderModel_GetTransform(struct Entity* e, Vector3 pos, struct Matrix* m) {
+	static Vector3 vec;	vec = e->ModelScale;
+	Vector3_Mul1(&vec, &vec, 0.75f);
+	Entity_GetTransform(e, pos, vec, m);
+}
+static float CaveSpiderModel_GetEyeY(struct Entity* e) { return spider->GetEyeY(e) * 0.75f; }
 
+static void CaveSpiderModel_GetSize(struct Entity* e) {
+	spider->GetCollisionSize(e); Vector3_Mul1(&e->Size, &e->Size, 0.75f);
+}
+static void CaveSpiderModel_GetBounds(struct Entity* e) {
+	spider->GetPickingBounds(e);
+	e->ModelAABB.Min.X *= 0.875f; e->ModelAABB.Min.Z *= 0.875f;
+	e->ModelAABB.Max.X *= 0.875f; e->ModelAABB.Max.Z *= 0.775f;
+	e->ModelAABB.Max.Y *= 0.75f;
+}
+static struct Model model; /*= {
+						   */
 struct Model* CaveSpiderModel_GetInstance(void) {
-	Model_Init(&model);
+	/* Copy from spider model. */
+	model = *(spider = Model_Get(&(String)String_FromConst("spider")));
+	model.Name = "cavespider";
+	model.defaultTex = &caveSpider_tex;
+	model.GetTransform = CaveSpiderModel_GetTransform;
+	model.GetEyeY = CaveSpiderModel_GetEyeY;
+	model.GetCollisionSize = CaveSpiderModel_GetSize;
+	model.GetPickingBounds = CaveSpiderModel_GetBounds;
 	return &model;
 }

@@ -1,14 +1,20 @@
 #include "Common.h"
+/*
+	TODO:	Fix listmodels command
+	Add the rest of the models
+	Fix slime/magmacube textures
+*/
 
 /* === MODELS LIST COMMAND === */
 static void ListModelsCommand_Execute(const String* args, int argsCount) {
+	args; argsCount;
 	char lineBuffer[64 + 4];
-	String line = String_FromArray(lineBuffer);
-	String_AppendConst(&line, "&eLoaded models: &7");
-	
 	struct Model* model;
 
-	for (model = Models.Human; model != NULL; model = model->Next) {
+	String line = String_FromArray(lineBuffer);
+	String_AppendConst(&line, "&eLoaded models: &7");
+
+	for (model = Models.Human; model; model = model->Next) {
 		int nameLen = String_CalcLen(model->Name, 1000);
 
 		/* lame word wrapping */
@@ -58,6 +64,7 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&witherSkeleton_tex);
 	Model_RegisterTexture(&wood_tex);
 	Model_RegisterTexture(&zombiePigman_tex);
+	Model_RegisterTexture(&zombieVillager_tex);
 
 	Model_Register(CapeModel_GetInstance());
 	Model_Register(Cape2011Model_GetInstance());
@@ -101,9 +108,8 @@ static void MoreModels_Init(void) {
 }
 
 static void MoreModels_OnNewMap(void) {
-	// Increase holding model size limit if inf id is supported 
-	//HoldingModel model = (HoldingModel)game.ModelCache.Get("holding");
-	//model.resetMaxScale();
+	// Increase holding model size limit if inf id is supported
+	// HoldingModel_ResetMaxScale();
 }
 
 /* === API IMPLEMENTATION === */
@@ -114,9 +120,9 @@ static void MoreModels_OnNewMap(void) {
 // public symbols already exported when compiling shared lib with GCC
 #define PLUGIN_EXPORT
 #endif
-__declspec(dllexport) int Plugin_ApiVersion = GAME_API_VER;
+PLUGIN_EXPORT int Plugin_ApiVersion = GAME_API_VER;
 
-__declspec(dllexport) struct IGameComponent Plugin_Component = {
+PLUGIN_EXPORT struct IGameComponent Plugin_Component = {
 	MoreModels_Init,     /* Init */
 	NULL,                /* Free */
 	NULL,                /* Reset */
@@ -150,10 +156,10 @@ struct ModelTex
 	wood_tex           = { "wood.png" },
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
-
+/* Turned on no entry point
 #ifdef _WIN32
 // by default, the 'DllMain' Visual Studio produces includes a bunch of CRT code
 // therefore, in the project options I tell Visual Studio to use this DllMainRedirect instead
 // with this change, the dll size in release mode is reduced from 89 to 24 kb
-__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { return 1; }
-#endif
+__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { a; b; c; return 1; }
+#endif*/

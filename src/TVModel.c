@@ -30,7 +30,7 @@ static void TVModel_Draw(struct Entity* entity) {
 }
 
 static float TVModel_GetNameY(struct Entity* e) { return 2.25f; }
-static float TVModel_GetEyeY(struct Entity* e)  { return 1.50f; }
+static float TVModel_GetEyeY(struct Entity* e) { return 1.50f; }
 static void TVModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
 static void TVModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
 

@@ -73,7 +73,7 @@ static void CarModel_MakeParts(void) {
 
 	BoxDesc_BuildBox(&backLeft, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 64),
-		BoxDesc_Box(-20,4,15, -22,4,31)
+		BoxDesc_Box(-20,4,15, -22,14,31)
 	});
 
 	BoxDesc_BuildBox(&frontRight, &(struct BoxDesc) {
@@ -112,10 +112,10 @@ static void CarModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-static float CarModel_GetNameY(struct Entity* e) { return 2.375f; }
-static float CarModel_GetEyeY(struct Entity* e)  { return 1.750f; }
-static void CarModel_GetSize(struct Entity* e)   { _SetSize(76,34,76); }
-static void CarModel_GetBounds(struct Entity* e) { _SetBounds(-22,0,-40, 22,36,40); }
+static float CarModel_GetNameY(struct Entity* e) { e; return 2.375f; }
+static float CarModel_GetEyeY(struct Entity* e) { e; return 1.750f; }
+static void CarModel_GetSize(struct Entity* e) { _SetSize(76, 34, 76); }
+static void CarModel_GetBounds(struct Entity* e) { _SetBounds(-22, 0, -40, 22, 36, 40); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 15];
 static struct Model model = { 
@@ -127,5 +127,9 @@ static struct Model model = {
 
 struct Model* CarModel_GetInstance(void) {
 	Model_Init(&model);
+	model.Bobbing = false;
+	model.GroundFriction = (Vector3) { 0.9f, 0.9f, 0.9f };
+	model.Drag = (Vector3) { 0.9f, 0.9f, 0.9f };
+	model.ShadowScale = 2.0f;
 	return &model;
 }

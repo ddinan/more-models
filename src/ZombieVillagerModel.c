@@ -3,14 +3,14 @@ static struct ModelPart head, nose, hat, torso, leftLeg, rightLeg, leftArm, righ
 
 static void ZombieVillagerModel_MakeParts(void) {
 	BoxDesc_BuildBox(&head, &(struct BoxDesc) {
-		BoxDesc_Tex(0, 0),
+		BoxDesc_Tex(0, 32),
 		BoxDesc_Box(-4,24,-4, 4,34,4),
 		BoxDesc_Rot(0, 24, 0),
 	});
 
 	BoxDesc_BuildBox(&nose, &(struct BoxDesc) {
 		BoxDesc_Tex(24, 32),
-		BoxDesc_Box(1,27,-4, -1,23,-5),
+		BoxDesc_Box(1,27,-3.5f, -1,23,-5.5f),
 		BoxDesc_Rot(0, 24, 0),
 	});
 
@@ -66,8 +66,8 @@ static void ZombieVillagerModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-static float ZombieVillagerModel_GetNameY(struct Entity* e) { return 34/16.0f; }
-static float ZombieVillagerModel_GetEyeY(struct Entity* e)  { return 26/16.0f; }
+static float ZombieVillagerModel_GetNameY(struct Entity* e) { return 34 / 16.0f; }
+static float ZombieVillagerModel_GetEyeY(struct Entity* e) { return 26 / 16.0f; }
 static void ZombieVillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
 static void ZombieVillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
 

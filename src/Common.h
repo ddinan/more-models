@@ -1,6 +1,6 @@
 #pragma once
 // Since we are building an external plugin dll, we need to import from ClassiCube lib instead of exporting these
-#ifdef CC_BUILD_WIN
+#ifdef _WIN32
 // need to specifically declare as imported for Visual Studio
 #define CC_API __declspec(dllimport)
 #define CC_VAR __declspec(dllimport)
@@ -12,20 +12,20 @@
 // The proper way would be to add 'additional include directories' and 'additional libs' in Visual Studio Project properties
 // Or, you can just be lazy and change these paths for your own system. 
 // You must compile ClassiCube in both x86 and x64 configurations to generate the .lib file.
-#include "C:/Git/ClassicalSharp/src/Constants.h"
-#include "C:/Git/ClassicalSharp/src/GameStructs.h"
-#include "C:/Git/ClassicalSharp/src/Chat.h"
-#include "C:/Git/ClassicalSharp/src/Model.h"
-#include "C:/Git/ClassicalSharp/src/Graphics.h"
-#include "C:/Git/ClassicalSharp/src/Entity.h"
-#include "C:/Git/ClassicalSharp/src/ExtMath.h"
-#include "C:/Git/ClassicalSharp/src/Server.h"
+#include "Constants.h"
+#include "GameStructs.h"
+#include "Chat.h"
+#include "Model.h"
+#include "Graphics.h"
+#include "Entity.h"
+#include "ExtMath.h"
+#include "Server.h"
 
-
+// Set the path to the .lib file here or in project settings.
 #ifdef _WIN64
-#pragma comment(lib, "C:/Git/ClassicalSharp/src/x64/Debug/ClassiCube.lib")
+//#pragma comment(lib, "x64/Release/ClassiCube.lib")
 #else
-#pragma comment(lib, "C:/Git/ClassicalSharp/src/x86/Debug/ClassiCube.lib")
+//#pragma comment(lib, "x86/Release/ClassiCube.lib")
 #endif
 
 // use these to cut down on verbose code
