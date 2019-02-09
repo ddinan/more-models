@@ -1,7 +1,8 @@
 #include "Common.h"
 /*
-	Add the rest of the models
-	Fix slime/magmacube textures
+	Add the rest of the models.
+	Double-check if slime and magmacube textures are oriented properly.
+	Slime and magmacube require more boxes.
 */
 
 /* === MODELS LIST COMMAND === */
@@ -103,7 +104,7 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_P3FT2FC4B, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + More Models v1.2.1");
+	String_AppendConst(&Server.AppName, " + More Models v1.2.3");
 	Commands_Register(&ListModelsCommand);
 }
 
@@ -126,7 +127,7 @@ PLUGIN_EXPORT struct IGameComponent Plugin_Component = {
 	MoreModels_Init,     /* Init */
 	NULL,                /* Free */
 	NULL,                /* Reset */
-	MoreModels_OnNewMap, /* OnNewMap */
+	//MoreModels_OnNewMap, /* OnNewMap */
 };
 
 /* === TEXTURES === */
@@ -156,10 +157,6 @@ struct ModelTex
 	wood_tex           = { "wood.png" },
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
-/* Turned on no entry point
-#ifdef _WIN32
-// by default, the 'DllMain' Visual Studio produces includes a bunch of CRT code
-// therefore, in the project options I tell Visual Studio to use this DllMainRedirect instead
-// with this change, the dll size in release mode is reduced from 89 to 24 kb
-__declspec(noinline) int __stdcall DllMainRedirect(void* a, unsigned b, void* c) { a; b; c; return 1; }
-#endif*/
+
+/* Just your average general-purpose empty function. */
+void nullfunc(void) { }

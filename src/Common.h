@@ -67,3 +67,5 @@ struct Model* VillagerModel_GetInstance(void);
 struct Model* WitherSkeletonModel_GetInstance(void);
 struct Model* ZombiePigmanModel_GetInstance(void);
 struct Model* ZombieVillagerModel_GetInstance(void);
+
+void nullfunc(void);
