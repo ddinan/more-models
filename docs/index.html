@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <link rel=stylesheet href="./css/index.css">
+        <title>More Models - A ClassiCube Plugin</title>
+        <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    
+    <body>
+        
+        <!-- Back to top button -->
+        
+        <button onclick="topFunction()" id="up">↑</button>
+        <script>
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+              if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                document.getElementById("up").style.display = "block";
+              } else {
+                document.getElementById("up").style.display = "none";
+              }
+            }
+
+            function topFunction() {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }
+        </script>
+        
+        <div id="home" class="cover">
+            <div class="zoom">
+                <img class="pic" src="https://i.imgur.com/zgGGVkp.png" style="width: 100%;" oncontextmenu="return false;" draggable="false" oncopy="return false;" oncut="return false;">
+            </div>
+            
+            <img class="shield" src="https://img.shields.io/github/release/VenkSociety/More-Models.svg?colorB=%2300B7F2&label=Latest%20Release&style=for-the-badge" oncontextmenu="return false;" draggable="false" oncopy="return false;" oncut="return false;" style="position: absolute; top: 47.5%; left: 42%;">
+            
+            <div class="logo">
+                <p>More<br>Models</p>
+            </div>
+        </div>
+        
+        <div class="navbar">
+            <ul>
+                <li><a href="https://github.com/VenkSociety/More-Models"><img src="https://i.imgur.com/Vqxt4nX.png" style="width: 68px"></a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#commands">Commands and Usage</a></li>
+            </ul>
+        </div>
+        
+        <div class="divider">
+            <h1>What is <b>More Models</b>?</h1>
+        </div>
+        
+        <div class="text">
+            <h3>More Models</h3>
+            <p style="float: right;"><img src="./img/cow.png" width="500px" oncontextmenu="return false;" draggable="false" oncopy="return false;" oncut="return false;" style="margin-top: -12.35%;"></p>
+            <p>More models is a lightweight <a href="http://classicube.net">ClassiCube</a> plugin which brings more than just the default models into the game. Locked and loaded with customized models, More Models is easy to install and even easier to use.<br><br>Model requests are always open and can be requested <a href="https://github.com/VenkSociety/More-Models/issues">here</a>.<br><br>
+            </p>
+        </div>
+        
+        <div id="installation" class="divider2">
+            <h1>Installation</h1>
+        </div>
+        
+        <div class="text2">
+            <h3>Release</h3>
+            <p>
+                Installation is as simple as a few clicks and drags and takes less than two minutes.
+                <br><br>
+                <b>Step 1:</b>
+                <br><br>
+                Download the latest files from <a href="https://github.com/VenkSociety/More-Models/releases">here</a>. If you are unsure of which to download, type /client gpu in-game. It will tell you whether to download the 64 bit .zip or the 32 bit .zip.
+                <br><br>
+                <b>Step 2:</b>
+                <br><br>
+                Extract the .zip onto your computer, there should be two files; <b>ModelTextures.zip</b> and <b>More-Models.dll</b>.
+                <br><br>
+                <b>Step 3:</b>
+                <br><br>
+                Place <b>ModelTextures.zip</b> in your <b>ClassiCube texture pack folder</b>. By default it should be [ClassiCube Repository]\texpacks).
+                <br><br>
+                <b>Step 4:</b>
+                <br><br>
+                Place <b>More-Models.dll</b> in your <b>ClassiCube plugins folder</b>. If it doesn't exist, create a new <b>plugins</b> folder and put it in that.
+                <br><br>
+                <b>Step 5:</b>
+                <br><br>
+                Either join a server or a single-player world and press <b>Esc > Change texture pack...</b> then click on <b>ModelTextures.zip</b>
+            </p>
+        </div>
+        
+        <div class="authors">
+            <div id="commands" class="divider3">
+                <h1>Commands and Usage</h1>
+            </div>
+        </div>
+        
+        <div class="text3">
+            <table class="tg">
+              <tr>
+                <th class="tg-baqh">Command</th>
+                <th class="tg-baqh">Description</th>
+                <th class="tg-baqh">Multiplayer</th>
+              </tr>
+              <tr>
+                <td class="tg-0lax">/client listmodels</td>
+                <td class="tg-0lax">Lists all models present in your client including those from other plugins.</td>
+                <td class="tg-0lax">True</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">/client model [model]</td>
+                <td class="tg-0lax">Changes your model to [model].</td>
+                <td class="tg-0lax">False</td>
+              </tr>
+            </table>
+        </div>
+        
+    </body>
+    
+    <footer>
+        <p>The More Models plugin is in no way directly affiliated with Mojang AB or ClassiCube.</p>
+    </footer>
+</html>

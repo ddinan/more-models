@@ -1,0 +1,217 @@
+@font-face {
+    font-family: "Minecraftia";
+    src: url("./fonts/Minecraftia.ttf");
+}
+
+html {
+    background: #ECF0F1;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #00B7F2;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #FFFF40;
+}
+
+#up {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    border: none;
+    outline: none;
+    background-color: #FFFF40;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 32px;
+    border-radius: 10px;
+}
+
+#up:hover {
+    background-color: #FFA838;
+}
+
+.cover .shield {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+}
+
+.logo {
+    font-size: 84px;
+    text-align: center;
+    color: #FFFF40;
+    font-family: "Minecraftia";
+    text-shadow: -5px 5px black;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo:hover {
+    color: #FFA838;
+}
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #00B7F2;
+}
+
+.divider h1 {
+    text-align: center;
+    color: white;
+    background: #00B7F2;
+    margin: 0;
+    padding: 30px;
+    font-weight: 100;
+}
+
+.text {
+    background: white;
+    border: red;
+    border-width: thick;
+    border-radius: 15px;
+    color: #6A6A6A;
+    margin: 20px;
+    padding: 0px 0px 0px 25px;
+    float: left;
+}
+
+.text img {
+    padding-right: 15px;
+    top: 50px;
+}
+
+.divider2 h1 {
+    text-align: center;
+    color: white;
+    background: #00B7F2;
+    margin: 0;
+    padding: 30px;
+    font-weight: 100;
+    margin-top: 320px;
+}
+
+.text2 {
+    background: white;
+    border: red;
+    border-width: thick;
+    border-radius: 15px;
+    color: #6A6A6A;
+    width: 95%;
+    margin: 20px;
+    margin-bottom: 50px;
+    padding: 0px 0px 0px 25px;
+    float: left;
+}
+
+.divider3 h1 {
+    text-align: center;
+    color: white;
+    background: #00B7F2;
+    margin: 0;
+    padding: 30px;
+    font-weight: 100;
+    margin-top: 500px;
+}
+
+.text3 {
+    background: white;
+    border: red;
+    border-width: thick;
+    border-radius: 15px;
+    color: #6A6A6A;
+    width: 95%;
+    margin: 20px;
+    margin-bottom: 50px;
+    float: left;
+}
+
+.text3 .tg  {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+    border-color: #999;
+    width: 100%;
+    text-align: center;
+}
+
+.text3 .tg td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 0px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #999;
+    color: #6A6A6A;
+    background-color: #FFF;
+}
+
+.text3 .tg th {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 0px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #999;
+    color: #FFF;
+    background-color: #00B7F2;
+}
+
+.text3 .tg .text3 .tg-baqh {
+    text-align: center;
+    vertical-align: top
+}
+
+.text3 .tg .text3 .tg-0lax {
+    text-align: left;
+    vertical-align: top
+}
+
+footer {
+    margin-top: 150px;
+    background: #333;
+    height: 75px;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
