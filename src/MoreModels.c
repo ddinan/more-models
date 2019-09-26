@@ -84,7 +84,7 @@ static void MoreModels_Init(void) {
 	Model_Register(ChairModel_GetInstance());
 	Model_Register(ChibiSitModel_GetInstance());
 	Model_Register(CowModel_GetInstance());
-	//game.ModelCache.Register("croc", "croc.png", new CrocModel(game));
+	Model_Register(CrocModel_GetInstance());
 	//game.ModelCache.Register("enderman", "enderman.png", new EndermanModel(game));
 	//game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 	//game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
@@ -137,7 +137,6 @@ PLUGIN_EXPORT struct IGameComponent Plugin_Component = {
 };
 
 /* === TEXTURES === */
-// avoid repeating 'struct ModelTex' over and over
 struct ModelTex
 	cape_tex           = { "cape.png"},
 	cape2011_tex       = { "cape_2011.png"},

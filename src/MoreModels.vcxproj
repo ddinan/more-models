@@ -167,10 +167,12 @@
   <ItemGroup>
     <ClCompile Include="Humans\CapeModel.c" />
     <ClCompile Include="Humans\ChibiSitModel.c" />
+    <ClCompile Include="Humans\Holding.c" />
     <ClCompile Include="Humans\Male.c" />
     <ClCompile Include="Humans\TModel.c" />
     <ClCompile Include="Mobs\CaveSpiderModel.c" />
     <ClCompile Include="Mobs\CowModel.c" />
+    <ClCompile Include="Mobs\Croc.c" />
     <ClCompile Include="Mobs\EndermanModel.c" />
     <ClCompile Include="Mobs\MagmaCubeModel.c" />
     <ClCompile Include="Mobs\Skeletons.c" />

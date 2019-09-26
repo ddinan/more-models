@@ -56,6 +56,7 @@ struct Model* CaveSpiderModel_GetInstance(void);
 struct Model* ChairModel_GetInstance(void);
 struct Model* ChibiSitModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
+struct Model* CrocModel_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
 struct Model* MaleModel_GetInstance(void);

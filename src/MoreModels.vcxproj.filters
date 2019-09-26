@@ -81,6 +81,12 @@
     <ClCompile Include="Humans\CapeModel.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
+    <ClCompile Include="Humans\Holding.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Croc.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
