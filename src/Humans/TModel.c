@@ -19,5 +19,6 @@ struct Model* TModel_GetInstance(void) {
 	model.MakeParts = nullfunc;
 	model.Draw = TModel_Draw;
 	model.Bobbing = false;
+	model.CalcHumanAnims = false;
 	return &model;
 }

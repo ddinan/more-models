@@ -16,15 +16,15 @@ struct Model* StrayModel_GetInstance(void) {
 
 /* WITHER SKELETON MODEL */
 
-static void WitherSkeletonModel_GetTransform(struct Entity* e, Vector3 pos, struct Matrix* m) {
-	static Vector3 vec;	vec = e->ModelScale;
-	Vector3_Mul1(&vec, &vec, 1.25f);
+static void WitherSkeletonModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
+	static Vec3 vec;	vec = e->ModelScale;
+	Vec3_Mul1(&vec, &vec, 1.1875f);
 	Entity_GetTransform(e, pos, vec, m);
 }
 static float WitherSkeletonModel_GetEyeY(struct Entity* e) { return skeleton->GetEyeY(e) * 1.25f; }
 
 static void WitherSkeletonModel_GetSize(struct Entity* e) {
-	skeleton->GetCollisionSize(e); Vector3_Mul1(&e->Size, &e->Size, 1.25f);
+	skeleton->GetCollisionSize(e); Vec3_Mul1(&e->Size, &e->Size, 1.25f);
 }
 static void WitherSkeletonModel_GetBounds(struct Entity* e) {
 	skeleton->GetPickingBounds(e);

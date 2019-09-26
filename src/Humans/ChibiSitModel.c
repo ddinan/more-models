@@ -8,7 +8,7 @@ static void ChibiSitModel_Draw(struct Entity* e) {
 	Model_SetupState(chibi, e);
 	chibi->Draw(e);
 }
-static void ChibiSitModel_GetTransform(struct Entity* e, Vector3 pos, struct Matrix* m) {
+static void ChibiSitModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
 	pos.Y -= SIT_OFFSET * e->ModelScale.Y;
 	Entity_GetTransform(e, pos, e->ModelScale, m);
 }

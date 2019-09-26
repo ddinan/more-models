@@ -29,17 +29,17 @@
 #endif
 
 // use these to cut down on verbose code
-#define _SetSize(x,y,z) e->Size = (Vector3) { (x)/16.0f, (y)/16.0f, (z)/16.0f };
+#define _SetSize(x,y,z) e->Size = (Vec3) { (x)/16.0f, (y)/16.0f, (z)/16.0f };
 #define _SetBounds(x1,y1,z1, x2,y2,z2) e->ModelAABB = (struct AABB) { (x1)/16.0f,(y1)/16.0f,(z1)/16.0f, (x2)/16.0f,(y2)/16.0f,(z2)/16.0f };
+#define BOXDESC_REBOUND(desc, x1, y1, z1, x2, y2, z2) (desc).X1=(x1)/16.f;(desc).Y1=(y1)/16.f;(desc).Z1=(z1)/16.f;(desc).X2=(x2)/16.f;(desc).Y2=(y2)/16.f;(desc).Z2=(z2)/16.f
 
 // define these as extern, i.e. their actual definition/value is elsewhere (in MoreModels.c)
 extern struct ModelTex 
 	cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,
 	car_tex, caveSpider_tex, cow_tex, croc_tex,
 	enderman_tex, endermanEyes_tex,
-	husk_tex, printer_tex,
-	magmaCube_tex, male_tex,
-	slime_tex, stray_tex,
+	husk_tex, magmaCube_tex, male_tex,
+	printer_tex, slime_tex, spiderEyes_tex, stray_tex,
 	tv_tex, villager_tex,
 	witherSkeleton_tex, wood_tex,
 	zombiePigman_tex, zombieVillager_tex;
@@ -58,6 +58,8 @@ struct Model* ChibiSitModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
+struct Model* MaleModel_GetInstance(void);
+struct Model* PrinterModel_GetInstance(void);
 struct Model* SlimeModel_GetInstance(void);
 struct Model* StrayModel_GetInstance(void);
 struct Model* TModel_GetInstance(void);
@@ -67,5 +69,5 @@ struct Model* VillagerModel_GetInstance(void);
 struct Model* WitherSkeletonModel_GetInstance(void);
 struct Model* ZombiePigmanModel_GetInstance(void);
 struct Model* ZombieVillagerModel_GetInstance(void);
-
+/* Just your average general-purpose empty function. */
 void nullfunc(void);

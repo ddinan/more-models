@@ -13,73 +13,73 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Furniture">
-      <UniqueIdentifier>{b70074e6-b6c5-4974-a0dd-bb93985316d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Humans">
       <UniqueIdentifier>{c04c8e68-a480-48e1-8223-6552a07d2692}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Mobs">
       <UniqueIdentifier>{6897e1b0-bc72-4035-bfc1-a48cd5e49b9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Props">
+      <UniqueIdentifier>{17fce138-9406-4e3e-b9b8-c761021f60ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MoreModels.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChairModel.c">
-      <Filter>Source Files\Furniture</Filter>
+    <ClCompile Include="Props\CarModel.c">
+      <Filter>Source Files\Props</Filter>
     </ClCompile>
-    <ClCompile Include="TableModel.c">
-      <Filter>Source Files\Furniture</Filter>
+    <ClCompile Include="Props\ChairModel.c">
+      <Filter>Source Files\Props</Filter>
     </ClCompile>
-    <ClCompile Include="TVModel.c">
-      <Filter>Source Files\Furniture</Filter>
+    <ClCompile Include="Props\TableModel.c">
+      <Filter>Source Files\Props</Filter>
     </ClCompile>
-    <ClCompile Include="TModel.c">
+    <ClCompile Include="Props\TVModel.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\CaveSpiderModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\ChibiSitModel.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
-    <ClCompile Include="MagmaCubeModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="StrayModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="HuskModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="SlimeModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="ChibiSitModel.c">
+    <ClCompile Include="Humans\TModel.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
-    <ClCompile Include="CarModel.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Mobs\CowModel.c">
+      <Filter>Source Files\Mobs</Filter>
     </ClCompile>
-    <ClCompile Include="CapeModel.c">
+    <ClCompile Include="Mobs\EndermanModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\MagmaCubeModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Skeletons.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\SlimeModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\VillagerModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Zombies.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\ZombieVillagerModel.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Props\Printer.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Male.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
-    <ClCompile Include="CowModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="WitherSkeletonModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="VillagerModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="ZombiePigmanModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="ZombieVillagerModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="CaveSpiderModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="EndermanModel.c">
-      <Filter>Source Files\Mobs</Filter>
+    <ClCompile Include="Humans\CapeModel.c">
+      <Filter>Source Files\Humans</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -44,9 +44,10 @@ static void CowModel_MakeParts(void) {
 		BoxDesc_Rot(0, 12, 7),
 	});
 
-	BoxDesc_BuildRotatedBox(&torso, &(struct BoxDesc) {
+	BoxDesc_BuildBox(&torso, &(struct BoxDesc) {
 		BoxDesc_Tex(18, 4),
-		BoxDesc_Box(-6,12,-8, 6,22,10)
+		BoxDesc_Box(-6, 20, 2, 6, 38, 12),
+		BoxDesc_Rot(0, 20, 10)
 	});
 
 	BoxDesc_BuildRotatedBox(&udder, &(struct BoxDesc) {
@@ -55,20 +56,22 @@ static void CowModel_MakeParts(void) {
 	});
 }
 
+/* TODO: Fix cow torso box shading. */
+
 static void CowModel_Draw(struct Entity* e) {
 	Model_ApplyTexture(e);
 
-	Model_DrawPart(&torso);
 	Model_DrawPart(&udder);
+	Model_DrawRotate(MATH_PI/-2, 0, 0, &torso, false);
 
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head,      true);
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &leftHorn,  true);
 	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &rightHorn, true);
 
-	Model_DrawRotate(e->Anim.LeftLegX,  0, 0, &leftLegFront,  false);
-	Model_DrawRotate(e->Anim.RightLegX, 0, 0, &rightLegFront, false);
-	Model_DrawRotate(e->Anim.RightLegX, 0, 0, &leftLegBack,   false);
-	Model_DrawRotate(e->Anim.LeftLegX,  0, 0, &rightLegBack,  false);
+	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &leftLegFront,  false);
+	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &rightLegFront, false);
+	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &leftLegBack,   false);
+	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &rightLegBack,  false);
 
 	Model_UpdateVB();
 }

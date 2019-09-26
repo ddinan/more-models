@@ -2,10 +2,15 @@
 /*
 	Add the rest of the models.
 	Double-check if slime and magmacube textures are oriented properly.
+	Check if villager and zombievillager are done properly.
+	Check cave spider's scale
+	Add more boxes to stray
+
 	Slime and magmacube require more boxes.
 */
 
 /* === MODELS LIST COMMAND === */
+int _fltused;
 static void ListModelsCommand_Execute(const String* args, int argsCount) {
 	args; argsCount;
 	char lineBuffer[64 + 4];
@@ -14,7 +19,7 @@ static void ListModelsCommand_Execute(const String* args, int argsCount) {
 	String line = String_FromArray(lineBuffer);
 	String_AppendConst(&line, "&eLoaded models: &7");
 
-	for (model = Models.Human; model; model = model->Next) {
+	for (model = Models.Human; model; model = model->next) {
 		int nameLen = String_CalcLen(model->Name, 1000);
 
 		/* lame word wrapping */
@@ -56,9 +61,10 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&endermanEyes_tex);
 	Model_RegisterTexture(&husk_tex);
 	Model_RegisterTexture(&magmaCube_tex);
-	Model_RegisterTexture(&male_tex);
+	//Model_RegisterTexture(&male_tex);
 	Model_RegisterTexture(&printer_tex);
 	Model_RegisterTexture(&slime_tex);
+	Model_RegisterTexture(&spiderEyes_tex);
 	Model_RegisterTexture(&stray_tex);
 	Model_RegisterTexture(&tv_tex);
 	Model_RegisterTexture(&villager_tex);
@@ -67,12 +73,12 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&zombiePigman_tex);
 	Model_RegisterTexture(&zombieVillager_tex);
 
-	Model_Register(CapeModel_GetInstance());
+	/*Model_Register(CapeModel_GetInstance());
 	Model_Register(Cape2011Model_GetInstance());
 	Model_Register(Cape2012Model_GetInstance());
 	Model_Register(Cape2013Model_GetInstance());
 	Model_Register(Cape2015Model_GetInstance());
-	Model_Register(Cape2016Model_GetInstance());
+	Model_Register(Cape2016Model_GetInstance());*/
 	Model_Register(CarModel_GetInstance());
 	Model_Register(CaveSpiderModel_GetInstance());
 	Model_Register(ChairModel_GetInstance());
@@ -85,9 +91,9 @@ static void MoreModels_Init(void) {
 	//game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 	Model_Register(HuskModel_GetInstance());
 	//game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
-	//game.ModelCache.Register("male", "male.png", new MaleModel(game));
+	//Model_Register(MaleModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
-	//game.ModelCache.Register("printer", "printer.png", new PrinterModel(game));
+	Model_Register(PrinterModel_GetInstance());
 	Model_Register(SlimeModel_GetInstance());
 	Model_Register(StrayModel_GetInstance());
 	Model_Register(TModel_GetInstance());
@@ -150,6 +156,7 @@ struct ModelTex
 	male_tex           = { "male.png" },
 	printer_tex        = { "printer.png" },
 	slime_tex          = { "slime.png" },
+	spiderEyes_tex     = { "spider_eyes.png" },
 	stray_tex          = { "stray.png" },
 	tv_tex             = { "tv.png" },
 	villager_tex       = { "villager.png" },
@@ -158,5 +165,4 @@ struct ModelTex
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
 
-/* Just your average general-purpose empty function. */
 void nullfunc(void) { }
