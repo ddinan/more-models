@@ -1,5 +1,6 @@
 #include "Common.h"
 /*
+  TO DO:
 	Add the rest of the models.
 	Double-check if slime and magmacube textures are oriented properly.
 	Check if villager and zombievillager are done properly.
@@ -61,7 +62,7 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&endermanEyes_tex);
 	Model_RegisterTexture(&husk_tex);
 	Model_RegisterTexture(&magmaCube_tex);
-	//Model_RegisterTexture(&male_tex);
+	Model_RegisterTexture(&char_tex);
 	Model_RegisterTexture(&printer_tex);
 	Model_RegisterTexture(&slime_tex);
 	Model_RegisterTexture(&spiderEyes_tex);
@@ -73,25 +74,26 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&zombiePigman_tex);
 	Model_RegisterTexture(&zombieVillager_tex);
 
-	/*Model_Register(CapeModel_GetInstance());
+	Model_Register(CapeModel_GetInstance());
 	Model_Register(Cape2011Model_GetInstance());
 	Model_Register(Cape2012Model_GetInstance());
 	Model_Register(Cape2013Model_GetInstance());
 	Model_Register(Cape2015Model_GetInstance());
-	Model_Register(Cape2016Model_GetInstance());*/
+	Model_Register(Cape2016Model_GetInstance());
 	Model_Register(CarModel_GetInstance());
 	Model_Register(CaveSpiderModel_GetInstance());
 	Model_Register(ChairModel_GetInstance());
 	Model_Register(ChibiSitModel_GetInstance());
 	Model_Register(CowModel_GetInstance());
 	Model_Register(CrocModel_GetInstance());
-	//game.ModelCache.Register("enderman", "enderman.png", new EndermanModel(game));
+  Model_Register(DabModel_GetInstance());
+  //Model_Register(EndermanModel_GetInstance());
 	//game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 	//game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 	//game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
+  //Model_Register(HoldingModel_GetInstance());
 	Model_Register(HuskModel_GetInstance());
-	//game.ModelCache.Register("holding", "char.png", new HoldingModel(game));
-	//Model_Register(MaleModel_GetInstance());
+	Model_Register(MaleModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
 	Model_Register(PrinterModel_GetInstance());
 	Model_Register(SlimeModel_GetInstance());
@@ -110,7 +112,7 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_P3FT2FC4B, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + More Models v1.2.3");
+	String_AppendConst(&Server.AppName, " + More Models v1.2.4");
 	Commands_Register(&ListModelsCommand);
 }
 
@@ -146,13 +148,13 @@ struct ModelTex
 	cape2016_tex       = { "cape_2016.png"},
 	car_tex            = { "car.png" },
 	caveSpider_tex     = { "cave_spider.png" },
+  char_tex           = { "char.png" },
 	cow_tex            = { "cow.png" },
 	croc_tex           = { "croc.png" },
 	enderman_tex       = { "enderman.png" },
 	endermanEyes_tex   = { "enderman_eyes.png" },
 	husk_tex           = { "husk.png" },
 	magmaCube_tex      = { "magmacube.png" },
-	male_tex           = { "male.png" },
 	printer_tex        = { "printer.png" },
 	slime_tex          = { "slime.png" },
 	spiderEyes_tex     = { "spider_eyes.png" },

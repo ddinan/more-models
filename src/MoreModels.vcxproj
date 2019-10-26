@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="6.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -161,12 +161,13 @@
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ShowProgress>LinkVerbose</ShowProgress>
       <MinimumRequiredVersion />
-      <AdditionalDependencies />
+      <AdditionalDependencies>C:\Users\dzdez\Desktop\CC\ClassiCube\src\x64\Debug\ClassiCube.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Humans\CapeModel.c" />
     <ClCompile Include="Humans\ChibiSitModel.c" />
+    <ClCompile Include="Humans\Dab.c" />
     <ClCompile Include="Humans\Holding.c" />
     <ClCompile Include="Humans\Male.c" />
     <ClCompile Include="Humans\TModel.c" />

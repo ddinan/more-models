@@ -173,7 +173,7 @@ static void MaleModel_DrawArm(struct Entity* e) {
 }
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 21];
 static struct Model model = {
-	"male", vertices, &male_tex,
+	"male", vertices, &char_tex,
 	MaleModel_MakeParts, MaleModel_Draw,
 	MaleModel_GetNameY,  MaleModel_GetEyeY,
 	MaleModel_GetSize,   MaleModel_GetBounds

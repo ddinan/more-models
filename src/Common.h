@@ -23,9 +23,9 @@
 
 // Set the path to the .lib file here or in project settings.
 #ifdef _WIN64
-//#pragma comment(lib, "x64/Release/ClassiCube.lib")
+#pragma comment(lib, "x64/Debug/ClassiCube.lib")
 #else
-//#pragma comment(lib, "x86/Release/ClassiCube.lib")
+#pragma comment(lib, "x86/Debug/ClassiCube.lib")
 #endif
 
 // use these to cut down on verbose code
@@ -36,7 +36,7 @@
 // define these as extern, i.e. their actual definition/value is elsewhere (in MoreModels.c)
 extern struct ModelTex 
 	cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,
-	car_tex, caveSpider_tex, cow_tex, croc_tex,
+	car_tex, caveSpider_tex, char_tex, cow_tex, croc_tex,
 	enderman_tex, endermanEyes_tex,
 	husk_tex, magmaCube_tex, male_tex,
 	printer_tex, slime_tex, spiderEyes_tex, stray_tex,
@@ -57,6 +57,7 @@ struct Model* ChairModel_GetInstance(void);
 struct Model* ChibiSitModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
 struct Model* CrocModel_GetInstance(void);
+struct Model* DabModel_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
 struct Model* MaleModel_GetInstance(void);
