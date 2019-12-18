@@ -55,8 +55,8 @@ static void ZombieVillagerModel_Draw(struct Entity* e) {
 
 	Model_DrawPart(&torso);
 	Model_DrawPart(&robe);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &nose, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &head, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &nose, true);
 	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &leftLeg, false);
 	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &rightLeg, false);
 	Model_DrawRotate(90 * MATH_DEG2RAD, 0, e->Anim.LeftArmZ,  &leftArm, false);

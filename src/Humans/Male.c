@@ -123,10 +123,10 @@ static void MaleModel_Draw(struct Entity* e) {
 
 	Translate(e, 0, breathDisp, 0);
 
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &head, true);
 	Model_DrawRotate(e->Anim.LeftArmX, 0, e->Anim.LeftArmZ, &leftUpperArm, false);
 	Model_DrawRotate(e->Anim.RightArmX, 0, e->Anim.RightArmZ, &rightUpperArm, false);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &hat, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &hat, true);
 	Model_DrawRotate(e->Anim.LeftArmX, 0, e->Anim.LeftArmZ, &leftUpperSleeve, false);
 	Model_DrawRotate(e->Anim.RightArmX, 0, e->Anim.RightArmZ, &rightUpperSleeve, false);
 	Model_UpdateVB();

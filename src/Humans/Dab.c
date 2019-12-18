@@ -13,7 +13,7 @@ struct Model* DabModel_GetInstance(void) {
 	// copy everything from human model
 	model = *Models.Human;
 	
-	model.Name = "dab";
+	model.name = "dab";
 	model.MakeParts = nullfunc;
 	model.Draw = DabModel_Draw;
 	return &model;

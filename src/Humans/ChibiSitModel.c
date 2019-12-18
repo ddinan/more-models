@@ -27,7 +27,7 @@ struct Model* ChibiSitModel_GetInstance(void) {
 	chibi = Model_Get(&(String)String_FromConst("chibi"));
 	model = *chibi;
 
-	model.Name         = "chibisit";
+	model.name         = "chibisit";
 	model.MakeParts    = nullfunc;
 	model.Draw         = ChibiSitModel_Draw;
 	model.GetTransform = ChibiSitModel_GetTransform;

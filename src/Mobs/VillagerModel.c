@@ -60,8 +60,8 @@ static void VillagerModel_Draw(struct Entity* e) {
 	Model_DrawPart(&torso);
 	Model_DrawPart(&robe);
 
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &nose, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &head, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &nose, true);
 	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &leftLeg,  false);
 	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &rightLeg, false);
 	Model_DrawRotate(45 * MATH_DEG2RAD, 0, 0, &leftArm, false);
@@ -85,6 +85,6 @@ static struct Model model = {
 
 struct Model* VillagerModel_GetInstance(void) {
 	Model_Init(&model);
-	model.CalcHumanAnims = false;
+	model.calcHumanAnims = false;
 	return &model;
 }

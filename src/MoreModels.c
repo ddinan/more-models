@@ -21,7 +21,7 @@ static void ListModelsCommand_Execute(const String* args, int argsCount) {
 	String_AppendConst(&line, "&eLoaded models: &7");
 
 	for (model = Models.Human; model; model = model->next) {
-		int nameLen = String_CalcLen(model->Name, 1000);
+		int nameLen = String_CalcLen(model->name, 1000);
 
 		/* lame word wrapping */
 		if (line.length + (nameLen + 2) > 64) {
@@ -29,7 +29,7 @@ static void ListModelsCommand_Execute(const String* args, int argsCount) {
 			line.length = 0;
 			String_AppendConst(&line, "> &7");
 		}
-		String_AppendConst(&line, model->Name);
+		String_AppendConst(&line, model->name);
 		String_AppendConst(&line, ", ");
 	}
 

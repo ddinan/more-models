@@ -122,7 +122,7 @@ static struct Model model = {
 
 struct Model* CrocModel_GetInstance(void) {
 	Model_Init(&model);
-	model.Bobbing = false;
-	model.CalcHumanAnims = false;
+	model.bobbing = false;
+	model.calcHumanAnims = false;
 	return &model;
 }

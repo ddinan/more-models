@@ -15,10 +15,10 @@ struct Model* TModel_GetInstance(void) {
 	// copy everything from human model
 	model = *Models.Human;
 	
-	model.Name = "t";
+	model.name = "t";
 	model.MakeParts = nullfunc;
 	model.Draw = TModel_Draw;
-	model.Bobbing = false;
-	model.CalcHumanAnims = false;
+	model.bobbing = false;
+	model.calcHumanAnims = false;
 	return &model;
 }

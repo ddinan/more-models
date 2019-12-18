@@ -34,7 +34,7 @@ static void Cape_MakeModel(struct Model* model) {
 	*model = *Models.Human;
 
 	model->initalised = false;
-	model->Name       = "cape";
+	model->name       = "cape";
 	model->defaultTex = &cape_tex;
 	model->vertices   = vertices;
 	model->MakeParts  = CapeModel_MakeParts;
@@ -51,7 +51,7 @@ struct Model* CapeModel_GetInstance(void) {
 static struct Model model_2011;
 struct Model* Cape2011Model_GetInstance(void) {
 	Cape_MakeModel(&model_2011);
-	model_2011.Name       = "cape_2011";
+	model_2011.name       = "cape_2011";
 	model_2011.defaultTex = &cape2011_tex;
 	return &model_2011;
 }
@@ -59,7 +59,7 @@ struct Model* Cape2011Model_GetInstance(void) {
 static struct Model model_2012;
 struct Model* Cape2012Model_GetInstance(void) {
 	Cape_MakeModel(&model_2012);
-	model_2012.Name       = "cape_2012";
+	model_2012.name       = "cape_2012";
 	model_2012.defaultTex = &cape2012_tex;
 	return &model_2012;
 }
@@ -67,7 +67,7 @@ struct Model* Cape2012Model_GetInstance(void) {
 static struct Model model_2013;
 struct Model* Cape2013Model_GetInstance(void) {
 	Cape_MakeModel(&model_2013);
-	model_2013.Name       = "cape_2013";
+	model_2013.name       = "cape_2013";
 	model_2013.defaultTex = &cape2013_tex;
 	return &model_2013;
 }
@@ -75,7 +75,7 @@ struct Model* Cape2013Model_GetInstance(void) {
 static struct Model model_2015;
 struct Model* Cape2015Model_GetInstance(void) {
 	Cape_MakeModel(&model_2015);
-	model_2015.Name       = "cape_2015";
+	model_2015.name       = "cape_2015";
 	model_2015.defaultTex = &cape2015_tex;
 	return &model_2015;
 }
@@ -83,7 +83,7 @@ struct Model* Cape2015Model_GetInstance(void) {
 static struct Model model_2016;
 struct Model* Cape2016Model_GetInstance(void) {
 	Cape_MakeModel(&model_2016);
-	model_2016.Name       = "cape_2016";
+	model_2016.name       = "cape_2016";
 	model_2016.defaultTex = &cape2016_tex;
 	return &model_2016;
 }

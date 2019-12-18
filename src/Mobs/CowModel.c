@@ -64,9 +64,9 @@ static void CowModel_Draw(struct Entity* e) {
 	Model_DrawPart(&udder);
 	Model_DrawRotate(MATH_PI/-2, 0, 0, &torso, false);
 
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head,      true);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &leftHorn,  true);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &rightHorn, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &head,      true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &leftHorn,  true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &rightHorn, true);
 
 	Model_DrawRotate(e->Anim.LeftLegX / 2,  0, 0, &leftLegFront,  false);
 	Model_DrawRotate(e->Anim.RightLegX / 2, 0, 0, &rightLegFront, false);

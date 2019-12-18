@@ -31,7 +31,7 @@
 // use these to cut down on verbose code
 #define _SetSize(x,y,z) e->Size = (Vec3) { (x)/16.0f, (y)/16.0f, (z)/16.0f };
 #define _SetBounds(x1,y1,z1, x2,y2,z2) e->ModelAABB = (struct AABB) { (x1)/16.0f,(y1)/16.0f,(z1)/16.0f, (x2)/16.0f,(y2)/16.0f,(z2)/16.0f };
-#define BOXDESC_REBOUND(desc, x1, y1, z1, x2, y2, z2) (desc).X1=(x1)/16.f;(desc).Y1=(y1)/16.f;(desc).Z1=(z1)/16.f;(desc).X2=(x2)/16.f;(desc).Y2=(y2)/16.f;(desc).Z2=(z2)/16.f
+#define BOXDESC_REBOUND(desc, X1, Y1, Z1, X2, Y2, Z2) (desc).x1=(X1)/16.f;(desc).y1=(Y1)/16.f;(desc).z1=(Z1)/16.f;(desc).x2=(X2)/16.f;(desc).y2=(Y2)/16.f;(desc).z2=(Z2)/16.f
 
 // define these as extern, i.e. their actual definition/value is elsewhere (in MoreModels.c)
 extern struct ModelTex 

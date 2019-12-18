@@ -127,8 +127,8 @@ static struct Model model = {
 
 struct Model* CarModel_GetInstance(void) {
 	Model_Init(&model);
-	model.Bobbing = false;
-	model.GroundFriction = (Vec3) { 1.05f, 1.05f, 1.05f };
-	model.ShadowScale = 2.0f;
+	model.bobbing = false;
+	model.groundFriction = (Vec3) { 1.05f, 1.05f, 1.05f };
+	model.shadowScale = 2.0f;
 	return &model;
 }

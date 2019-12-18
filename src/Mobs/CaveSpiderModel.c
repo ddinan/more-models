@@ -50,12 +50,12 @@ static void CaveSpiderModel_Draw(struct Entity* e) {
 	Models.Cols[FACE_ZMIN] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
 
 	Gfx_SetAlphaBlending(true);
-	Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &eyes, true);
+	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &eyes, true);
 	Model_UpdateVB();
 	Gfx_SetAlphaBlending(false);
 	//Model_ApplyTexture(e);
 
-	/*Model_DrawRotate(-e->HeadX * MATH_DEG2RAD, 0, 0, &head, true);
+	/*Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &head, true);
 	Model_DrawPart(&link);
 	Model_DrawPart(&end);
 
@@ -108,7 +108,7 @@ struct Model* CaveSpiderModel_GetInstance(void) {
 	int i;
 	/* Copy from spider model. */
 	model = *(spider = Model_Get(&(String)String_FromConst("spider")));
-	model.Name = "cavespider";
+	model.name = "cavespider";
 	model.defaultTex = &caveSpider_tex;
 	model.Draw = CaveSpiderModel_Draw;
 	model.MakeParts = CaveSpiderModel_MakeParts;
