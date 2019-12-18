@@ -11,7 +11,7 @@ static void CapeModel_MakeParts(void) {
 }
 
 static void CapeModel_Draw(struct Entity* e) {
-	Gfx_BindTexture(e->Model->defaultTex->TexID);
+	Gfx_BindTexture(e->Model->defaultTex->texID);
 	// can't use Model_ApplyTexture, don't want skin to override cape
 	Models.uScale = 1/64.0f;
 	Models.vScale = 1/32.0f;

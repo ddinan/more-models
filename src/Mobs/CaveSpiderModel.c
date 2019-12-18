@@ -44,7 +44,7 @@ static void CaveSpiderModel_MakeParts(void) {
 
 static void CaveSpiderModel_Draw(struct Entity* e) {
 	spider->Draw(e);
-	Gfx_BindTexture(spiderEyes_tex.TexID);
+	Gfx_BindTexture(spiderEyes_tex.texID);
 	Models.Cols[FACE_XMIN] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
 	Models.Cols[FACE_XMAX] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
 	Models.Cols[FACE_ZMIN] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);

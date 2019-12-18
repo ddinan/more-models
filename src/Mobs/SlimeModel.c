@@ -64,7 +64,7 @@ static struct Model model = {
 
 struct Model* SlimeModel_GetInstance(void) {
 	Model_Init(&model);
-	model.MaxScale = 32;
+	model.maxScale = 32;
 	// model.GetTransform = SlimeModel_GetTransform;
 	return &model;
 }

@@ -27,17 +27,17 @@ static void MaleModel_MakeParts(void) {
 	BoxDesc_BuildBox(&leftLowerLeg, &leftLowerLegDesc);
 	BoxDesc_BuildBox(&rightLowerLeg, &rightLowerLegDesc);
 
-	headDesc.TexY = 16; BOXDESC_REBOUND(headDesc, -4.5f*0.875f,(23.5f-24)*0.875f+24,-4.5f*0.875f, 4.5f*0.875f, (32.5f-24)*0.875f+24, 4.5f*0.875f);
+	headDesc.texY = 16; BOXDESC_REBOUND(headDesc, -4.5f*0.875f,(23.5f-24)*0.875f+24,-4.5f*0.875f, 4.5f*0.875f, (32.5f-24)*0.875f+24, 4.5f*0.875f);
 
-	torsoDesc.TexY		   = 48; BOXDESC_REBOUND(torsoDesc,			-4.5f,11.5f,-2.5f,	4.5f, 24.5f, 2.5f);
-	leftUpperArmDesc.TexX  = 80; BOXDESC_REBOUND(leftUpperArmDesc,	-8.5f,17.5f,-2.5f, -3.5f, 24.5f, 2.5f);
-	rightUpperArmDesc.TexX = 64; BOXDESC_REBOUND(rightUpperArmDesc,	 3.5f,17.5f,-2.5f,	8.5f, 24.5f, 2.5f);
-	leftLowerArmDesc.TexX  = 80; BOXDESC_REBOUND(leftLowerArmDesc,	-8.5f,11.5f,-2.5f, -3.5f, 18.5f, 2.5f);
-	rightLowerArmDesc.TexX = 64; BOXDESC_REBOUND(rightLowerArmDesc,	 3.5f,11.5f,-2.5f,	8.5f, 18.5f, 2.5f);
-	leftUpperLegDesc.TexX  = 80; BOXDESC_REBOUND(leftUpperLegDesc,	-4.5f, 5.5f,-2.5f,	0.5f, 12.5f, 2.5f);
-	rightUpperLegDesc.TexX = 64; BOXDESC_REBOUND(rightUpperLegDesc,	-0.5f, 5.5f,-2.5f,	4.5f, 12.5f, 2.5f);
-	leftLowerLegDesc.TexX  = 80; BOXDESC_REBOUND(leftLowerLegDesc,	-4.5f,-0.5f,-2.5f,	0.5f,  6.5f, 2.5f);
-	rightLowerLegDesc.TexX = 64; BOXDESC_REBOUND(rightLowerLegDesc,	-0.5f,-0.5f,-2.5f,	4.5f,  6.5f, 2.5f);
+	torsoDesc.texY		   = 48; BOXDESC_REBOUND(torsoDesc,			-4.5f,11.5f,-2.5f,	4.5f, 24.5f, 2.5f);
+	leftUpperArmDesc.texX  = 80; BOXDESC_REBOUND(leftUpperArmDesc,	-8.5f,17.5f,-2.5f, -3.5f, 24.5f, 2.5f);
+	rightUpperArmDesc.texX = 64; BOXDESC_REBOUND(rightUpperArmDesc,	 3.5f,17.5f,-2.5f,	8.5f, 24.5f, 2.5f);
+	leftLowerArmDesc.texX  = 80; BOXDESC_REBOUND(leftLowerArmDesc,	-8.5f,11.5f,-2.5f, -3.5f, 18.5f, 2.5f);
+	rightLowerArmDesc.texX = 64; BOXDESC_REBOUND(rightLowerArmDesc,	 3.5f,11.5f,-2.5f,	8.5f, 18.5f, 2.5f);
+	leftUpperLegDesc.texX  = 80; BOXDESC_REBOUND(leftUpperLegDesc,	-4.5f, 5.5f,-2.5f,	0.5f, 12.5f, 2.5f);
+	rightUpperLegDesc.texX = 64; BOXDESC_REBOUND(rightUpperLegDesc,	-0.5f, 5.5f,-2.5f,	4.5f, 12.5f, 2.5f);
+	leftLowerLegDesc.texX  = 80; BOXDESC_REBOUND(leftLowerLegDesc,	-4.5f,-0.5f,-2.5f,	0.5f,  6.5f, 2.5f);
+	rightLowerLegDesc.texX = 64; BOXDESC_REBOUND(rightLowerLegDesc,	-0.5f,-0.5f,-2.5f,	4.5f,  6.5f, 2.5f);
 
 	BoxDesc_BuildBox(&hat, &headDesc);
 	BoxDesc_BuildBox(&jacket, &torsoDesc);
@@ -131,7 +131,7 @@ static void MaleModel_Draw(struct Entity* e) {
 	Model_DrawRotate(e->Anim.RightArmX, 0, e->Anim.RightArmZ, &rightUpperSleeve, false);
 	Model_UpdateVB();
 
-	ScaleAt(e, 0, 0.75f, 0, breath, breath, breath);
+	ScaleAt(e, 0, 0.75f, 0, breath);
 
 	Model_DrawPart(&torso);
 	Model_DrawPart(&jacket);
