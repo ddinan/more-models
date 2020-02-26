@@ -24,7 +24,7 @@ static void SlimeModel_MakeParts(void) {
 		BoxDesc_Box(-1, 2, -3.25f, 0, 3, -2.25f)
 	});
 }
-static void SlimeModel_Draw(struct Entity* e) {
+static void SlimeModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 	/* This currently causes anything behind slime to be culled (except entities). */
 	Gfx_SetAlphaBlending(true);
@@ -40,10 +40,10 @@ static void SlimeModel_Draw(struct Entity* e) {
 	Gfx_SetAlphaBlending(false);
 }	
 
-static float SlimeModel_GetNameY(struct Entity* e) { return 8 / 16.0f; }
-static float SlimeModel_GetEyeY(struct Entity* e) { return 6 / 16.0f; }
-static void SlimeModel_GetSize(struct Entity* e)   { _SetSize(14, 14, 14); }
-static void SlimeModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float SlimeModel_GetNameY(struct Entity *e) { return 8 / 16.0f; }
+static float SlimeModel_GetEyeY(struct Entity *e) { return 6 / 16.0f; }
+static void SlimeModel_GetSize(struct Entity *e)   { _SetSize(14, 14, 14); }
+static void SlimeModel_GetBounds(struct Entity *e) { _SetBounds(-5,0,14, 5,16,9); }
 
 /*static void SlimeModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
 	static struct Matrix mat;

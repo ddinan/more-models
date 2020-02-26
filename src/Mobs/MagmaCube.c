@@ -15,10 +15,10 @@ static void MagmaCubeModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }
 
-static float MagmaCubeModel_GetNameY(struct Entity* e) { return 8 / 16.0f; }
-static float MagmaCubeModel_GetEyeY(struct Entity* e) { return 6 / 16.0f; }
-static void MagmaCubeModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-static void MagmaCubeModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float MagmaCubeModel_GetNameY(struct Entity *e) { return 8 / 16.0f; }
+static float MagmaCubeModel_GetEyeY(struct Entity *e) { return 6 / 16.0f; }
+static void MagmaCubeModel_GetSize(struct Entity *e)   { _SetSize(14,14,14); }
+static void MagmaCubeModel_GetBounds(struct Entity *e) { _SetBounds(-5,0,14, 5,16,9); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES];
 static struct Model model = { 

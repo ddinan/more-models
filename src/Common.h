@@ -14,6 +14,7 @@
 // You must compile ClassiCube in both x86 and x64 configurations to generate the .lib file.
 #include "Constants.h"
 #include "GameStructs.h"
+#include "Block.h"
 #include "Chat.h"
 #include "Model.h"
 #include "Graphics.h"
@@ -58,6 +59,7 @@ struct Model* ChibiSitModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
 struct Model* CrocModel_GetInstance(void);
 struct Model* DabModel_GetInstance(void);
+struct Model* HoldModel_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
 struct Model* MaleModel_GetInstance(void);

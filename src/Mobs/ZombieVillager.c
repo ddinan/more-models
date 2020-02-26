@@ -50,7 +50,7 @@ static void ZombieVillagerModel_MakeParts(void) {
 	});
 }
 
-static void ZombieVillagerModel_Draw(struct Entity* e) {
+static void ZombieVillagerModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 
 	Model_DrawPart(&torso);
@@ -65,10 +65,10 @@ static void ZombieVillagerModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-static float ZombieVillagerModel_GetNameY(struct Entity* e) { return 34 / 16.0f; }
-static float ZombieVillagerModel_GetEyeY(struct Entity* e) { return 26 / 16.0f; }
-static void ZombieVillagerModel_GetSize(struct Entity* e)   { _SetSize(8.6f,28.1f,8.6f); }
-static void ZombieVillagerModel_GetBounds(struct Entity* e) { _SetBounds(-4,0,-4, 4,32,4); }
+static float ZombieVillagerModel_GetNameY(struct Entity *e) { return 34 / 16.0f; }
+static float ZombieVillagerModel_GetEyeY(struct Entity *e) { return 26 / 16.0f; }
+static void ZombieVillagerModel_GetSize(struct Entity *e)   { _SetSize(8.6f,28.1f,8.6f); }
+static void ZombieVillagerModel_GetBounds(struct Entity *e) { _SetBounds(-4,0,-4, 4,32,4); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 8];
 static struct Model model = { 

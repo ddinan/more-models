@@ -53,19 +53,19 @@ static void MaleModel_MakeParts(void) {
 	BoxDesc_BuildBox(&cape, &(const struct BoxDesc){ BoxDesc_Tex(24, 40), BoxDesc_Box(-6, 1, 2, 6, 24, 3), BoxDesc_Rot(0, 23, 3) });
 }
 
-static float MaleModel_GetNameY(struct Entity* e) { e; return 2.075f; }
-static float MaleModel_GetEyeY(struct Entity* e) { e; return 1.625f; }
+static float MaleModel_GetNameY(struct Entity *e) { e; return 2.075f; }
+static float MaleModel_GetEyeY(struct Entity *e) { e; return 1.625f; }
 
-static void MaleModel_GetSize(struct Entity* e) { _SetSize(8.6f, 28.1f, 8.6f); }
-static void MaleModel_GetBounds(struct Entity* e) { _SetBounds(-4, 0, -4, 4, 32, 4); }
+static void MaleModel_GetSize(struct Entity *e) { _SetSize(8.6f, 28.1f, 8.6f); }
+static void MaleModel_GetBounds(struct Entity *e) { _SetBounds(-4, 0, -4, 4, 32, 4); }
 
-static void MaleModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
+static void MaleModel_GetTransform(struct Entity *e, Vec3 pos, struct Matrix *m) {
 	static struct Matrix mat;
 	Entity_GetTransform(e, pos, e->ModelScale, m);
 	Matrix_RotateX(&mat, MATH_PI / -18 * e->Anim.Swing);
 	Matrix_Mul(m, &mat, m);
 }
-static void Translate(struct Entity* e, float dispX, float dispY, float dispZ) {
+static void Translate(struct Entity *e, float dispX, float dispY, float dispZ) {
 	Vec3 pos = e->Position;
 	struct Matrix matrix, temp;
 	pos.Y += e->Anim.BobbingModel;
@@ -76,7 +76,7 @@ static void Translate(struct Entity* e, float dispX, float dispY, float dispZ) {
 
 	Gfx_LoadMatrix(MATRIX_VIEW, &matrix);
 }
-static void ScaleAt(struct Entity* e, float x, float y, float z, float scale) {
+static void ScaleAt(struct Entity *e, float x, float y, float z, float scale) {
 	Vec3 pos = e->Position;
 	struct Matrix matrix, temp;
 
@@ -92,7 +92,7 @@ static void ScaleAt(struct Entity* e, float x, float y, float z, float scale) {
 
 	Gfx_LoadMatrix(MATRIX_VIEW, &matrix);
 }
-static void MaleModel_Draw(struct Entity* e) {
+static void MaleModel_Draw(struct Entity *e) {
 	Models.Rotation = ROTATE_ORDER_XZY;
 
 	float lowerRightLegRot = ((float)Math_Cos(e->Anim.WalkTime + MATH_PI/2) + 1) / 2 * -e->Anim.Swing * MATH_PI/2 + e->Anim.RightLegX;
@@ -161,7 +161,7 @@ static void MaleModel_Draw(struct Entity* e) {
 	Model_DrawRotate(lowerRightLegRot, 0, 0, &rightLowerPant, false);
 	Model_UpdateVB();
 }
-static void MaleModel_DrawArm(struct Entity* e) {
+static void MaleModel_DrawArm(struct Entity *e) {
 	e;
 	Models.uScale = 1/128.0f;
 	Models.vScale = 1/64.0f;

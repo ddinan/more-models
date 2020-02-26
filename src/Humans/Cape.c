@@ -10,7 +10,7 @@ static void CapeModel_MakeParts(void) {
 	});
 }
 
-static void CapeModel_Draw(struct Entity* e) {
+static void CapeModel_Draw(struct Entity *e) {
 	Gfx_BindTexture(e->Model->defaultTex->texID);
 	// can't use Model_ApplyTexture, don't want skin to override cape
 	Models.uScale = 1/64.0f;
@@ -23,13 +23,13 @@ static void CapeModel_Draw(struct Entity* e) {
 	Models.Human->Draw(e);
 }
 
-static void CapeModel_DrawArm(struct Entity* e) {
+static void CapeModel_DrawArm(struct Entity *e) {
 	Model_SetupState(Models.Human, e);
 	Models.Human->DrawArm(e);
 }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES];
-static void Cape_MakeModel(struct Model* model) {
+static void Cape_MakeModel(struct Model *model) {
 	// copy everything from human model
 	*model = *Models.Human;
 

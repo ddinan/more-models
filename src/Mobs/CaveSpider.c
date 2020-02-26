@@ -1,5 +1,5 @@
 #include "Common.h"
-static struct Model* spider;
+static struct Model *spider;
 static struct Model model;
 static struct ModelPart eyes;
 
@@ -42,12 +42,12 @@ static void CaveSpiderModel_MakeParts(void) {
 #define quarterPi (MATH_PI / 4.0f)
 #define eighthPi  (MATH_PI / 8.0f)
 
-static void CaveSpiderModel_Draw(struct Entity* e) {
+static void CaveSpiderModel_Draw(struct Entity *e) {
 	spider->Draw(e);
 	Gfx_BindTexture(spiderEyes_tex.texID);
-	Models.Cols[FACE_XMIN] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
-	Models.Cols[FACE_XMAX] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
-	Models.Cols[FACE_ZMIN] = (PackedCol)PACKEDCOL_CONST(0xff, 0xff, 0xff, 0x10);
+	Models.Cols[FACE_XMIN] = (PackedCol)PackedCol_Make(0xff, 0xff, 0xff, 0x10);
+	Models.Cols[FACE_XMAX] = (PackedCol)PackedCol_Make(0xff, 0xff, 0xff, 0x10);
+	Models.Cols[FACE_ZMIN] = (PackedCol)PackedCol_Make(0xff, 0xff, 0xff, 0x10);
 
 	Gfx_SetAlphaBlending(true);
 	Model_DrawRotate(-e->Pitch * MATH_DEG2RAD, 0, 0, &eyes, true);
@@ -85,19 +85,19 @@ static void CaveSpiderModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-11, 5
 */
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 8];
 
-static void CaveSpiderModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
+static void CaveSpiderModel_GetTransform(struct Entity *e, Vec3 pos, struct Matrix *m) {
 	static Vec3 vec;	vec = e->ModelScale;
 	Vec3_Mul1(&vec, &vec, 0.75f);
 	Entity_GetTransform(e, pos, vec, m);
 	
 }
-static float CaveSpiderModel_GetEyeY(struct Entity* e) { return spider->GetEyeY(e) * 0.75f; }
+static float CaveSpiderModel_GetEyeY(struct Entity *e) { return spider->GetEyeY(e) * 0.75f; }
 
-static void CaveSpiderModel_GetSize(struct Entity* e) {
+static void CaveSpiderModel_GetSize(struct Entity *e) {
 	spider->GetCollisionSize(e); Vec3_Mul1(&e->Size, &e->Size, 0.75f);
 }
 
-static void CaveSpiderModel_GetBounds(struct Entity* e) {
+static void CaveSpiderModel_GetBounds(struct Entity *e) {
 	spider->GetPickingBounds(e);
 	e->ModelAABB.Min.X *= 0.875f; e->ModelAABB.Min.Z *= 0.875f;
 	e->ModelAABB.Max.X *= 0.875f; e->ModelAABB.Max.Z *= 0.775f;

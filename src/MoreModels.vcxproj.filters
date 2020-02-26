@@ -27,49 +27,10 @@
     <ClCompile Include="MoreModels.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Props\CarModel.c">
-      <Filter>Source Files\Props</Filter>
-    </ClCompile>
-    <ClCompile Include="Props\ChairModel.c">
-      <Filter>Source Files\Props</Filter>
-    </ClCompile>
-    <ClCompile Include="Props\TableModel.c">
-      <Filter>Source Files\Props</Filter>
-    </ClCompile>
-    <ClCompile Include="Props\TVModel.c">
-      <Filter>Source Files\Props</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\CaveSpiderModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Humans\ChibiSitModel.c">
-      <Filter>Source Files\Humans</Filter>
-    </ClCompile>
-    <ClCompile Include="Humans\TModel.c">
-      <Filter>Source Files\Humans</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\CowModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\EndermanModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\MagmaCubeModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
     <ClCompile Include="Mobs\Skeletons.c">
       <Filter>Source Files\Mobs</Filter>
     </ClCompile>
-    <ClCompile Include="Mobs\SlimeModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\VillagerModel.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
     <ClCompile Include="Mobs\Zombies.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\ZombieVillagerModel.c">
       <Filter>Source Files\Mobs</Filter>
     </ClCompile>
     <ClCompile Include="Props\Printer.c">
@@ -78,14 +39,59 @@
     <ClCompile Include="Humans\Male.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
-    <ClCompile Include="Humans\CapeModel.c">
-      <Filter>Source Files\Humans</Filter>
-    </ClCompile>
-    <ClCompile Include="Humans\Holding.c">
-      <Filter>Source Files\Humans</Filter>
-    </ClCompile>
     <ClCompile Include="Mobs\Croc.c">
       <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Dab.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Hold.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\ChibiSit.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Cape.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\T.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\CaveSpider.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Cow.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Enderman.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\MagmaCube.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Slime.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Villager.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\ZombieVillager.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Props\Car.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Props\Chair.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Props\Table.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Props\TV.c">
+      <Filter>Source Files\Props</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Fly.c">
+      <Filter>Source Files\Humans</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

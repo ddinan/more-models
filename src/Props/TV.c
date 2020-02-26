@@ -18,8 +18,8 @@ static void TVModel_MakeParts(void) {
 	});
 }
 
-static void TVModel_Draw(struct Entity* entity) {
-	Model_ApplyTexture(entity);
+static void TVModel_Draw(struct Entity *e) {
+	Model_ApplyTexture(e);
 	Models.uScale = 1/128.0f; Models.vScale = 1/128.0f;
 
 	Model_DrawPart(&screen);
@@ -29,10 +29,10 @@ static void TVModel_Draw(struct Entity* entity) {
 	Model_UpdateVB();
 }
 
-static float TVModel_GetNameY(struct Entity* e) { return 2.25f; }
-static float TVModel_GetEyeY(struct Entity* e) { return 1.50f; }
-static void TVModel_GetSize(struct Entity* e)   { _SetSize(14,14,14); }
-static void TVModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,14, 5,16,9); }
+static float TVModel_GetNameY(struct Entity *e) { return 2.25f; }
+static float TVModel_GetEyeY(struct Entity *e) { return 1.50f; }
+static void TVModel_GetSize(struct Entity *e)   { _SetSize(14,14,14); }
+static void TVModel_GetBounds(struct Entity *e) { _SetBounds(-5,0,14, 5,16,9); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 5];
 static struct Model model = {

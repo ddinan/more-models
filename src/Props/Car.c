@@ -87,7 +87,7 @@ static void CarModel_MakeParts(void) {
 	});
 }
 
-static void CarModel_Draw(struct Entity* e) {
+static void CarModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 	Models.uScale = 1/256.0f;
 	Models.vScale = 1/128.0f;
@@ -112,10 +112,10 @@ static void CarModel_Draw(struct Entity* e) {
 	Model_UpdateVB();
 }	
 
-static float CarModel_GetNameY(struct Entity* e) { e; return 2.375f; }
-static float CarModel_GetEyeY(struct Entity* e) { e; return 1.750f; }
-static void CarModel_GetSize(struct Entity* e) { _SetSize(48, 34, 48); }
-static void CarModel_GetBounds(struct Entity* e) { _SetBounds(-22, 0, -40, 22, 36, 40); }
+static float CarModel_GetNameY(struct Entity *e) { e; return 2.375f; }
+static float CarModel_GetEyeY(struct Entity *e) { e; return 1.750f; }
+static void CarModel_GetSize(struct Entity *e) { _SetSize(48, 34, 48); }
+static void CarModel_GetBounds(struct Entity *e) { _SetBounds(-22, 0, -40, 22, 36, 40); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 15];
 static struct Model model = { 

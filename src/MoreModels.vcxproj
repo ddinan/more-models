@@ -151,7 +151,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <AdditionalIncludeDirectories>$(SolutionDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -161,32 +160,32 @@
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <ShowProgress>LinkVerbose</ShowProgress>
       <MinimumRequiredVersion />
-      <AdditionalDependencies>C:\Users\dzdez\Desktop\CC\ClassiCube\src\x64\Debug\ClassiCube.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Humans\CapeModel.c" />
-    <ClCompile Include="Humans\ChibiSitModel.c" />
+    <ClCompile Include="Humans\Cape.c" />
+    <ClCompile Include="Humans\ChibiSit.c" />
     <ClCompile Include="Humans\Dab.c" />
-    <ClCompile Include="Humans\Holding.c" />
+    <ClCompile Include="Humans\Fly.c" />
+    <ClCompile Include="Humans\Hold.c" />
     <ClCompile Include="Humans\Male.c" />
-    <ClCompile Include="Humans\TModel.c" />
-    <ClCompile Include="Mobs\CaveSpiderModel.c" />
-    <ClCompile Include="Mobs\CowModel.c" />
+    <ClCompile Include="Humans\T.c" />
+    <ClCompile Include="Mobs\CaveSpider.c" />
+    <ClCompile Include="Mobs\Cow.c" />
     <ClCompile Include="Mobs\Croc.c" />
-    <ClCompile Include="Mobs\EndermanModel.c" />
-    <ClCompile Include="Mobs\MagmaCubeModel.c" />
+    <ClCompile Include="Mobs\Enderman.c" />
+    <ClCompile Include="Mobs\MagmaCube.c" />
     <ClCompile Include="Mobs\Skeletons.c" />
-    <ClCompile Include="Mobs\SlimeModel.c" />
-    <ClCompile Include="Mobs\VillagerModel.c" />
+    <ClCompile Include="Mobs\Slime.c" />
+    <ClCompile Include="Mobs\Villager.c" />
     <ClCompile Include="Mobs\Zombies.c" />
-    <ClCompile Include="Mobs\ZombieVillagerModel.c" />
+    <ClCompile Include="Mobs\ZombieVillager.c" />
     <ClCompile Include="MoreModels.c" />
-    <ClCompile Include="Props\CarModel.c" />
-    <ClCompile Include="Props\ChairModel.c" />
+    <ClCompile Include="Props\Car.c" />
+    <ClCompile Include="Props\Chair.c" />
     <ClCompile Include="Props\Printer.c" />
-    <ClCompile Include="Props\TableModel.c" />
-    <ClCompile Include="Props\TVModel.c" />
+    <ClCompile Include="Props\Table.c" />
+    <ClCompile Include="Props\TV.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />

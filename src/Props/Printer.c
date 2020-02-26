@@ -54,13 +54,13 @@ static void PrinterModel_MakeParts(void) {
 		BoxDesc_Rot(0, 4, 4)
 	});
 }
-static float PrinterModel_GetEyeY(struct Entity* e) { e; return 0.25f; }
-static float PrinterModel_GetNameY(struct Entity* e) { e; return 0.75f; }
+static float PrinterModel_GetEyeY(struct Entity *e) { e; return 0.25f; }
+static float PrinterModel_GetNameY(struct Entity *e) { e; return 0.75f; }
 
-static void PrinterModel_GetSize(struct Entity* e) { e; _SetSize(15, 12, 15); }
-static void PrinterModel_GetBounds(struct Entity* e) { e; _SetBounds(-8, 0, -8, 8, 8, 8); }
+static void PrinterModel_GetSize(struct Entity *e) { e; _SetSize(15, 12, 15); }
+static void PrinterModel_GetBounds(struct Entity *e) { e; _SetBounds(-8, 0, -8, 8, 8, 8); }
 
-void PrinterModel_Draw(struct Entity* e) {
+void PrinterModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 	Models.vScale = 1/64.0f;
 

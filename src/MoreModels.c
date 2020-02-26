@@ -2,9 +2,7 @@
 /*
   TO DO:
 	Add the rest of the models.
-	Double-check if slime and magmacube textures are oriented properly.
 	Check if villager and zombievillager are done properly.
-	Check cave spider's scale
 	Add more boxes to stray
 
 	Slime and magmacube require more boxes.
@@ -86,12 +84,12 @@ static void MoreModels_Init(void) {
 	Model_Register(ChibiSitModel_GetInstance());
 	Model_Register(CowModel_GetInstance());
 	Model_Register(CrocModel_GetInstance());
-  Model_Register(DabModel_GetInstance());
-  //Model_Register(EndermanModel_GetInstance());
+	Model_Register(DabModel_GetInstance());
+	//Model_Register(EndermanModel_GetInstance());
 	//game.ModelCache.Register("female", "char.png", new FemaleModel(game));
 	//game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
 	//game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
-  //Model_Register(HoldingModel_GetInstance());
+	Model_Register(HoldModel_GetInstance());
 	Model_Register(HuskModel_GetInstance());
 	Model_Register(MaleModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
@@ -112,13 +110,8 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_P3FT2FC4B, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + More Models v1.2.4");
+	String_AppendConst(&Server.AppName, " + MM v1.2.4");
 	Commands_Register(&ListModelsCommand);
-}
-
-static void MoreModels_OnNewMap(void) {
-	// Increase holding model size limit if inf id is supported
-	// HoldingModel_ResetMaxScale();
 }
 
 /* === API IMPLEMENTATION === */
@@ -148,7 +141,7 @@ struct ModelTex
 	cape2016_tex       = { "cape_2016.png"},
 	car_tex            = { "car.png" },
 	caveSpider_tex     = { "cave_spider.png" },
-  char_tex           = { "char.png" },
+	char_tex           = { "char.png" },
 	cow_tex            = { "cow.png" },
 	croc_tex           = { "croc.png" },
 	enderman_tex       = { "enderman.png" },

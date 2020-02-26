@@ -18,8 +18,8 @@ static void ChairModel_MakeParts(void) {
 	BoxDesc_BuildBox(&rightLegBack,  &box_rBack);
 }
 
-static void ChairModel_Draw(struct Entity* entity) {
-	Model_ApplyTexture(entity);
+static void ChairModel_Draw(struct Entity *e) {
+	Model_ApplyTexture(e);
 	Models.uScale = 1/16.0f; Models.vScale = 1/16.0f;
 
 	Model_DrawPart(&base);
@@ -32,10 +32,10 @@ static void ChairModel_Draw(struct Entity* entity) {
 	Model_UpdateVB();
 }
 
-static float ChairModel_GetNameY(struct Entity* e) { return 1.5f; }
-static float ChairModel_GetEyeY(struct Entity* e) { return 0.875f; }
-static void ChairModel_GetSize(struct Entity* e)   { _SetSize(9,20,9); }
-static void ChairModel_GetBounds(struct Entity* e) { _SetBounds(-5.5f,0,-5.5f, 5.5f,22,5.5f); }
+static float ChairModel_GetNameY(struct Entity *e) { return 1.5f; }
+static float ChairModel_GetEyeY(struct Entity *e) { return 0.875f; }
+static void ChairModel_GetSize(struct Entity *e)   { _SetSize(9,20,9); }
+static void ChairModel_GetBounds(struct Entity *e) { _SetBounds(-5.5f,0,-5.5f, 5.5f,22,5.5f); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 6];
 static struct Model model = {
