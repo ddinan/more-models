@@ -72,12 +72,6 @@
     <ClCompile Include="Mobs\Slime.c">
       <Filter>Source Files\Mobs</Filter>
     </ClCompile>
-    <ClCompile Include="Mobs\Villager.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\ZombieVillager.c">
-      <Filter>Source Files\Mobs</Filter>
-    </ClCompile>
     <ClCompile Include="Props\Car.c">
       <Filter>Source Files\Props</Filter>
     </ClCompile>
@@ -92,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="Humans\Fly.c">
       <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Villagers.c">
+      <Filter>Source Files\Mobs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

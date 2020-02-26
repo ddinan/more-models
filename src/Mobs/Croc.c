@@ -73,6 +73,11 @@ static void CrocModel_MakeParts(void) {
 	});
 }
 
+static float CrocModel_GetNameY(struct Entity *e) { e; return 0.5f; }
+static float CrocModel_GetEyeY(struct Entity *e) { e; return 0.25f; }
+static void CrocModel_GetSize(struct Entity *e) { _SetSize(10, 5, 10); }
+static void CrocModel_GetBounds(struct Entity *e) { _SetBounds(-8, 0, -19, 8, 5, 22); }
+
 static void CrocModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 
@@ -106,11 +111,6 @@ static void CrocModel_Draw(struct Entity *e) {
 
 	Model_UpdateVB();
 }
-
-static float CrocModel_GetNameY(struct Entity *e) { return 0.5f; }
-static float CrocModel_GetEyeY(struct Entity *e) { return 0.25f; }
-static void CrocModel_GetSize(struct Entity *e) { _SetSize(31, 5, 31); }
-static void CrocModel_GetBounds(struct Entity *e) { _SetBounds(-8, 0, -19, 8, 5, 22); }
 
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 10];
 static struct Model model = {

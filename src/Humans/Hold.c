@@ -1,6 +1,6 @@
 #include "Common.h"
 
-static struct Model *block;
+static struct Model *blockModel;
 
 static void RecalcProperties(struct Entity *e) {
 	BlockID block = (BlockID)((e->ModelScale.X - 0.9999f) * 1000);
@@ -18,7 +18,7 @@ static void DrawBlockTransform(struct Entity *e, float dispX, float dispY, float
 	static Vec3 pos;
 	static struct Matrix m, temp;
 
-	if (block) {
+	if (blockModel) {
 		pos = e->Position;
 		pos.Y += e->Anim.BobbingModel;
 
@@ -29,9 +29,9 @@ static void DrawBlockTransform(struct Entity *e, float dispX, float dispY, float
 		Matrix_Scale(&temp, scale, scale, scale);
 		Matrix_Mul(&m, &temp, &m);
 
-		Model_SetupState(block, e);
+		Model_SetupState(blockModel, e);
 		Gfx_LoadMatrix(MATRIX_VIEW, &m);
-		block->Draw(e);
+		blockModel->Draw(e);
 	}
 }
 
@@ -65,6 +65,6 @@ struct Model* HoldModel_GetInstance(void) {
 	model.name = "hold";
 	model.MakeParts = nullfunc;
 	model.Draw = HoldModel_Draw;
-	block = Model_Get(&(String)String_FromConst("block"));
+	blockModel = Model_Get(&(String)String_FromConst("block"));
 	return &model;
 }

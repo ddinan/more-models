@@ -9,32 +9,19 @@
 #define CC_VAR
 #endif
 
-// The proper way would be to add 'additional include directories' and 'additional libs' in Visual Studio Project properties
-// Or, you can just be lazy and change these paths for your own system. 
-// You must compile ClassiCube in both x86 and x64 configurations to generate the .lib file.
-#include "Constants.h"
-#include "GameStructs.h"
 #include "Block.h"
-#include "Chat.h"
-#include "Model.h"
-#include "Graphics.h"
 #include "Entity.h"
 #include "ExtMath.h"
-#include "Server.h"
-
-// Set the path to the .lib file here or in project settings.
-#ifdef _WIN64
-#pragma comment(lib, "x64/Debug/ClassiCube.lib")
-#else
-#pragma comment(lib, "x86/Debug/ClassiCube.lib")
-#endif
+#include "Game.h"
+#include "Graphics.h"
+#include "Model.h"
 
 // use these to cut down on verbose code
 #define _SetSize(x,y,z) e->Size = (Vec3) { (x)/16.0f, (y)/16.0f, (z)/16.0f };
 #define _SetBounds(x1,y1,z1, x2,y2,z2) e->ModelAABB = (struct AABB) { (x1)/16.0f,(y1)/16.0f,(z1)/16.0f, (x2)/16.0f,(y2)/16.0f,(z2)/16.0f };
 #define BOXDESC_REBOUND(desc, X1, Y1, Z1, X2, Y2, Z2) (desc).x1=(X1)/16.f;(desc).y1=(Y1)/16.f;(desc).z1=(Z1)/16.f;(desc).x2=(X2)/16.f;(desc).y2=(Y2)/16.f;(desc).z2=(Z2)/16.f
 
-// define these as extern, i.e. their actual definition/value is elsewhere (in MoreModels.c)
+/* All new textures */
 extern struct ModelTex 
 	cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,
 	car_tex, caveSpider_tex, char_tex, cow_tex, croc_tex,
@@ -45,7 +32,7 @@ extern struct ModelTex
 	witherSkeleton_tex, wood_tex,
 	zombiePigman_tex, zombieVillager_tex;
 
-// define models
+/* All new models */
 struct Model* CapeModel_GetInstance(void);
 struct Model* Cape2011Model_GetInstance(void);
 struct Model* Cape2012Model_GetInstance(void);
@@ -59,6 +46,8 @@ struct Model* ChibiSitModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
 struct Model* CrocModel_GetInstance(void);
 struct Model* DabModel_GetInstance(void);
+struct Model* EndermanModel_GetInstance(void);
+struct Model* FlyModel_GetInstance(void);
 struct Model* HoldModel_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
@@ -73,5 +62,6 @@ struct Model* VillagerModel_GetInstance(void);
 struct Model* WitherSkeletonModel_GetInstance(void);
 struct Model* ZombiePigmanModel_GetInstance(void);
 struct Model* ZombieVillagerModel_GetInstance(void);
+
 /* Just your average general-purpose empty function. */
 void nullfunc(void);

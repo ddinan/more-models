@@ -1,18 +1,20 @@
 #include "Common.h"
+#include "Chat.h"
+#include "Server.h"
+
 /*
   TO DO:
 	Add the rest of the models.
-	Check if villager and zombievillager are done properly.
 	Add more boxes to stray
 
-	Slime and magmacube require more boxes.
+	Magmacube needs more boxes.
 */
 
 /* === MODELS LIST COMMAND === */
-int _fltused;
+
 static void ListModelsCommand_Execute(const String* args, int argsCount) {
 	args; argsCount;
-	char lineBuffer[64 + 4];
+	char lineBuffer[STRING_SIZE + 4];
 	struct Model* model;
 
 	String line = String_FromArray(lineBuffer);
@@ -85,9 +87,9 @@ static void MoreModels_Init(void) {
 	Model_Register(CowModel_GetInstance());
 	Model_Register(CrocModel_GetInstance());
 	Model_Register(DabModel_GetInstance());
-	//Model_Register(EndermanModel_GetInstance());
+	Model_Register(EndermanModel_GetInstance());
 	//game.ModelCache.Register("female", "char.png", new FemaleModel(game));
-	//game.ModelCache.Register("flying", "char.png", new FlyingModel(game));
+	Model_Register(FlyModel_GetInstance());
 	//game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
 	Model_Register(HoldModel_GetInstance());
 	Model_Register(HuskModel_GetInstance());
@@ -110,11 +112,12 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_P3FT2FC4B, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + MM v1.2.4");
+	String_AppendConst(&Server.AppName, " + MM 1.2.4");
 	Commands_Register(&ListModelsCommand);
 }
 
 /* === API IMPLEMENTATION === */
+
 #ifdef CC_BUILD_WIN
 // special attribute to get symbols exported with Visual Studio
 #define PLUGIN_EXPORT __declspec(dllexport)
@@ -122,16 +125,12 @@ static void MoreModels_Init(void) {
 // public symbols already exported when compiling shared lib with GCC
 #define PLUGIN_EXPORT
 #endif
-PLUGIN_EXPORT int Plugin_ApiVersion = GAME_API_VER;
 
-PLUGIN_EXPORT struct IGameComponent Plugin_Component = {
-	MoreModels_Init,     /* Init */
-	NULL,                /* Free */
-	NULL,                /* Reset */
-	//MoreModels_OnNewMap, /* OnNewMap */
-};
+PLUGIN_EXPORT int Plugin_ApiVersion = GAME_API_VER;
+PLUGIN_EXPORT struct IGameComponent Plugin_Component = { MoreModels_Init };
 
 /* === TEXTURES === */
+
 struct ModelTex
 	cape_tex           = { "cape.png"},
 	cape2011_tex       = { "cape_2011.png"},
@@ -160,3 +159,5 @@ struct ModelTex
 	zombieVillager_tex = { "zombie_villager.png" };
 
 void nullfunc(void) { }
+
+int _fltused;

@@ -23,4 +23,4 @@ More models is a lightweight [ClassiCube](http://classicube.net) plugin which br
 - [Commands and usage](https://github.com/VenkSociety/More-Models/wiki/Commands)
 - [List of models](https://github.com/VenkSociety/More-Models/wiki/Models)
 
-<p align="center">The More Models plugin is in no way affiliated with Mojang AB, ClassiCube or ClassicalSharp.</p>
+<p align="center">The More Models plugin is in no way affiliated with Mojang AB or ClassiCube.</p>

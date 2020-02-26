@@ -13,11 +13,11 @@ static void SlimeModel_MakeParts(void) {
 	});
 	BoxDesc_BuildBox(&leftEye, &(struct BoxDesc) {
 		BoxDesc_Tex(32, 4),
-		BoxDesc_Box(-3.25, 4, -3.25f, -1.25, 6, -1.25f)
+		BoxDesc_Box(-3.25f, 4, -3.25f, -1.25f, 6, -1.25f)
 	});
 	BoxDesc_BuildBox(&rightEye, &(struct BoxDesc) {
 		BoxDesc_Tex(32, 0),
-		BoxDesc_Box(1.25, 4, -3.25f, 3.25, 6, -1.25f)
+		BoxDesc_Box(1.25f, 4, -3.25f, 3.25f, 6, -1.25f)
 	});
 	BoxDesc_BuildBox(&mouth, &(struct BoxDesc){
 		BoxDesc_Tex(32, 8),
@@ -40,8 +40,8 @@ static void SlimeModel_Draw(struct Entity *e) {
 	Gfx_SetAlphaBlending(false);
 }	
 
-static float SlimeModel_GetNameY(struct Entity *e) { return 8 / 16.0f; }
-static float SlimeModel_GetEyeY(struct Entity *e) { return 6 / 16.0f; }
+static float SlimeModel_GetNameY(struct Entity *e) { e; return 8 / 16.0f; }
+static float SlimeModel_GetEyeY(struct Entity *e) { e; return 6 / 16.0f; }
 static void SlimeModel_GetSize(struct Entity *e)   { _SetSize(14, 14, 14); }
 static void SlimeModel_GetBounds(struct Entity *e) { _SetBounds(-5,0,14, 5,16,9); }
 
