@@ -86,10 +86,10 @@ static void CaveSpiderModel_GetBounds(struct Entity* e) { _SetBounds(-5,0,-11, 5
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 8];
 
 static void CaveSpiderModel_GetTransform(struct Entity *e, Vec3 pos, struct Matrix *m) {
-	static Vec3 vec;	vec = e->ModelScale;
+	static Vec3 vec; vec = e->ModelScale;
+
 	Vec3_Mul1(&vec, &vec, 0.75f);
 	Entity_GetTransform(e, pos, vec, m);
-	
 }
 static float CaveSpiderModel_GetEyeY(struct Entity *e) { return spider->GetEyeY(e) * 0.75f; }
 
@@ -116,8 +116,10 @@ struct Model* CaveSpiderModel_GetInstance(void) {
 	model.GetEyeY = CaveSpiderModel_GetEyeY;
 	model.GetCollisionSize = CaveSpiderModel_GetSize;
 	model.GetPickingBounds = CaveSpiderModel_GetBounds;
+
 	for (i = 0; i != MODEL_BOX_VERTICES * 7; i++) vertices[i] = model.vertices[i];
 	model.vertices = vertices;
 	model.initalised = false;
+
 	return &model;
 }

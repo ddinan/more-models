@@ -90,6 +90,12 @@
     <ClCompile Include="Mobs\Villagers.c">
       <Filter>Source Files\Mobs</Filter>
     </ClCompile>
+    <ClCompile Include="Humans\Headless.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Female.c">
+      <Filter>Source Files\Humans</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">

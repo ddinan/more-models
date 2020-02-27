@@ -1,5 +1,5 @@
 #include "Common.h"
-/* TEXTURE NEEDS FIX, OTHERWISE BAD LIGHTING. */
+// Consider adding squishiness to slime.
 static struct ModelPart headInner, headOuter, leftEye, rightEye, mouth;
 
 static void SlimeModel_MakeParts(void) {
@@ -24,6 +24,17 @@ static void SlimeModel_MakeParts(void) {
 		BoxDesc_Box(-1, 2, -3.25f, 0, 3, -2.25f)
 	});
 }
+
+/*static void SlimeModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
+	static struct Matrix mat;
+	static float disp;
+	pos.Y -= e->Anim.BobbingModel;
+	pos.Y += e->Anim.BobbingModel * e->ModelScale.Y;
+	Entity_GetTransform(e, pos, e->ModelScale, m);
+	Matrix_Translate(&mat, 0, 0, (((disp = (float)Math_Sin(e->Anim.WalkTime - MATH_PI/2)) < 0 ? -disp : disp) - 0.5f) * e->Anim.Swing * -0.4f / e->ModelScale.Y);
+	Matrix_Mul(m, &mat, m);
+}*/
+
 static void SlimeModel_Draw(struct Entity *e) {
 	Model_ApplyTexture(e);
 	/* This currently causes anything behind slime to be culled (except entities). */
@@ -45,15 +56,6 @@ static float SlimeModel_GetEyeY(struct Entity *e) { e; return 6 / 16.0f; }
 static void SlimeModel_GetSize(struct Entity *e)   { _SetSize(14, 14, 14); }
 static void SlimeModel_GetBounds(struct Entity *e) { _SetBounds(-5,0,14, 5,16,9); }
 
-/*static void SlimeModel_GetTransform(struct Entity* e, Vec3 pos, struct Matrix* m) {
-	static struct Matrix mat;
-	static float disp;
-	pos.Y -= e->Anim.BobbingModel;
-	pos.Y += e->Anim.BobbingModel * e->ModelScale.Y;
-	Entity_GetTransform(e, pos, e->ModelScale, m);
-	Matrix_Translate(&mat, 0, 0, (((disp = (float)Math_Sin(e->Anim.WalkTime - MATH_PI/2)) < 0 ? -disp : disp) - 0.5f) * e->Anim.Swing * -0.4f / e->ModelScale.Y);
-	Matrix_Mul(m, &mat, m);
-}*/
 static struct ModelVertex vertices[MODEL_BOX_VERTICES * 5];
 static struct Model model = { 
 	"slime", vertices, &slime_tex,

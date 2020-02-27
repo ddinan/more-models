@@ -184,7 +184,9 @@
     <ClCompile Include="Humans\Cape.c" />
     <ClCompile Include="Humans\ChibiSit.c" />
     <ClCompile Include="Humans\Dab.c" />
+    <ClCompile Include="Humans\Female.c" />
     <ClCompile Include="Humans\Fly.c" />
+    <ClCompile Include="Humans\Headless.c" />
     <ClCompile Include="Humans\Hold.c" />
     <ClCompile Include="Humans\Male.c" />
     <ClCompile Include="Humans\T.c" />

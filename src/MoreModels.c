@@ -88,9 +88,9 @@ static void MoreModels_Init(void) {
 	Model_Register(CrocModel_GetInstance());
 	Model_Register(DabModel_GetInstance());
 	Model_Register(EndermanModel_GetInstance());
-	//game.ModelCache.Register("female", "char.png", new FemaleModel(game));
+	Model_Register(FemaleModel_GetInstance());
 	Model_Register(FlyModel_GetInstance());
-	//game.ModelCache.Register("headless", "char.png", new HeadlessModel(game));
+	Model_Register(HeadlessModel_GetInstance());
 	Model_Register(HoldModel_GetInstance());
 	Model_Register(HuskModel_GetInstance());
 	Model_Register(MaleModel_GetInstance());
