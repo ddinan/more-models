@@ -195,6 +195,7 @@
     <ClCompile Include="Mobs\Croc.c" />
     <ClCompile Include="Mobs\Enderman.c" />
     <ClCompile Include="Mobs\MagmaCube.c" />
+    <ClCompile Include="Mobs\NewPig.c" />
     <ClCompile Include="Mobs\Skeletons.c" />
     <ClCompile Include="Mobs\Slime.c" />
     <ClCompile Include="Mobs\Villagers.c" />

@@ -106,6 +106,10 @@ static void MoreModels_Init(void) {
 	Model_Register(ZombiePigmanModel_GetInstance());
 	Model_Register(ZombieVillagerModel_GetInstance());
 
+	// Modify existing models
+	pig = Model_Get(&(String)String_FromConst("pig"));
+	NewPigModel_Init();
+
 	// Recreate the modelcache VB to be bigger
 	Gfx_DeleteVb(&Models.Vb);
 	Models.Vertices    = large_vertices;

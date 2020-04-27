@@ -65,5 +65,9 @@ struct Model* WitherSkeletonModel_GetInstance(void);
 struct Model* ZombiePigmanModel_GetInstance(void);
 struct Model* ZombieVillagerModel_GetInstance(void);
 
+// Pointers to existing models
+extern struct Model *pig;
+void NewPigModel_Init(void);
+
 /* Just your average general-purpose empty function. */
 void nullfunc(void);

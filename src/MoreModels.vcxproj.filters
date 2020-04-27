@@ -96,6 +96,9 @@
     <ClCompile Include="Humans\Female.c">
       <Filter>Source Files\Humans</Filter>
     </ClCompile>
+    <ClCompile Include="Mobs\NewPig.c">
+      <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
