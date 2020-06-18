@@ -36,9 +36,6 @@
     <ClCompile Include="Props\Printer.c">
       <Filter>Source Files\Props</Filter>
     </ClCompile>
-    <ClCompile Include="Humans\Male.c">
-      <Filter>Source Files\Humans</Filter>
-    </ClCompile>
     <ClCompile Include="Mobs\Croc.c">
       <Filter>Source Files\Mobs</Filter>
     </ClCompile>
@@ -98,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="Mobs\NewPig.c">
       <Filter>Source Files\Mobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Humans\Human2.c">
+      <Filter>Source Files\Humans</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

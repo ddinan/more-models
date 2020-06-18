@@ -33,7 +33,7 @@ static void Cape_MakeModel(struct Model *model) {
 	// copy everything from human model
 	*model = *Models.Human;
 
-	model->initalised = false;
+	model->inited = false;
 	model->name       = "cape";
 	model->defaultTex = &cape_tex;
 	model->vertices   = vertices;

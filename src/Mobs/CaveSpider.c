@@ -119,7 +119,7 @@ struct Model* CaveSpiderModel_GetInstance(void) {
 
 	for (i = 0; i != MODEL_BOX_VERTICES * 7; i++) vertices[i] = model.vertices[i];
 	model.vertices = vertices;
-	model.initalised = false;
+	model.inited = false;
 
 	return &model;
 }

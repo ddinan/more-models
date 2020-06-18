@@ -68,7 +68,7 @@ struct Model* FemaleModel_GetInstance(void) {
 	// copy everything from human model
 	model = *Models.Human;
 
-	model.initalised = false;
+	model.inited = false;
 	model.name = "female";
 	model.vertices = vertices;
 	model.MakeParts = FemaleModel_MakeParts;
