@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "Chat.h"
 #include "Server.h"
+#include "GameStructs.h"
 
 /*
   TO DO:
@@ -55,17 +56,22 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&cape2015_tex);
 	Model_RegisterTexture(&cape2016_tex);
 	Model_RegisterTexture(&car_tex);
+	Model_RegisterTexture(&carSiren_tex);
 	Model_RegisterTexture(&caveSpider_tex);
+	Model_RegisterTexture(&copter_tex);
 	Model_RegisterTexture(&cow_tex);
 	Model_RegisterTexture(&croc_tex);
 	Model_RegisterTexture(&enderman_tex);
 	Model_RegisterTexture(&endermanEyes_tex);
 	Model_RegisterTexture(&husk_tex);
 	Model_RegisterTexture(&magmaCube_tex);
+	Model_RegisterTexture(&char_tex);
 	Model_RegisterTexture(&printer_tex);
 	Model_RegisterTexture(&slime_tex);
 	Model_RegisterTexture(&spiderEyes_tex);
 	Model_RegisterTexture(&stray_tex);
+	Model_RegisterTexture(&truck_tex);
+	Model_RegisterTexture(&truckSiren_tex);
 	Model_RegisterTexture(&tv_tex);
 	Model_RegisterTexture(&villager_tex);
 	Model_RegisterTexture(&witherSkeleton_tex);
@@ -80,9 +86,11 @@ static void MoreModels_Init(void) {
 	Model_Register(Cape2015Model_GetInstance());
 	Model_Register(Cape2016Model_GetInstance());
 	Model_Register(CarModel_GetInstance());
+	Model_Register(CarSirenModel_GetInstance());
 	Model_Register(CaveSpiderModel_GetInstance());
 	Model_Register(ChairModel_GetInstance());
 	Model_Register(ChibiSitModel_GetInstance());
+	Model_Register(CopterModel_GetInstance());
 	Model_Register(CowModel_GetInstance());
 	Model_Register(CrocModel_GetInstance());
 	Model_Register(DabModel_GetInstance());
@@ -91,14 +99,16 @@ static void MoreModels_Init(void) {
 	Model_Register(FlyModel_GetInstance());
 	Model_Register(HeadlessModel_GetInstance());
 	Model_Register(HoldModel_GetInstance());
-	Model_Register(Human2Model_GetInstance());
 	Model_Register(HuskModel_GetInstance());
+	Model_Register(MaleModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
 	Model_Register(PrinterModel_GetInstance());
 	Model_Register(SlimeModel_GetInstance());
 	Model_Register(StrayModel_GetInstance());
 	Model_Register(TModel_GetInstance());
 	Model_Register(TableModel_GetInstance());
+	Model_Register(TruckModel_GetInstance());
+	Model_Register(TruckSirenModel_GetInstance());
 	Model_Register(TVModel_GetInstance());
 	Model_Register(VillagerModel_GetInstance());
 	Model_Register(WitherSkeletonModel_GetInstance());
@@ -115,7 +125,7 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_TEXTURED, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + MM 1.2.5");
+	String_AppendConst(&Server.AppName, " + MM 1.2.4");
 	Commands_Register(&ListModelsCommand);
 }
 
@@ -142,8 +152,10 @@ struct ModelTex
 	cape2015_tex       = { "cape_2015.png"},
 	cape2016_tex       = { "cape_2016.png"},
 	car_tex            = { "car.png" },
+	carSiren_tex       = { "car_siren.png" },
 	caveSpider_tex     = { "cave_spider.png" },
 	char_tex           = { "char.png" },
+	copter_tex		       = { "copter.png" },
 	cow_tex            = { "cow.png" },
 	croc_tex           = { "croc.png" },
 	enderman_tex       = { "enderman.png" },
@@ -154,66 +166,14 @@ struct ModelTex
 	slime_tex          = { "slime.png" },
 	spiderEyes_tex     = { "spider_eyes.png" },
 	stray_tex          = { "stray.png" },
+	truck_tex		   = { "truck.png" },
+	truckSiren_tex     = { "truck_siren.png" },
 	tv_tex             = { "tv.png" },
 	villager_tex       = { "villager.png" },
 	witherSkeleton_tex = { "wither_skeleton.png" },
 	wood_tex           = { "wood.png" },
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
-
-
-/* === MISCELLANEOUS === */
-
-void BoxDesc_BuildBendyBox(struct ModelPart *partUpper, struct ModelPart *partLower, const struct BoxDesc *desc, float rotOffset) {
-	int sidesW = desc->sizeZ, bodyW = desc->sizeX, bodyH = desc->sizeY >> 1;
-	float x1 = desc->x1, y1 = desc->y1, z1 = desc->z1;
-	float x2 = desc->x2, y2 = desc->y2, z2 = desc->z2;
-	float yInter = (desc->y1 + desc->y2) / 2;
-	int x = desc->texX, y = desc->texY;
-	struct Model *m = Models.Active;
-
-	BoxDesc_YQuad2(m, x1, x2, z2, z1, y2,     /* upper top */
-		x + sidesW + bodyW,                  y,
-		x + sidesW,                          y + sidesW);
-	BoxDesc_YQuad2(m, x2, x1, z2, z1, yInter, /* upper bottom */
-		x + sidesW - bodyW,                  y,
-		x + sidesW,                          y + sidesW);
-	BoxDesc_ZQuad2(m, x1, x2, yInter, y2, z1, /* upper front */
-		x + sidesW + bodyW,                  y + sidesW,
-		x + sidesW,                          y + sidesW + bodyH);
-	BoxDesc_ZQuad2(m, x2, x1, yInter, y2, z2, /* upper back */
-		x + sidesW + bodyW + sidesW + bodyW, y + sidesW,
-		x + sidesW + bodyW + sidesW,         y + sidesW + bodyH);
-	BoxDesc_XQuad2(m, z1, z2, yInter, y2, x2, /* upper left */
-		x + sidesW,                          y + sidesW,
-		x,                                   y + sidesW + bodyH);
-	BoxDesc_XQuad2(m, z2, z1, yInter, y2, x1, /* upper right */
-		x + sidesW + bodyW + sidesW,         y + sidesW,
-		x + sidesW + bodyW,                  y + sidesW + bodyH);
-	ModelPart_Init(partUpper, m->index - MODEL_BOX_VERTICES, MODEL_BOX_VERTICES,
-		desc->rotX, desc->rotY, desc->rotZ);
-
-	BoxDesc_YQuad2(m, x1, x2, z2, z1, yInter, /* lower top */
-		x + sidesW + bodyW + bodyW + bodyW,  y,
-		x + sidesW + bodyW + bodyW,          y + sidesW);
-	BoxDesc_YQuad2(m, x2, x1, z2, z1, y1,     /* lower bottom */
-		x + sidesW + bodyW,                  y,
-		x + sidesW + bodyW + bodyW,          y + sidesW);
-	BoxDesc_ZQuad2(m, x1, x2, y1, yInter, z1, /* lower front */
-		x + sidesW + bodyW,                  y + sidesW + bodyH,
-		x + sidesW,                          y + sidesW + bodyH + bodyH);
-	BoxDesc_ZQuad2(m, x2, x1, y1, yInter, z2, /* lower back */
-		x + sidesW + bodyW + sidesW + bodyW, y + sidesW + bodyH,
-		x + sidesW + bodyW + sidesW,         y + sidesW + bodyH + bodyH);
-	BoxDesc_XQuad2(m, z1, z2, y1, yInter, x2, /* lower left */
-		x + sidesW,                          y + sidesW + bodyH,
-		x,                                   y + sidesW + bodyH + bodyH);
-	BoxDesc_XQuad2(m, z2, z1, y1, yInter, x1, /* lower right */
-		x + sidesW + bodyW + sidesW, y + sidesW + bodyH,
-		x + sidesW + bodyW,          y + sidesW + bodyH + bodyH);
-	ModelPart_Init(partLower, m->index - MODEL_BOX_VERTICES, MODEL_BOX_VERTICES,
-		desc->rotX, desc->rotY + rotOffset - (float)desc->sizeY / 32, desc->rotZ);
-}
 
 void nullfunc(void) { }
 
