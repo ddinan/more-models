@@ -1,13 +1,11 @@
 #include "Common.h"
 #include "Chat.h"
 #include "Server.h"
-#include "GameStructs.h"
 
 /*
   TO DO:
 	Add the rest of the models.
 	Add more boxes to stray
-
 	Magmacube needs more boxes.
 */
 
@@ -47,8 +45,9 @@ static struct ChatCommand ListModelsCommand = {
 
 /* === PLUGIN FUNCTIONALITY === */
 
-static VertexP3fT2fC4b large_vertices[32 * 32];
+static struct VertexTextured large_vertices[32 * 32]; 
 static void MoreModels_Init(void) {
+	Model_RegisterTexture(&boat_tex);
 	Model_RegisterTexture(&cape_tex);
 	Model_RegisterTexture(&cape2011_tex);
 	Model_RegisterTexture(&cape2012_tex);
@@ -65,7 +64,7 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&endermanEyes_tex);
 	Model_RegisterTexture(&husk_tex);
 	Model_RegisterTexture(&magmaCube_tex);
-	Model_RegisterTexture(&char_tex);
+//	Model_RegisterTexture(&char_tex);
 	Model_RegisterTexture(&printer_tex);
 	Model_RegisterTexture(&slime_tex);
 	Model_RegisterTexture(&spiderEyes_tex);
@@ -73,12 +72,14 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&truck_tex);
 	Model_RegisterTexture(&truckSiren_tex);
 	Model_RegisterTexture(&tv_tex);
+	Model_RegisterTexture(&sailBoat_tex);
 	Model_RegisterTexture(&villager_tex);
 	Model_RegisterTexture(&witherSkeleton_tex);
 	Model_RegisterTexture(&wood_tex);
 	Model_RegisterTexture(&zombiePigman_tex);
 	Model_RegisterTexture(&zombieVillager_tex);
 
+	Model_Register(BoatModel_GetInstance());
 	Model_Register(CapeModel_GetInstance());
 	Model_Register(Cape2011Model_GetInstance());
 	Model_Register(Cape2012Model_GetInstance());
@@ -99,10 +100,11 @@ static void MoreModels_Init(void) {
 	Model_Register(FlyModel_GetInstance());
 	Model_Register(HeadlessModel_GetInstance());
 	Model_Register(HoldModel_GetInstance());
+	Model_Register(Human2Model_GetInstance());
 	Model_Register(HuskModel_GetInstance());
-	Model_Register(MaleModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
 	Model_Register(PrinterModel_GetInstance());
+	Model_Register(SailBoatModel_GetInstance());	
 	Model_Register(SlimeModel_GetInstance());
 	Model_Register(StrayModel_GetInstance());
 	Model_Register(TModel_GetInstance());
@@ -125,7 +127,7 @@ static void MoreModels_Init(void) {
 	Models.MaxVertices = 32 * 32;
 	Models.Vb = Gfx_CreateDynamicVb(VERTEX_FORMAT_TEXTURED, Models.MaxVertices);
 
-	String_AppendConst(&Server.AppName, " + MM 1.2.4");
+	String_AppendConst(&Server.AppName, " + MM 1.2.5");
 	Commands_Register(&ListModelsCommand);
 }
 
@@ -145,6 +147,7 @@ PLUGIN_EXPORT struct IGameComponent Plugin_Component = { MoreModels_Init };
 /* === TEXTURES === */
 
 struct ModelTex
+	boat_tex		   = { "boat.png" },
 	cape_tex           = { "cape.png"},
 	cape2011_tex       = { "cape_2011.png"},
 	cape2012_tex       = { "cape_2012.png"},
@@ -163,6 +166,7 @@ struct ModelTex
 	husk_tex           = { "husk.png" },
 	magmaCube_tex      = { "magmacube.png" },
 	printer_tex        = { "printer.png" },
+	sailBoat_tex	   = { "sail_boat.png" },
 	slime_tex          = { "slime.png" },
 	spiderEyes_tex     = { "spider_eyes.png" },
 	stray_tex          = { "stray.png" },
@@ -174,6 +178,60 @@ struct ModelTex
 	wood_tex           = { "wood.png" },
 	zombiePigman_tex   = { "zombie_pigman.png" },
 	zombieVillager_tex = { "zombie_villager.png" };
+
+
+/* === MISCELLANEOUS === */
+
+void BoxDesc_BuildBendyBox(struct ModelPart *partUpper, struct ModelPart *partLower, const struct BoxDesc *desc, float rotOffset) {
+	int sidesW = desc->sizeZ, bodyW = desc->sizeX, bodyH = desc->sizeY >> 1;
+	float x1 = desc->x1, y1 = desc->y1, z1 = desc->z1;
+	float x2 = desc->x2, y2 = desc->y2, z2 = desc->z2;
+	float yInter = (desc->y1 + desc->y2) / 2;
+	int x = desc->texX, y = desc->texY;
+	struct Model *m = Models.Active;
+
+	BoxDesc_YQuad2(m, x1, x2, z2, z1, y2,     /* upper top */
+		x + sidesW + bodyW,                  y,
+		x + sidesW,                          y + sidesW);
+	BoxDesc_YQuad2(m, x2, x1, z2, z1, yInter, /* upper bottom */
+		x + sidesW - bodyW,                  y,
+		x + sidesW,                          y + sidesW);
+	BoxDesc_ZQuad2(m, x1, x2, yInter, y2, z1, /* upper front */
+		x + sidesW + bodyW,                  y + sidesW,
+		x + sidesW,                          y + sidesW + bodyH);
+	BoxDesc_ZQuad2(m, x2, x1, yInter, y2, z2, /* upper back */
+		x + sidesW + bodyW + sidesW + bodyW, y + sidesW,
+		x + sidesW + bodyW + sidesW,         y + sidesW + bodyH);
+	BoxDesc_XQuad2(m, z1, z2, yInter, y2, x2, /* upper left */
+		x + sidesW,                          y + sidesW,
+		x,                                   y + sidesW + bodyH);
+	BoxDesc_XQuad2(m, z2, z1, yInter, y2, x1, /* upper right */
+		x + sidesW + bodyW + sidesW,         y + sidesW,
+		x + sidesW + bodyW,                  y + sidesW + bodyH);
+	ModelPart_Init(partUpper, m->index - MODEL_BOX_VERTICES, MODEL_BOX_VERTICES,
+		desc->rotX, desc->rotY, desc->rotZ);
+
+	BoxDesc_YQuad2(m, x1, x2, z2, z1, yInter, /* lower top */
+		x + sidesW + bodyW + bodyW + bodyW,  y,
+		x + sidesW + bodyW + bodyW,          y + sidesW);
+	BoxDesc_YQuad2(m, x2, x1, z2, z1, y1,     /* lower bottom */
+		x + sidesW + bodyW,                  y,
+		x + sidesW + bodyW + bodyW,          y + sidesW);
+	BoxDesc_ZQuad2(m, x1, x2, y1, yInter, z1, /* lower front */
+		x + sidesW + bodyW,                  y + sidesW + bodyH,
+		x + sidesW,                          y + sidesW + bodyH + bodyH);
+	BoxDesc_ZQuad2(m, x2, x1, y1, yInter, z2, /* lower back */
+		x + sidesW + bodyW + sidesW + bodyW, y + sidesW + bodyH,
+		x + sidesW + bodyW + sidesW,         y + sidesW + bodyH + bodyH);
+	BoxDesc_XQuad2(m, z1, z2, y1, yInter, x2, /* lower left */
+		x + sidesW,                          y + sidesW + bodyH,
+		x,                                   y + sidesW + bodyH + bodyH);
+	BoxDesc_XQuad2(m, z2, z1, y1, yInter, x1, /* lower right */
+		x + sidesW + bodyW + sidesW, y + sidesW + bodyH,
+		x + sidesW + bodyW,          y + sidesW + bodyH + bodyH);
+	ModelPart_Init(partLower, m->index - MODEL_BOX_VERTICES, MODEL_BOX_VERTICES,
+		desc->rotX, desc->rotY + rotOffset - (float)desc->sizeY / 32, desc->rotZ);
+}
 
 void nullfunc(void) { }
 
