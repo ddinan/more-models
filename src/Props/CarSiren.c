@@ -13,11 +13,6 @@ static void CarSirenModel_MakeParts(void) {
 		BoxDesc_Box(-22,4,-40, 22,20,40)
 	});
 
-	BoxDesc_BuildRotatedBox(&siren, &(struct BoxDesc) {
-		BoxDesc_Tex(0, 116),
-		BoxDesc_Box(-14, 36, -12, 14, 38, -7)
-	});
-
 	BoxDesc_BuildRotatedBox(&spoiler, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 52),
 		BoxDesc_Box(-19,27,33, 19,30,42)
@@ -73,23 +68,29 @@ static void CarSirenModel_MakeParts(void) {
 
 	BoxDesc_BuildBox(&frontLeft, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 64),
-		BoxDesc_Box(-20,4,-31, -22,14,-15)
+		BoxDesc_Box(-20, 4, -31, -22, 14, -15)
 	});
 
 	BoxDesc_BuildBox(&backLeft, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 64),
-		BoxDesc_Box(-20,4,15, -22,14,31)
+		BoxDesc_Box(-20, 4, 15, -22, 14, 31)
 	});
 
 	BoxDesc_BuildBox(&frontRight, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 64),
-		BoxDesc_Box(20,4,-31, 22,14,-15)
+		BoxDesc_Box(20, 4, -31, 22, 14, -15)
 	});
 
 	BoxDesc_BuildBox(&backRight, &(struct BoxDesc) {
 		BoxDesc_Tex(120, 64),
-		BoxDesc_Box(20,4,15, 22,14,31)
+		BoxDesc_Box(20, 4, 15, 22, 14, 31)
 	});
+
+	BoxDesc_BuildRotatedBox(&siren, &(struct BoxDesc) {
+		BoxDesc_Tex(0, 116),
+			BoxDesc_Box(-14, 36, -12, 14, 38, -7)
+	});
+
 }
 
 static void CarSirenModel_Draw(struct Entity *e) {
