@@ -29,11 +29,14 @@ void BoxDesc_BuildBendyBox(struct ModelPart *partUpper, struct ModelPart *partLo
 
 /* All new textures */
 extern struct ModelTex 
-	cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,	car_tex, caveSpider_tex, /*char_tex,*/ cow_tex,
-	croc_tex, enderman_tex, endermanEyes_tex, husk_tex, magmaCube_tex, printer_tex, slime_tex, spiderEyes_tex, stray_tex,
+	boat_tex, cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,
+	car_tex, carSiren_tex, caveSpider_tex, /*char_tex,*/ copter_tex, cow_tex,
+	croc_tex, enderman_tex, endermanEyes_tex, husk_tex, magmaCube_tex, plane_tex, printer_tex, 
+	sailBoat_tex, slime_tex, spiderEyes_tex, stray_tex, truck_tex, truckSiren_tex, 
 	tv_tex, villager_tex, witherSkeleton_tex, wood_tex, zombiePigman_tex, zombieVillager_tex;
 
 /* All new models */
+struct Model* BoatModel_GetInstance(void);
 struct Model* CapeModel_GetInstance(void);
 struct Model* Cape2011Model_GetInstance(void);
 struct Model* Cape2012Model_GetInstance(void);
@@ -41,9 +44,11 @@ struct Model* Cape2013Model_GetInstance(void);
 struct Model* Cape2015Model_GetInstance(void);
 struct Model* Cape2016Model_GetInstance(void);
 struct Model* CarModel_GetInstance(void);
+struct Model* CarSirenModel_GetInstance(void);
 struct Model* CaveSpiderModel_GetInstance(void);
 struct Model* ChairModel_GetInstance(void);
 struct Model* ChibiSitModel_GetInstance(void);
+struct Model* CopterModel_GetInstance(void);
 struct Model* CowModel_GetInstance(void);
 struct Model* CrocModel_GetInstance(void);
 struct Model* DabModel_GetInstance(void);
@@ -55,12 +60,17 @@ struct Model* HoldModel_GetInstance(void);
 struct Model* Human2Model_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
+struct Model* MaleModel_GetInstance(void);
+struct Model* PlaneModel_GetInstance(void);
 struct Model* PrinterModel_GetInstance(void);
 struct Model* SlimeModel_GetInstance(void);
 struct Model* StrayModel_GetInstance(void);
 struct Model* TModel_GetInstance(void);
 struct Model* TableModel_GetInstance(void);
+struct Model* TruckModel_GetInstance(void);
+struct Model* TruckSirenModel_GetInstance(void);
 struct Model* TVModel_GetInstance(void);
+struct Model* SailBoatModel_GetInstance(void);
 struct Model* VillagerModel_GetInstance(void);
 struct Model* WitherSkeletonModel_GetInstance(void);
 struct Model* ZombiePigmanModel_GetInstance(void);
