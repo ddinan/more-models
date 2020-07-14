@@ -65,6 +65,7 @@ static void MoreModels_Init(void) {
 	Model_RegisterTexture(&husk_tex);
 	Model_RegisterTexture(&magmaCube_tex);
 //	Model_RegisterTexture(&char_tex);
+	Model_RegisterTexture(&plane_tex);
 	Model_RegisterTexture(&printer_tex);
 	Model_RegisterTexture(&slime_tex);
 	Model_RegisterTexture(&spiderEyes_tex);
@@ -103,6 +104,7 @@ static void MoreModels_Init(void) {
 	Model_Register(Human2Model_GetInstance());
 	Model_Register(HuskModel_GetInstance());
 	Model_Register(MagmaCubeModel_GetInstance());
+	Model_Register(PlaneModel_GetInstance());
 	Model_Register(PrinterModel_GetInstance());
 	Model_Register(SailBoatModel_GetInstance());	
 	Model_Register(SlimeModel_GetInstance());
@@ -165,6 +167,7 @@ struct ModelTex
 	endermanEyes_tex   = { "enderman_eyes.png" },
 	husk_tex           = { "husk.png" },
 	magmaCube_tex      = { "magmacube.png" },
+	plane_tex        = { "plane.png" },
 	printer_tex        = { "printer.png" },
 	sailBoat_tex	   = { "sail_boat.png" },
 	slime_tex          = { "slime.png" },

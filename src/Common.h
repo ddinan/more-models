@@ -31,7 +31,7 @@ void BoxDesc_BuildBendyBox(struct ModelPart *partUpper, struct ModelPart *partLo
 extern struct ModelTex 
 	boat_tex, cape_tex, cape2011_tex, cape2012_tex, cape2013_tex, cape2015_tex, cape2016_tex,
 	car_tex, carSiren_tex, caveSpider_tex, /*char_tex,*/ copter_tex, cow_tex,
-	croc_tex, enderman_tex, endermanEyes_tex, husk_tex, magmaCube_tex, printer_tex, 
+	croc_tex, enderman_tex, endermanEyes_tex, husk_tex, magmaCube_tex, plane_tex, printer_tex, 
 	sailBoat_tex, slime_tex, spiderEyes_tex, stray_tex, truck_tex, truckSiren_tex, 
 	tv_tex, villager_tex, witherSkeleton_tex, wood_tex, zombiePigman_tex, zombieVillager_tex;
 
@@ -61,6 +61,7 @@ struct Model* Human2Model_GetInstance(void);
 struct Model* HuskModel_GetInstance(void);
 struct Model* MagmaCubeModel_GetInstance(void);
 struct Model* MaleModel_GetInstance(void);
+struct Model* PlaneModel_GetInstance(void);
 struct Model* PrinterModel_GetInstance(void);
 struct Model* SlimeModel_GetInstance(void);
 struct Model* StrayModel_GetInstance(void);
