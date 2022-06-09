@@ -107,7 +107,7 @@ static void CaveSpiderModel_GetBounds(struct Entity *e) {
 struct Model* CaveSpiderModel_GetInstance(void) {
 	int i;
 	/* Copy from spider model. */
-	model = *(spider = Model_Get(&(String)String_FromConst("spider")));
+	model = *(spider = Model_Get(&(cc_string)String_FromConst("spider")));
 	model.name = "cavespider";
 	model.defaultTex = &caveSpider_tex;
 	model.Draw = CaveSpiderModel_Draw;

@@ -65,6 +65,6 @@ struct Model* HoldModel_GetInstance(void) {
 	model.name = "hold";
 	model.MakeParts = nullfunc;
 	model.Draw = HoldModel_Draw;
-	blockModel = Model_Get(&(String)String_FromConst("block"));
+	blockModel = Model_Get(&(cc_string)String_FromConst("block"));
 	return &model;
 }

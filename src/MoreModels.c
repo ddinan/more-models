@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "Chat.h"
+#include "Core.h"
 #include "Server.h"
 
 /*
@@ -12,12 +13,12 @@
 
 /* === MODELS LIST COMMAND === */
 
-static void ListModelsCommand_Execute(const String* args, int argsCount) {
+static void ListModelsCommand_Execute(const cc_string* args, int argsCount) {
 	args; argsCount;
 	char lineBuffer[STRING_SIZE + 4];
 	struct Model* model;
 
-	String line = String_FromArray(lineBuffer);
+	cc_string line = String_FromArray(lineBuffer);
 	String_AppendConst(&line, "&eLoaded models: &7");
 
 	for (model = Models.Human; model; model = model->next) {
@@ -46,7 +47,7 @@ static struct ChatCommand ListModelsCommand = {
 
 /* === PLUGIN FUNCTIONALITY === */
 
-static VertexP3fT2fC4b large_vertices[32 * 32];
+static struct VertexTextured large_vertices[32 * 32];
 static void MoreModels_Init(void) {
 	Model_RegisterTexture(&cape_tex);
 	Model_RegisterTexture(&cape2011_tex);
@@ -106,7 +107,7 @@ static void MoreModels_Init(void) {
 	Model_Register(ZombieVillagerModel_GetInstance());
 
 	// Modify existing models
-	pig = Model_Get(&(String)String_FromConst("pig"));
+	pig = Model_Get(&(cc_string)String_FromConst("pig"));
 	NewPigModel_Init();
 
 	// Recreate the modelcache VB to be bigger

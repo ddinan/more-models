@@ -7,7 +7,7 @@ static struct Model *skeleton;
 static struct Model stray;
 struct Model* StrayModel_GetInstance(void) {
 	// First skeleton-based model initialized gets to set skeleton ptr.
-	stray = *(skeleton = Model_Get(&(String)String_FromConst("skeleton")));
+	stray = *(skeleton = Model_Get(&(cc_string)String_FromConst("skeleton")));
 	stray.name = "stray";
 	stray.MakeParts = nullfunc;
 	stray.defaultTex = &stray_tex;
@@ -37,7 +37,7 @@ static void WitherSkeletonModel_GetBounds(struct Entity *e) {
 
 static struct Model witherskel;
 struct Model* WitherSkeletonModel_GetInstance(void) {
-	witherskel = *Model_Get(&(String)String_FromConst("skeleton"));
+	witherskel = *Model_Get(&(cc_string)String_FromConst("skeleton"));
 	witherskel.name = "witherskeleton";
 	witherskel.defaultTex = &witherSkeleton_tex;
 	witherskel.MakeParts = nullfunc;

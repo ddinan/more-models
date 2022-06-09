@@ -24,7 +24,7 @@ static void ChibiSitModel_GetBounds(struct Entity *e) {
 static struct Model model;
 struct Model* ChibiSitModel_GetInstance(void) {
 	// copy everything from chibi model
-	chibi = Model_Get(&(String)String_FromConst("chibi"));
+	chibi = Model_Get(&(cc_string)String_FromConst("chibi"));
 	model = *chibi;
 
 	model.name         = "chibisit";
